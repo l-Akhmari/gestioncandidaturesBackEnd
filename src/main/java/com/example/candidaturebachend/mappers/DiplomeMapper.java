@@ -4,6 +4,7 @@ import com.example.candidaturebachend.dto.DiplomeDto;
 import com.example.candidaturebachend.dto.FiliereDto;
 import com.example.candidaturebachend.entities.Diplome;
 import com.example.candidaturebachend.entities.Filiere;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
 import org.apache.commons.collections.CollectionUtils;
@@ -19,11 +20,11 @@ import java.util.List;
 @Component
 @Data
 @ToString
+@AllArgsConstructor
 public class DiplomeMapper {
-    @Autowired
+
     private DozerBeanMapper mapper;
 
-    @Autowired
     private FiliereMapper filiereMapper;
 
     //Diplome entity to Dto

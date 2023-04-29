@@ -22,8 +22,8 @@ public class CandidatDto extends Utilisateur {
     private String ville;
     private boolean admis;
 
-    private List<Filiere> filieres;
-    private List<AnneUniversitaire> anneUniversitaires;
-    private List<Diplome> diplomes;
+    private List<FiliereDto> filieresDto;
+    private List<AnneUniversitaireDto> anneUniversitairesDto;
+    private List<DiplomeDto> diplomesDto;
 
 }

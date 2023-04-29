@@ -1,7 +1,6 @@
 package com.example.candidaturebachend.mappers;
 
-import com.example.candidaturebachend.dto.DiplomeDto;
-import com.example.candidaturebachend.dto.FiliereDto;
+import com.example.candidaturebachend.dto.*;
 import com.example.candidaturebachend.entities.Diplome;
 import com.example.candidaturebachend.entities.Filiere;
 import lombok.AllArgsConstructor;
@@ -26,6 +25,9 @@ public class DiplomeMapper {
     private DozerBeanMapper mapper;
 
     private FiliereMapper filiereMapper;
+    private TypeDiplomeMapper typeDiplomeMapper;
+    private FichierMapper fichierMapper;
+    private CandidatMapper candidatMapper;
 
     //Diplome entity to Dto
     public DiplomeDto DiplomeToDiplomeDto(Diplome diplome) {
@@ -41,7 +43,19 @@ public class DiplomeMapper {
             diplomeDto.setFilieresDto(filieresDto);
             // diplomeDto.setFilieresDto(mapper.map(diplomeDto.g(), ZoneDto.class));
         }
+        if(diplome.getTypeDiplome()!=null) {
+            TypeDiplomeDto typeDiplomeDto = typeDiplomeMapper.typeDiplomeToTypeDiplomeDto(diplome.getTypeDiplome());
 
+            diplomeDto.setTypeDiplomeDto(typeDiplomeDto);
+        }
+        if(diplome.getFichier()!=null){
+            FichierDto fichierDto = fichierMapper.fichierToFichierDto(diplome.getFichier());
+            diplomeDto.setFichierDto(fichierDto);
+        }
+        if(diplome.getCandidat()!=null){
+            CandidatDto candidatDto=candidatMapper.candidatToDto(diplome.getCandidat());
+            diplomeDto.setCandidatDto(candidatDto);
+        }
 
         return  diplomeDto;
     }
@@ -52,7 +66,7 @@ public class DiplomeMapper {
             return Collections.emptyList();
         }
 
-        List<DiplomeDto> diplomeDtos = new ArrayList<DiplomeDto>();
+        List<DiplomeDto> diplomeDtos = new ArrayList<>();
 
         for (Diplome diplome : diplomes) {
             diplomeDtos.add(DiplomeToDiplomeDto(diplome));

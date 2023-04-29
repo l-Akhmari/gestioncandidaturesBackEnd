@@ -20,6 +20,7 @@ public class Candidat extends Utilisateur{
     @ManyToMany
     private List<Filiere> filieres;
     @ManyToMany(mappedBy = "candidats",fetch = FetchType.LAZY)
+    @JoinTable(name = "Archieve")
     private List<AnneUniversitaire> anneUniversitaires;
     @OneToMany(mappedBy = "candidat",fetch = FetchType.LAZY)
     private List<Diplome> diplomes;

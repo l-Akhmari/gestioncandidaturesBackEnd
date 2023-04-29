@@ -1,14 +1,19 @@
 package com.example.candidaturebachend.mappers;
 
+import com.example.candidaturebachend.dto.DiplomeDto;
 import com.example.candidaturebachend.dto.FiliereDto;
 import com.example.candidaturebachend.entities.Filiere;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+import org.apache.commons.collections.CollectionUtils;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.processing.Filer;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 @Component
 @Data
@@ -26,25 +31,25 @@ public class FiliereMapper {
         FiliereDto filiereDto = mapper.map(filiere, FiliereDto.class);
 
         if (filiere.getDiplome() != null) {
-            filiereDto.setDiplomeDto(mapper.map(filiere.getClient(), ClientDto.class));
+            filiereDto.setDiplomeDto(mapper.map(filiere.getDiplome(), DiplomeDto.class));
         }
 
 
-        return  contactDto;
+        return  filiereDto;
     }
     //Lists
-    public List<ContactDto> AllContactsToDto(List<Contact> contacts) {
+    public List<FiliereDto> AllFilieresToDto(List<Filiere> filieres) {
 
-        if (CollectionUtils.isEmpty(contacts)) {
+        if (CollectionUtils.isEmpty(filieres)) {
             return Collections.emptyList();
         }
 
-        List<ContactDto> contactDtos = new ArrayList<ContactDto>();
+        List<FiliereDto> filiereDtos = new ArrayList<FiliereDto>();
 
-        for (Contact contact : contacts) {
-            contactDtos.add(ContactToContactDto(contact));
+        for (Filiere filiere : filieres) {
+            filiereDtos.add(FiliereToFiliereDto(filiere));
         }
-        return contactDtos;
+        return filiereDtos;
 
 
         /*  return contacts.stream().map(x ->ContactToContactDto(x)).collect(Collectors.toList());

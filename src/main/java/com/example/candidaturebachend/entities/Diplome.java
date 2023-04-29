@@ -24,10 +24,13 @@ public class Diplome {
     private Date anneeObtention;
     private String etablissement;
     private String notesSemester;
+
     @ManyToOne
     private Candidat candidat;
+
     @OneToMany(mappedBy = "diplome")
     private List<Filiere> filieres;
+
     @OneToOne(mappedBy = "diplome")
     private Fichier fichier;
 

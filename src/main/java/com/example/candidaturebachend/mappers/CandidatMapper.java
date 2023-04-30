@@ -4,7 +4,10 @@ import com.example.candidaturebachend.dto.AnneUniversitaireDto;
 import com.example.candidaturebachend.dto.CandidatDto;
 import com.example.candidaturebachend.dto.DiplomeDto;
 import com.example.candidaturebachend.dto.FiliereDto;
+import com.example.candidaturebachend.entities.AnneUniversitaire;
 import com.example.candidaturebachend.entities.Candidat;
+import com.example.candidaturebachend.entities.Diplome;
+import com.example.candidaturebachend.entities.Filiere;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -27,6 +30,7 @@ public class CandidatMapper {
     private AnneUniversitaireMapper anneUniversitaireMapper;
     private DiplomeMapper diplomeMapper;
 
+    //Candidat to Dto
     public CandidatDto candidatToDto(Candidat candidat){
         if(candidat==null)
             return null;
@@ -61,12 +65,24 @@ public class CandidatMapper {
 
     }
 
+    //Dto to candidat
     public Candidat CandidatDtoToCandidat(CandidatDto candidatDto){
         if(candidatDto==null)
             return null;
         Candidat candidat=mapper.map(candidatDto,Candidat.class);
 
-        //TODO:Mapping dto
+        if(candidatDto.getFilieresDto()!=null){
+            List<Filiere> filieres = filiereMapper.DtoToAllFilieres(candidatDto.getFilieresDto());
+            candidat.setFilieres(filieres);
+        }
+        if(candidatDto.getAnneUniversitairesDto()!=null){
+            List<AnneUniversitaire> anneUniversitaires = anneUniversitaireMapper.DtosToAnneUniversitaire(candidatDto.getAnneUniversitairesDto());
+            candidat.setAnneUniversitaires(anneUniversitaires);
+        }
+        if(candidatDto.getDiplomesDto()!=null){
+            List<Diplome> diplomes = diplomeMapper.AllDtoToDiplomes(candidatDto.getDiplomesDto());
+            candidat.setDiplomes(diplomes);
+        }
 
 
         return candidat;

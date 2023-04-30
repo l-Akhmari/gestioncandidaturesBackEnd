@@ -31,14 +31,19 @@ public class FichierMapper {
             fichierDto.setDiplomeDto((diplomeDto));
 
         }
-
-
         return  fichierDto;
     }
 
     public Fichier fichierDtoTofichier(FichierDto fichierDto){
-        //TODO:todo
+        if (fichierDto == null) {
+            return null;
+        }
+        Fichier fichier = mapper.map(fichierDto, Fichier.class);
+        if(fichierDto.getDiplomeDto()!=null){
+            Diplome diplome = diplomeMapper.DiplomeDtoToDiplome(fichierDto.getDiplomeDto());
+            fichier.setDiplome((diplome));
 
-        return null;
+        }
+        return  fichier;
     }
 }

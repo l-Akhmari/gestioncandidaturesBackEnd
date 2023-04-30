@@ -73,7 +73,7 @@ public class DepartementMapper {
 
         //list filiers
         if(departementDto.getFilieresDto()!=null){
-            List<Filiere> filieres = filiereMapper.dtosToFileres(departementDto.getFilieresDto());
+            List<Filiere> filieres = filiereMapper.DtoToAllFilieres(departementDto.getFilieresDto());
             departement.setFilieres(filieres);
         }
         return departement;

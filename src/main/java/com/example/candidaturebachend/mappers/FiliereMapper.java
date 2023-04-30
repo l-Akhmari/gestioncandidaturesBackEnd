@@ -104,7 +104,7 @@ public class FiliereMapper {
         return filiere;
     }
 
-    public List<Filiere> dtosToFileres(List<FiliereDto> filiereDtos){
+    public List<Filiere> DtoToAllFilieres(List<FiliereDto> filiereDtos){
         if (CollectionUtils.isEmpty(filiereDtos)) {
             return Collections.emptyList();
         }

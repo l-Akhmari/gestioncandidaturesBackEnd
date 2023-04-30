@@ -15,7 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 @ToString
 @Component
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3aaed8b82d6d3485b6e01bd236a45460bba03195
 
 public class DepartementMapper {
     private DozerBeanMapper mapper;

@@ -29,5 +29,19 @@ public class TypeDiplomeMapper {
         return  typeDiplomeDto;
     }
 
+<<<<<<< HEAD
+=======
+    //Dto to typediplome
+    public TypeDiplome typeDiplomeDtoToTypeDiplome(TypeDiplomeDto typeDiplomeDto) {
+        if (typeDiplomeDto == null) {
+            return null;
+        }
+        TypeDiplome typeDiplome = mapper.map(typeDiplomeDto, TypeDiplome.class);
+
+        return  typeDiplome;
+    }
+
+
+>>>>>>> 40af6503f3b0db1ab39ced5ad5d66bd3a5a6e5fd
 
 }

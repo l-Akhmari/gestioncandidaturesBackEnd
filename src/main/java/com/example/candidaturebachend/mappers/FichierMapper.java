@@ -35,4 +35,10 @@ public class FichierMapper {
 
         return  fichierDto;
     }
+
+    public Fichier fichierDtoTofichier(FichierDto fichierDto){
+        //TODO:todo
+
+        return null;
+    }
 }

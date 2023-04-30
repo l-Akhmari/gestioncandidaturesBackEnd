@@ -17,6 +17,7 @@ public class AnneUniversitaireMapper {
     private DozerBeanMapper mapper;
     private CandidatMapper candidatMapper;
 
+    //anneUniv to dto
     public AnneUniversitaireDto anneUniversitaireToanneUniversitaireDto(AnneUniversitaire anneUniversitaire){
         if(anneUniversitaire==null)
             return null;
@@ -41,6 +42,20 @@ public class AnneUniversitaireMapper {
         }
         return anneUniversitaireDtos;
 
+    }
+
+    //dto to anneUniv
+
+    public AnneUniversitaire anneUniversitaireDtoToanneUniversitaire(AnneUniversitaireDto anneUniversitaireDto){
+        //TODO:todo
+
+        return null;
+    }
+
+    public List<AnneUniversitaireDto> DtosToAnneUniversitaire(List<AnneUniversitaireDto> anneUniversitaireDtos){
+        //TODO:todo
+
+        return null;
     }
 
 

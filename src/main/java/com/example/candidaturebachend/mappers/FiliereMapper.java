@@ -41,14 +41,17 @@ public class FiliereMapper {
         /*if (filiere.getDiplome() != null) {
             filiereDto.setDiplomeDto(mapper.map(filiere.getDiplome(), DiplomeDto.class));
         }*/
+        //diplome object
         if(filiere.getDiplome()!=null){
             DiplomeDto diplomeDto = diplomeMapper.DiplomeToDiplomeDto(filiere.getDiplome());
             filiereDto.setDiplomeDto((diplomeDto));
         }
+        //candidat list
         if (filiere.getCandidats() != null) {
             List<CandidatDto> candidatDtos = candidatMapper.AllCandidatsToDto(filiere.getCandidats());
             filiereDto.setCandidatsDto(candidatDtos);
         }
+        //departement object
 
         if(filiere.getDepartement()!=null){
             DepartementDto departementDto = departementMapper.DepartementToDepartementDto(filiere.getDepartement());
@@ -82,7 +85,7 @@ public class FiliereMapper {
         }
 
         Filiere filiere = mapper.map(filiereDto, Filiere.class);
-
+        //objet diplome
         if(filiereDto.getDiplomeDto()!=null){
             Diplome diplome = diplomeMapper.DiplomeDtoToDiplome(filiereDto.getDiplomeDto());
             filiere.setDiplome((diplome));
@@ -92,8 +95,12 @@ public class FiliereMapper {
             filiere.setCandidats(candidats);
         }
 
-        //TODO:Departement
+        //TODO:Departement : done
 
+        if(filiereDto.getDepartementDto()!=null){
+            Departement departement=departementMapper.DepartementDtoToDepartement(filiereDto.getDepartementDto());
+            filiere.setDepartement(departement);
+        }
         return filiere;
     }
 

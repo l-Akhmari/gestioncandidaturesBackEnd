@@ -95,7 +95,6 @@ public class FiliereMapper {
             filiere.setCandidats(candidats);
         }
 
-        //TODO : Departement : done
 
         if(filiereDto.getDepartementDto()!=null){
             Departement departement=departementMapper.DepartementDtoToDepartement(filiereDto.getDepartementDto());

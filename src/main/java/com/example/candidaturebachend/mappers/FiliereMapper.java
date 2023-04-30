@@ -1,7 +1,12 @@
 package com.example.candidaturebachend.mappers;
 
+import com.example.candidaturebachend.dto.CandidatDto;
+import com.example.candidaturebachend.dto.DepartementDto;
 import com.example.candidaturebachend.dto.DiplomeDto;
 import com.example.candidaturebachend.dto.FiliereDto;
+import com.example.candidaturebachend.entities.Candidat;
+import com.example.candidaturebachend.entities.Departement;
+import com.example.candidaturebachend.entities.Diplome;
 import com.example.candidaturebachend.entities.Filiere;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,8 +26,11 @@ import java.util.List;
 @AllArgsConstructor
 public class FiliereMapper {
     private DozerBeanMapper mapper;
+    private DiplomeMapper diplomeMapper;
+    private CandidatMapper candidatMapper;
+    private DepartementMapper departementMapper;
 
-    //Contact to Dto
+    //Filiere to Dto
     public FiliereDto FiliereToFiliereDto(Filiere filiere) {
         if (filiere == null) {
             return null;
@@ -30,10 +38,22 @@ public class FiliereMapper {
 
         FiliereDto filiereDto = mapper.map(filiere, FiliereDto.class);
 
-        if (filiere.getDiplome() != null) {
+        /*if (filiere.getDiplome() != null) {
             filiereDto.setDiplomeDto(mapper.map(filiere.getDiplome(), DiplomeDto.class));
+        }*/
+        if(filiere.getDiplome()!=null){
+            DiplomeDto diplomeDto = diplomeMapper.DiplomeToDiplomeDto(filiere.getDiplome());
+            filiereDto.setDiplomeDto((diplomeDto));
+        }
+        if (filiere.getCandidats() != null) {
+            List<CandidatDto> candidatDtos = candidatMapper.AllCandidatsToDto(filiere.getCandidats());
+            filiereDto.setCandidatsDto(candidatDtos);
         }
 
+        if(filiere.getDepartement()!=null){
+            DepartementDto departementDto = departementMapper.DepartementToDepartementDto(filiere.getDepartement());
+            filiereDto.setDepartementDto((departementDto));
+        }
 
         return  filiereDto;
     }
@@ -54,6 +74,27 @@ public class FiliereMapper {
 
         /*  return contacts.stream().map(x ->ContactToContactDto(x)).collect(Collectors.toList());
          */
+    }
+    //Dto to Filiere
+    public Filiere FiliereDtoToFiliere(FiliereDto filiereDto) {
+        if (filiereDto == null) {
+            return null;
+        }
+
+        Filiere filiere = mapper.map(filiereDto, Filiere.class);
+
+        if(filiereDto.getDiplomeDto()!=null){
+            Diplome diplome = diplomeMapper.DiplomeDtoToDiplome(filiereDto.getDiplomeDto());
+            filiere.setDiplome((diplome));
+        }
+        if (filiereDto.getCandidatsDto() != null) {
+            List<Candidat> candidats = candidatMapper.AllDtoToCandidats(filiereDto.getCandidatsDto());
+            filiere.setCandidats(candidats);
+        }
+
+        //TODO:Departement
+
+        return filiere;
     }
 
 }

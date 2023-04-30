@@ -5,7 +5,6 @@ import com.example.candidaturebachend.dto.CandidatDto;
 import com.example.candidaturebachend.dto.DiplomeDto;
 import com.example.candidaturebachend.dto.FiliereDto;
 import com.example.candidaturebachend.entities.Candidat;
-import com.example.candidaturebachend.entities.Diplome;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -48,6 +47,7 @@ public class CandidatMapper {
         return candidatDto;
     }
 
+    //List CandidatsDto
     public List<CandidatDto> AllCandidatsToDto(List<Candidat> candidats){
         if (CollectionUtils.isEmpty(candidats)) {
             return Collections.emptyList();
@@ -61,5 +61,29 @@ public class CandidatMapper {
 
     }
 
+    public Candidat CandidatDtoToCandidat(CandidatDto candidatDto){
+        if(candidatDto==null)
+            return null;
+        Candidat candidat=mapper.map(candidatDto,Candidat.class);
+
+        //TODO:Mapping dto
+
+        return candidat;
+    }
+
+    //List Candidats
+    public List<Candidat> AllDtoToCandidats(List<CandidatDto> candidatDtos) {
+
+        if (CollectionUtils.isEmpty(candidatDtos)) {
+            return Collections.emptyList();
+        }
+        List<Candidat> candidats = new ArrayList<>();
+
+        for (CandidatDto candidatdto : candidatDtos) {
+            candidats.add(CandidatDtoToCandidat(candidatdto));
+        }
+        return candidats;
+
+    }
 
 }

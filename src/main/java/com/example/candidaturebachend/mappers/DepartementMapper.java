@@ -39,7 +39,8 @@ public class DepartementMapper {
         }
         //departement
         if(departement.getChefDepartement()!=null){
-            //TODO:Mapping ChefDepartement
+            ChefDepartementDto chefDepartementDto=chefDepartementMapper.chefDepartemenToChefDepartementDto(departement.getChefDepartement());
+            departementDto.setChefDepartementDto(chefDepartementDto);
         }
         return departementDto;
     }
@@ -71,16 +72,25 @@ public class DepartementMapper {
         }
 
         //list filiers
-        return null;
-        //TODO:todo
-
-
+        if(departementDto.getFilieresDto()!=null){
+            List<Filiere> filieres = filiereMapper.dtosToFileres(departementDto.getFilieresDto());
+            departement.setFilieres(filieres);
+        }
+        return departement;
     }
 
     public List<Departement> DtosTodepartement(List<DepartementDto> departementDtos){
 
-        //TODO:todo
-        return null;
+        if (CollectionUtils.isEmpty(departementDtos)) {
+            return Collections.emptyList();
+        }
+
+        List<Departement> departements = new ArrayList<>();
+
+        for (DepartementDto departementDto : departementDtos) {
+            departements.add(DepartementDtoToDepartement(departementDto));
+        }
+        return departements;
     }
 
 

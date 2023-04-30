@@ -1,9 +1,6 @@
 package com.example.candidaturebachend.dto;
 
-import com.example.candidaturebachend.entities.Candidat;
-import com.example.candidaturebachend.entities.Fichier;
-import com.example.candidaturebachend.entities.Filiere;
-import com.example.candidaturebachend.entities.TypeDiplome;
+import com.example.candidaturebachend.entities.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,5 +22,6 @@ public class DiplomeDto {
     private CandidatDto candidatDto;
     private List<FiliereDto> filieresDto;
     private FichierDto fichierDto;
+    private List<NotesSemesterDto> notesSemesterDtos;
 
 }

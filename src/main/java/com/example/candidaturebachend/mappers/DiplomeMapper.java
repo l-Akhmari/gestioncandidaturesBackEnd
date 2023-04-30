@@ -28,6 +28,7 @@ public class DiplomeMapper {
     private TypeDiplomeMapper typeDiplomeMapper;
     private FichierMapper fichierMapper;
     private CandidatMapper candidatMapper;
+    private NotesSemesterMapper notesSemesterMapper;
 
     //Diplome entity to Dto
     public DiplomeDto DiplomeToDiplomeDto(Diplome diplome) {
@@ -55,6 +56,11 @@ public class DiplomeMapper {
         if(diplome.getCandidat()!=null){
             CandidatDto candidatDto=candidatMapper.candidatToDto(diplome.getCandidat());
             diplomeDto.setCandidatDto(candidatDto);
+        }
+
+        if(diplome.getNotesSemester()!=null){
+            List<NotesSemesterDto> notesSemesterDtos = notesSemesterMapper.AllNoteSemestersToDto(diplome.getNotesSemester());
+            diplomeDto.setNotesSemesterDtos(notesSemesterDtos);
         }
 
         return  diplomeDto;
@@ -92,6 +98,9 @@ public class DiplomeMapper {
             List<Filiere> filieres = filiereMapper.DtoToAllFilieres(diplomeDto.getFilieresDto());
             diplome.setFilieres(filieres);
         }
+
+        return diplome;
+    }
 
     //Lists
     public List<Diplome> AllDtoToDiplomes(List<DiplomeDto> diplomesDto) {

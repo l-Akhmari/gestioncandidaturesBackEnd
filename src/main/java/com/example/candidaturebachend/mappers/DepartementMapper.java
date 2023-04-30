@@ -3,9 +3,14 @@ package com.example.candidaturebachend.mappers;
 import com.example.candidaturebachend.dto.*;
 import com.example.candidaturebachend.entities.Candidat;
 import com.example.candidaturebachend.entities.Departement;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.ToString;
 import org.dozer.DozerBeanMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 
 public class DepartementMapper {
     private DozerBeanMapper mapper;

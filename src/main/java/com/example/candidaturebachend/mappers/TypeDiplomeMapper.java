@@ -5,8 +5,16 @@ import com.example.candidaturebachend.dto.FiliereDto;
 import com.example.candidaturebachend.dto.TypeDiplomeDto;
 import com.example.candidaturebachend.entities.Filiere;
 import com.example.candidaturebachend.entities.TypeDiplome;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.ToString;
 import org.dozer.DozerBeanMapper;
+import org.springframework.stereotype.Component;
 
+@Component
+@Data
+@ToString
+@AllArgsConstructor
 public class TypeDiplomeMapper {
 
     private DozerBeanMapper mapper;
@@ -20,5 +28,6 @@ public class TypeDiplomeMapper {
 
         return  typeDiplomeDto;
     }
+
 
 }

@@ -95,13 +95,26 @@ public class FiliereMapper {
             filiere.setCandidats(candidats);
         }
 
-        //TODO:Departement : done
+        //TODO : Departement : done
 
         if(filiereDto.getDepartementDto()!=null){
             Departement departement=departementMapper.DepartementDtoToDepartement(filiereDto.getDepartementDto());
             filiere.setDepartement(departement);
         }
         return filiere;
+    }
+
+    public List<Filiere> dtosToFileres(List<FiliereDto> filiereDtos){
+        if (CollectionUtils.isEmpty(filiereDtos)) {
+            return Collections.emptyList();
+        }
+
+        List<Filiere> filieres = new ArrayList<>();
+
+        for (FiliereDto filiereDto : filiereDtos) {
+            filieres.add(FiliereDtoToFiliere(filiereDto));
+        }
+        return filieres;
     }
 
 }

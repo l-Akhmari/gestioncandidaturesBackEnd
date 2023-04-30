@@ -4,21 +4,22 @@ import com.example.candidaturebachend.dto.*;
 import com.example.candidaturebachend.entities.Candidat;
 import com.example.candidaturebachend.entities.ChefDepartement;
 import com.example.candidaturebachend.entities.Departement;
+import com.example.candidaturebachend.entities.Filiere;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+import org.apache.commons.collections.CollectionUtils;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 @Data
 @AllArgsConstructor
 @ToString
 @Component
-<<<<<<< HEAD
 
-=======
->>>>>>> 3aaed8b82d6d3485b6e01bd236a45460bba03195
 
 public class DepartementMapper {
     private DozerBeanMapper mapper;
@@ -31,10 +32,12 @@ public class DepartementMapper {
             return null;
 
         DepartementDto departementDto = mapper.map(departement,DepartementDto.class);
+        //list filiers
         if(departement.getFilieres()!=null){
             List<FiliereDto> filieresDto = filiereMapper.AllFilieresToDto(departement.getFilieres());
             departementDto.setFilieresDto(filieresDto);
         }
+        //departement
         if(departement.getChefDepartement()!=null){
             //TODO:Mapping ChefDepartement
         }
@@ -42,7 +45,16 @@ public class DepartementMapper {
     }
 
     public List<DepartementDto> departementToDtos(List<Departement> departements){
-        return null;
+        if (CollectionUtils.isEmpty(departements)) {
+            return Collections.emptyList();
+        }
+
+        List<DepartementDto> departementDtos = new ArrayList<>();
+
+        for (Departement departement : departements) {
+            departementDtos.add(DepartementToDepartementDto(departement));
+        }
+        return departementDtos;
     }
 
     //departementDto to departement

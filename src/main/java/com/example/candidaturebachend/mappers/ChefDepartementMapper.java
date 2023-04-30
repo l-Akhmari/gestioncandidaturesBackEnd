@@ -79,7 +79,7 @@ public class ChefDepartementMapper {
 
         }
         if(chefDepartementDto.getAdminDto()!=null){
-            Admin admin=adminMapper.adminDtoToadmin(chefDepartementDto.getAdminDto());
+            Admin admin=adminMapper.adminDtoToAdmin(chefDepartementDto.getAdminDto());
             chefDepartement.setAdmin(admin);
 
         }

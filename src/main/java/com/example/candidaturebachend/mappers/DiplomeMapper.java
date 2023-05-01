@@ -1,8 +1,7 @@
 package com.example.candidaturebachend.mappers;
 
 import com.example.candidaturebachend.dto.*;
-import com.example.candidaturebachend.entities.Diplome;
-import com.example.candidaturebachend.entities.Filiere;
+import com.example.candidaturebachend.entities.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
@@ -97,6 +96,24 @@ public class DiplomeMapper {
 
             List<Filiere> filieres = filiereMapper.DtoToAllFilieres(diplomeDto.getFilieresDto());
             diplome.setFilieres(filieres);
+        }
+        if(diplomeDto.getTypeDiplomeDto()!=null) {
+            TypeDiplome typeDiplome = typeDiplomeMapper.typeDiplomeDtoToTypeDiplome(diplomeDto.getTypeDiplomeDto());
+
+            diplome.setTypeDiplome(typeDiplome);
+        }
+        if(diplomeDto.getFichierDto()!=null){
+            Fichier fichier = fichierMapper.fichierDtoTofichier(diplomeDto.getFichierDto());
+            diplome.setFichier(fichier);
+        }
+        if(diplomeDto.getCandidatDto()!=null){
+            Candidat candidat=candidatMapper.CandidatDtoToCandidat(diplomeDto.getCandidatDto());
+            diplome.setCandidat(candidat);
+        }
+
+        if(diplomeDto.getNotesSemesterDtos()!=null){
+            List<NotesSemester> notesSemesters = notesSemesterMapper.AllNoteSemestersDtoToAllNoteSemesters(diplomeDto.getNotesSemesterDtos());
+            diplome.setNotesSemester(notesSemesters);
         }
 
         return diplome;

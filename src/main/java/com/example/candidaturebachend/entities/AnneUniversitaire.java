@@ -18,5 +18,6 @@ public class AnneUniversitaire {
     private int idAnne;
     private String anneUniv;
     @ManyToMany
+    //@JoinTable(name = "Archieve")
     List<Candidat> candidats;
 }

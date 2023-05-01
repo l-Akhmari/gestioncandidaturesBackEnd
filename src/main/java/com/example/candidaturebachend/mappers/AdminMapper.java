@@ -10,13 +10,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.dozer.DozerBeanMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class AdminMapper {
     private DozerBeanMapper mapper;
     private DirectionPedagMapper directionPedagMapper;

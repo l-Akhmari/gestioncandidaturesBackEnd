@@ -6,13 +6,19 @@ import com.example.candidaturebachend.dto.FiliereDto;
 import com.example.candidaturebachend.entities.AnneUniversitaire;
 import com.example.candidaturebachend.entities.Candidat;
 import com.example.candidaturebachend.entities.Filiere;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.apache.commons.collections.CollectionUtils;
 import org.dozer.DozerBeanMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Component
+@Data
+@AllArgsConstructor
 public class AnneUniversitaireMapper {
 
     private DozerBeanMapper mapper;

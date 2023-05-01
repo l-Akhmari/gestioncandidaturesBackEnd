@@ -5,25 +5,30 @@ import com.example.candidaturebachend.mappers.DiplomeMapper;
 import com.example.candidaturebachend.repositories.DiplomeRepository;
 import com.example.candidaturebachend.entities.Diplome;
 import com.example.candidaturebachend.services.IDiplome;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
+@Data
+@AllArgsConstructor
 public class DiplomeServiceImpl implements IDiplome {
-    @Autowired
     DiplomeRepository diplomeRepository;
-    @Autowired
     DiplomeMapper diplomeMapper;
 
 
+
     @Override
-    public DiplomeDto addDiplome(DiplomeDto diplome) {
-        return null;
+    public DiplomeDto addDiplome(DiplomeDto diplomeDto) {
+        return diplomeMapper.DiplomeToDiplomeDto(diplomeRepository.save(diplomeMapper.DiplomeDtoToDiplome(diplomeDto)));
     }
 
     @Override
     public List<DiplomeDto> findAllDiplomes() {
-        return null;
+        return  diplomeMapper.AllDiplomesToDto(diplomeRepository.findAll());
     }
 
     @Override

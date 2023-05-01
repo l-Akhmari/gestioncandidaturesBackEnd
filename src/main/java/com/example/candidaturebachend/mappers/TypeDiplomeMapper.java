@@ -29,11 +29,6 @@ public class TypeDiplomeMapper {
         return  typeDiplomeDto;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 3aaed8b82d6d3485b6e01bd236a45460bba03195
     //Dto to typediplome
     public TypeDiplome typeDiplomeDtoToTypeDiplome(TypeDiplomeDto typeDiplomeDto) {
         if (typeDiplomeDto == null) {
@@ -44,10 +39,5 @@ public class TypeDiplomeMapper {
         return  typeDiplome;
     }
 
-
-<<<<<<< HEAD
->>>>>>> 40af6503f3b0db1ab39ced5ad5d66bd3a5a6e5fd
-=======
->>>>>>> 3aaed8b82d6d3485b6e01bd236a45460bba03195
 
 }

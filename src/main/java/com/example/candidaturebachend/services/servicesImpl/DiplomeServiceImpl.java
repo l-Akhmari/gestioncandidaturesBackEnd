@@ -1,33 +1,43 @@
 package com.example.candidaturebachend.services.servicesImpl;
 
-import com.example.candidaturebachend.services.Diplome;
+import com.example.candidaturebachend.dto.DiplomeDto;
+import com.example.candidaturebachend.mappers.DiplomeMapper;
+import com.example.candidaturebachend.repositories.DiplomeRepository;
+import com.example.candidaturebachend.entities.Diplome;
+import com.example.candidaturebachend.services.IDiplome;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class DiplomeServiceImpl implements Diplome {
+public class DiplomeServiceImpl implements IDiplome {
+    @Autowired
+    DiplomeRepository diplomeRepository;
+    @Autowired
+    DiplomeMapper diplomeMapper;
+
 
     @Override
-    public Diplome addDiplome(Diplome diplome) {
+    public DiplomeDto addDiplome(DiplomeDto diplome) {
         return null;
     }
 
     @Override
-    public List<Diplome> findAllDiplomes() {
+    public List<DiplomeDto> findAllDiplomes() {
         return null;
     }
 
     @Override
-    public Diplome findDiplomeById(Integer id) {
+    public DiplomeDto findDiplomeById(Integer id) {
         return null;
     }
 
     @Override
-    public Diplome updateDiplome(Diplome diplome) {
+    public DiplomeDto updateDiplome(DiplomeDto diplome) {
         return null;
     }
 
     @Override
-    public void deleteDiplome(Integer id) {
+    public void deleteDiplomeDto(Integer id) {
 
     }
 }

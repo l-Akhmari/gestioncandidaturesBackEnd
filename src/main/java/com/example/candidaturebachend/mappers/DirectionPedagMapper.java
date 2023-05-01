@@ -1,3 +1,4 @@
+/*
 package com.example.candidaturebachend.mappers;
 
 import com.example.candidaturebachend.dto.AdminDto;
@@ -31,10 +32,12 @@ public class DirectionPedagMapper {
             }
         DirectionPedagogiqueDto directionPedagogiqueDto = mapper.map(directionPedagogique, DirectionPedagogiqueDto.class);
 
-            if(directionPedagogique.getAdmin()!=null){
+            */
+/*if(directionPedagogique.getAdmin()!=null){
                 AdminDto adminDto = adminMapper.adminToDto(directionPedagogique.getAdmin());
                 directionPedagogiqueDto.setAdminDto(adminDto);
-            }
+            }*//*
+
 
         return directionPedagogiqueDto;
     }
@@ -47,12 +50,15 @@ public class DirectionPedagMapper {
         }
         DirectionPedagogique directionPedagogique = mapper.map(directionPedagogiqueDto, DirectionPedagogique.class);
 
-            if (directionPedagogiqueDto.getAdminDto()!=null){
+           */
+/* if (directionPedagogiqueDto.getAdminDto()!=null){
                 Admin admin = adminMapper.adminDtoToAdmin(directionPedagogiqueDto.getAdminDto());
                 directionPedagogique.setAdmin(admin);
             }
+*//*
 
         return null;
     }
 
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.example.candidaturebachend.mappers;
 
 import com.example.candidaturebachend.dto.*;
@@ -79,9 +80,11 @@ public class DiplomeMapper {
         return diplomeDtos;
 
 
-        /*  return diplomes.stream().map(x ->DiplomeToDiplomeDto(x)).collect(Collectors.toList());
+        */
+/*  return diplomes.stream().map(x ->DiplomeToDiplomeDto(x)).collect(Collectors.toList());
 
-         */
+         *//*
+
     }
     //DTO to diplome
     public Diplome DiplomeDtoToDiplome(DiplomeDto diplomeDto) {
@@ -133,9 +136,12 @@ public class DiplomeMapper {
         return diplomes;
 
 
-        /* return diplomesDto.stream().map(x ->DiplomeDtoToDiplome(x)).collect(Collectors.toList());
+        */
+/* return diplomesDto.stream().map(x ->DiplomeDtoToDiplome(x)).collect(Collectors.toList());
 
-         */
+         *//*
+
     }
 }
 
+*/

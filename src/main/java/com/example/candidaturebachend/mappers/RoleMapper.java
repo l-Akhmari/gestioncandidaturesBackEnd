@@ -1,3 +1,4 @@
+/*
 package com.example.candidaturebachend.mappers;
 
 import com.example.candidaturebachend.dto.RoleDto;
@@ -35,3 +36,4 @@ public class RoleMapper {
         return role;
     }
 }
+*/

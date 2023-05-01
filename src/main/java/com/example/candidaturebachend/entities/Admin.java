@@ -12,11 +12,11 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Admin extends Utilisateur {
-    @Id
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAdmin;
+    private int idAdmin;*/
     @OneToMany(mappedBy = "admin", fetch = FetchType.LAZY)
     private List<ChefDepartement> chefDepartements;
-    @OneToOne(mappedBy = "admin")
+    @OneToOne
     private DirectionPedagogique directionPedagogique;
 }

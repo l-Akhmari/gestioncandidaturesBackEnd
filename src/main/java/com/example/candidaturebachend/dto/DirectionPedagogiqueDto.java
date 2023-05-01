@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DirectionPedagogiqueDto {
     private int idDirectioPedagogique;
-    private AdminDto adminDto;
+    //private AdminDto adminDto;
 }

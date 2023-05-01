@@ -12,8 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Candidat extends Utilisateur{
-    @Id
-    private String idCandidat;
+   /* @Id
+    private String idCandidat;*/
     private String cne;
     private String ville;
     private boolean admis;

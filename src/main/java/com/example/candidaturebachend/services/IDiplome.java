@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface IDiplome {
     DiplomeDto addDiplome(DiplomeDto diplome);
-    List<DiplomeDto> findAllDiplomes();
+    List<Diplome> findAllDiplomes();
     DiplomeDto findDiplomeById(Integer id);
     DiplomeDto updateDiplome(DiplomeDto diplome);
     void deleteDiplomeDto(Integer id);

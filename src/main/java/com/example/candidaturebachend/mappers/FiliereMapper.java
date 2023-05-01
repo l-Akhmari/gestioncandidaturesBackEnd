@@ -1,3 +1,4 @@
+/*
 package com.example.candidaturebachend.mappers;
 
 import com.example.candidaturebachend.dto.CandidatDto;
@@ -38,9 +39,11 @@ public class FiliereMapper {
 
         FiliereDto filiereDto = mapper.map(filiere, FiliereDto.class);
 
-        /*if (filiere.getDiplome() != null) {
+        */
+/*if (filiere.getDiplome() != null) {
             filiereDto.setDiplomeDto(mapper.map(filiere.getDiplome(), DiplomeDto.class));
-        }*/
+        }*//*
+
         //diplome object
         if(filiere.getDiplome()!=null){
             DiplomeDto diplomeDto = diplomeMapper.DiplomeToDiplomeDto(filiere.getDiplome());
@@ -75,8 +78,10 @@ public class FiliereMapper {
         return filiereDtos;
 
 
-        /*  return contacts.stream().map(x ->ContactToContactDto(x)).collect(Collectors.toList());
-         */
+        */
+/*  return contacts.stream().map(x ->ContactToContactDto(x)).collect(Collectors.toList());
+         *//*
+
     }
     //Dto to Filiere
     public Filiere FiliereDtoToFiliere(FiliereDto filiereDto) {
@@ -117,3 +122,4 @@ public class FiliereMapper {
     }
 
 }
+*/

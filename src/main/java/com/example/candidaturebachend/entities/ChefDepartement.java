@@ -11,12 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class ChefDepartement extends Utilisateur{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   /* @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
     private long idChefDep;
     private String matricule;
     @OneToOne
     private Departement departement;
     @ManyToOne
+
     private Admin admin;
 }

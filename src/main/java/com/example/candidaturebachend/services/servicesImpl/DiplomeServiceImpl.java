@@ -1,13 +1,12 @@
 package com.example.candidaturebachend.services.servicesImpl;
 
 import com.example.candidaturebachend.dto.DiplomeDto;
-import com.example.candidaturebachend.mappers.DiplomeMapper;
-import com.example.candidaturebachend.repositories.DiplomeRepository;
+//import com.example.candidaturebachend.mappers.DiplomeMapper;
 import com.example.candidaturebachend.entities.Diplome;
+import com.example.candidaturebachend.repositories.DiplomeRepository;
 import com.example.candidaturebachend.services.IDiplome;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,18 +16,21 @@ import java.util.List;
 @AllArgsConstructor
 public class DiplomeServiceImpl implements IDiplome {
     DiplomeRepository diplomeRepository;
-    DiplomeMapper diplomeMapper;
+    //DiplomeMapper diplomeMapper;
 
 
 
     @Override
     public DiplomeDto addDiplome(DiplomeDto diplomeDto) {
-        return diplomeMapper.DiplomeToDiplomeDto(diplomeRepository.save(diplomeMapper.DiplomeDtoToDiplome(diplomeDto)));
+     //   return diplomeMapper.DiplomeToDiplomeDto(diplomeRepository.save(diplomeMapper.DiplomeDtoToDiplome(diplomeDto)));
+   return null;
     }
 
     @Override
-    public List<DiplomeDto> findAllDiplomes() {
-        return  diplomeMapper.AllDiplomesToDto(diplomeRepository.findAll());
+    public List<Diplome> findAllDiplomes() {
+       // return  diplomeMapper.AllDiplomesToDto(diplomeRepository.findAll());
+
+        return diplomeRepository.findAll();
     }
 
     @Override

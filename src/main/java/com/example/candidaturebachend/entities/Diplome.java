@@ -30,7 +30,7 @@ public class Diplome {
     @OneToMany(mappedBy = "diplome")
     private List<Filiere> filieres;
 
-    @OneToOne(mappedBy = "diplome")
+    @OneToOne
     private Fichier fichier;
     @OneToMany(mappedBy = "diplome")
     private List<NotesSemester> notesSemester;

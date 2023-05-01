@@ -13,6 +13,6 @@ public class Fichier {
     @Id
     private String idFichier;
     private String chemin;
-    @OneToOne
+    @OneToOne(mappedBy = "fichier")
     private Diplome diplome;
 }

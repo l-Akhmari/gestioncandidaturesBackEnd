@@ -1,3 +1,4 @@
+/*
 package com.example.candidaturebachend.mappers;
 
 import com.example.candidaturebachend.dto.AdminDto;
@@ -31,9 +32,11 @@ public class AdminMapper {
         AdminDto adminDto = mapper.map(admin, AdminDto.class);
 
         if(admin.getDirectionPedagogique()!=null){
-            DirectionPedagogiqueDto directionPedagogiqueDto = directionPedagMapper.directionPedagogiqueToDto(admin.getDirectionPedagogique());
-            adminDto.setDirectionPedagogiqueDto(directionPedagogiqueDto);
+//            DirectionPedagogiqueDto directionPedagogiqueDto = directionPedagMapper.directionPedagogiqueToDto(admin.getDirectionPedagogique());
+//            adminDto.setDirectionPedagogiqueDto(directionPedagogiqueDto);
+            //adminDto.setDirectionPedagogiqueDto(mapper.map(admin.getDirectionPedagogique(), DirectionPedagogiqueDto.class));
         }
+
 
         if(admin.getChefDepartements()!=null){
             List<ChefDepartementDto> chefDepartementDtos = chefDepartementMapper.ChefDepartementToDtos(admin.getChefDepartements());
@@ -51,8 +54,11 @@ public class AdminMapper {
         Admin admin = mapper.map(adminDto, Admin.class);
 
         if(adminDto.getDirectionPedagogiqueDto()!=null){
-            DirectionPedagogique directionPedagogique = directionPedagMapper.dtoTodirectionPedagogique(adminDto.getDirectionPedagogiqueDto());
-            admin.setDirectionPedagogique(directionPedagogique);
+           */
+/* DirectionPedagogique directionPedagogique = directionPedagMapper.dtoTodirectionPedagogique(adminDto.getDirectionPedagogiqueDto());
+            admin.setDirectionPedagogique(directionPedagogique);*//*
+
+            //admin.setDirectionPedagogique(mapper.map(adminDto.getDirectionPedagogiqueDto(), DirectionPedagogique.class));
         }
 
         if(adminDto.getChefDepartementsDto()!=null){
@@ -63,3 +69,4 @@ public class AdminMapper {
     }
 
 }
+*/

@@ -1,7 +1,8 @@
 package com.example.candidaturebachend.web;
 
 import com.example.candidaturebachend.dto.DiplomeDto;
-import com.example.candidaturebachend.mappers.DiplomeMapper;
+import com.example.candidaturebachend.entities.Diplome;
+//import com.example.candidaturebachend.mappers.DiplomeMapper;
 import com.example.candidaturebachend.services.servicesImpl.DiplomeServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,20 +19,24 @@ import java.util.List;
 
 @Data
 @Builder
-@NoArgsConstructor
+//@NoArgsConstructor
 @AllArgsConstructor
 @RestController
-@RequestMapping("/diplome")
+//@RequestMapping("/diplome")
 public class DiplomeController {
 
     private DiplomeServiceImpl diplomeService;
-    private DiplomeMapper diplomeMapper;
+    //private DiplomeMapper diplomeMapper;
 
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<DiplomeDto>> getAllDiplomes() {
+    public List<Diplome> Diplomes(){
+        return diplomeService.findAllDiplomes();
+
+    }    /*public ResponseEntity<List<DiplomeDto>> getAllDiplomes() {
         List<DiplomeDto> diplomes = diplomeService.findAllDiplomes();
         return  new ResponseEntity<>(diplomes , HttpStatus.OK);
-    }
+    }*/
+
 }

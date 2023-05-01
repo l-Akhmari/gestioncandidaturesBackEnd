@@ -1,3 +1,4 @@
+/*
 package com.example.candidaturebachend.mappers;
 
 import com.example.candidaturebachend.dto.*;
@@ -34,19 +35,18 @@ public class ChefDepartementMapper {
         }
 
         ChefDepartementDto chefDepartementDto = mapper.map(chefDepartement, ChefDepartementDto.class);
-        //departemet
+        //departemet object
         if(chefDepartement.getDepartement()!=null){
 
             DepartementDto departementDto=departementMapper.DepartementToDepartementDto(chefDepartement.getDepartement());
             chefDepartementDto.setDepartementDto(departementDto);
         }
-        //admin
+        //admin object
 
         if(chefDepartement.getAdmin()!=null){
             AdminDto adminDto=adminMapper.adminToDto(chefDepartement.getAdmin());
             chefDepartementDto.setAdminDto(adminDto);
         }
-
 
         return chefDepartementDto;
     }
@@ -102,3 +102,4 @@ public class ChefDepartementMapper {
     }
 
 }
+*/

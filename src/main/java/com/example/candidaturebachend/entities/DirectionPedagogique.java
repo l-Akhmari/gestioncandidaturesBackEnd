@@ -11,11 +11,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class DirectionPedagogique extends Utilisateur{
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   /* @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
 
     private int idDirectioPedagogique;
-    @OneToOne
+    @OneToOne(mappedBy = "directionPedagogique")
     private Admin admin;
 
 }

@@ -6,9 +6,9 @@ import com.example.candidaturebachend.entities.Candidat;
 import java.util.List;
 
 public interface ICandidat {
-    CandidatDto addCandidat(CandidatDto candidat);
-    List<CandidatDto> findAllCandidats();
-    CandidatDto findCandidatById(String id);
-    CandidatDto updateCandidat(CandidatDto candidat);
+    Candidat addCandidat(Candidat candidat);
+    List<Candidat> findAllCandidats();
+    Candidat findCandidatById(String id);
+    Candidat updateCandidat(Candidat candidat);
     void deleteCandidat(String id);
 }

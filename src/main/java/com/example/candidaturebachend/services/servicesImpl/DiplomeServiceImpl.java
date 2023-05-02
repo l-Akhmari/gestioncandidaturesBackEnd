@@ -1,50 +1,45 @@
 package com.example.candidaturebachend.services.servicesImpl;
 
-import com.example.candidaturebachend.dto.DiplomeDto;
 //import com.example.candidaturebachend.mappers.DiplomeMapper;
+import com.example.candidaturebachend.Exceptions.UserNotFoundException;
 import com.example.candidaturebachend.entities.Diplome;
-import com.example.candidaturebachend.repositories.DiplomeRepository;
+        import com.example.candidaturebachend.repositories.DiplomeRepository;
 import com.example.candidaturebachend.services.IDiplome;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Data
 @AllArgsConstructor
 public class DiplomeServiceImpl implements IDiplome {
     DiplomeRepository diplomeRepository;
-    //DiplomeMapper diplomeMapper;
-
-
 
     @Override
-    public DiplomeDto addDiplome(DiplomeDto diplomeDto) {
-     //   return diplomeMapper.DiplomeToDiplomeDto(diplomeRepository.save(diplomeMapper.DiplomeDtoToDiplome(diplomeDto)));
-   return null;
+    public Diplome addDiplome(Diplome diplome) {
+        return diplomeRepository.save(diplome);
     }
 
     @Override
     public List<Diplome> findAllDiplomes() {
-       // return  diplomeMapper.AllDiplomesToDto(diplomeRepository.findAll());
-
         return diplomeRepository.findAll();
     }
 
     @Override
-    public DiplomeDto findDiplomeById(Integer id) {
-        return null;
+    public Diplome findDiplomeById(Integer id) {
+        return diplomeRepository.findDiplomeByIdDiplome(id).orElseThrow(() -> new UserNotFoundException("Diplome by id " + id + " was not found"));
     }
 
     @Override
-    public DiplomeDto updateDiplome(DiplomeDto diplome) {
-        return null;
+    public Diplome updateDiplome(Diplome diplome) {
+        return diplomeRepository.save(diplome);
     }
 
     @Override
-    public void deleteDiplomeDto(Integer id) {
-
+    public void deleteDiplome(Integer id) {
+        diplomeRepository.deleteById(id);
     }
 }

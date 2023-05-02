@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 public class ChefDepartementDto {
     private long idChefDep;
     private String matricule;
+
     private DepartementDto departementDto;
+
     private AdminDto adminDto;
 }

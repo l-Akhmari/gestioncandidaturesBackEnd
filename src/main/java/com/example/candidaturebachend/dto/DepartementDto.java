@@ -18,5 +18,6 @@ public class DepartementDto {
     private int idDepartement;
     private String intitule;
     private ChefDepartementDto chefDepartementDto;
+
     private List<FiliereDto> filieresDto;
 }

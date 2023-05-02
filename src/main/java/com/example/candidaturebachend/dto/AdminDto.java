@@ -16,6 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AdminDto {
     private int idAdmin;
+
     private List<ChefDepartementDto> chefDepartementsDto;
     private DirectionPedagogiqueDto directionPedagogiqueDto;
 }

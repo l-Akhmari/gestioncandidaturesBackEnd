@@ -17,6 +17,6 @@ public class Admin extends Utilisateur {
     private int idAdmin;*/
     @OneToMany(mappedBy = "admin", fetch = FetchType.LAZY)
     private List<ChefDepartement> chefDepartements;
-    @OneToOne
+    @OneToOne(mappedBy = "admin")
     private DirectionPedagogique directionPedagogique;
 }

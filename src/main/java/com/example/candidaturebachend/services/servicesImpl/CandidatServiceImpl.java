@@ -8,7 +8,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @Data
@@ -18,10 +20,25 @@ public class CandidatServiceImpl implements ICandidat {
 
     @Override
     public Candidat addCandidat(Candidat candidat) {
+        candidat.setId(UUID.randomUUID().toString());
         return candidatRepository.save(candidat);
     }
+   public Candidat addCandidat2(String username , String prenom , String cin, String cne, String email, String telephone, String ville, String adresse, boolean admis , Date dateNaissance, String mdp){
+        Candidat candidat=new Candidat();
+        candidat.setId(UUID.randomUUID().toString());
+        candidat.setNom(username);
+        candidat.setPrenom(prenom);
+        candidat.setCin(cin);
+        candidat.setCne(cne);
+        candidat.setEmail(email);
+        candidat.setTelephone(telephone);
+        candidat.setVille(ville);
+        candidat.setAddresse(adresse);
+       return candidatRepository.save(candidat);
+   }
 
-    @Override
+
+        @Override
     public List<Candidat> findAllCandidats() {
         return candidatRepository.findAll();
     }

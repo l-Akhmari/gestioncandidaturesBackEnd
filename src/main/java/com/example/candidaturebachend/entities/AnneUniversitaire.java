@@ -1,5 +1,6 @@
 package com.example.candidaturebachend.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,5 +21,6 @@ public class AnneUniversitaire implements Serializable {
     private String anneUniv;
     @ManyToMany
     //@JoinTable(name = "Archieve")
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     List<Candidat> candidats;
 }

@@ -14,8 +14,8 @@ public class DirectionPedagogique extends Utilisateur{
    /* @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)*/
 
-    private int idDirectioPedagogique;
-    @OneToOne(mappedBy = "directionPedagogique")
+
+    @OneToOne
     private Admin admin;
 
 }

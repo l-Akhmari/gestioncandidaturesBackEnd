@@ -12,10 +12,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChefDepartementDto {
-    private long idChefDep;
+    private String idChefDep;
+    protected String cin;
+    protected String nom;
+    protected String prenom;
+    protected String addresse;
+    protected String email;
+    protected String dateNaissance;
+    protected String telephone;
+    protected String mdp;
     private String matricule;
-
     private DepartementDto departementDto;
 
-    private AdminDto adminDto;
 }

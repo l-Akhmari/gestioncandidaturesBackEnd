@@ -15,8 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminDto {
-    private int idAdmin;
 
+    private int idAdmin;
+    private String username;
+    private String mdp;
     private List<ChefDepartementDto> chefDepartementsDto;
     private DirectionPedagogiqueDto directionPedagogiqueDto;
 }

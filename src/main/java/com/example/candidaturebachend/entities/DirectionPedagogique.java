@@ -12,16 +12,13 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("DPed")
 
-public class DirectionPedagogique extends Utilisateur implements Serializable {
-   /* @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)*/
-
-
+public class DirectionPedagogique implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDirectioPedagogique;
+    private String username;
+    private String mdp;
     @OneToOne(mappedBy = "directionPedagogique")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Admin admin;

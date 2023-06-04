@@ -13,12 +13,13 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("Admin")
 
-public class Admin extends Utilisateur implements Serializable {
-    /*@Id
+public class Admin implements Serializable {
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAdmin;*/
+    private int idAdmin;
+    private String username;
+    private String mdp;
     @OneToMany(mappedBy = "admin", fetch = FetchType.LAZY)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<ChefDepartement> chefDepartements;

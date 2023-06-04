@@ -17,7 +17,6 @@ import java.util.List;
 public class DepartementDto {
     private int idDepartement;
     private String intitule;
-    private ChefDepartementDto chefDepartementDto;
-
+   // private ChefDepartementDto chefDepartementDto;
     private List<FiliereDto> filieresDto;
 }

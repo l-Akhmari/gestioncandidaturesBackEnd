@@ -19,8 +19,8 @@ public class FiliereDto {
     private int idFiliere;
     private String intitule;
 
-    private DepartementDto departementDto;//nrdoha dto
-    private List<CandidatDto> candidatsDto;//hta hadi
-    private DiplomeDto diplomeDto;
+   // private DepartementDto departementDto;//nrdoha dto
+    //private List<CandidatDto> candidatsDto;//hta hadi
+    //private DiplomeDto diplomeDto;
 
 }

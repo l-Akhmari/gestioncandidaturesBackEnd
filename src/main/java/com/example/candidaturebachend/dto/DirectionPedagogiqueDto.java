@@ -12,13 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class DirectionPedagogiqueDto {
     private int idDirectioPedagogique;
-    private AdminDto adminDto;
+    protected String username;
+    protected String mdp;
 
 }
-/*@AllArgsConstructor
-@NoArgsConstructor
-public class DirectionPedagogiqueDto {
-    private int idDirectioPedagogique;
-    //@JsonIgnoreProperties()
-    private AdminDto adminDto;
-}*/
+

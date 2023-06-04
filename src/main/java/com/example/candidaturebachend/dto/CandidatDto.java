@@ -19,17 +19,19 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CandidatDto extends Utilisateur {
-
     private String idCandidat;
+    protected String cin;
+    protected String nom;
+    protected String prenom;
+    protected String addresse;
+    protected String email;
+    protected String dateNaissance;
+    protected String telephone;
+    protected String mdp;
     private String cne;
     private String ville;
     private boolean admis;
-
-
     private List<FiliereDto> filieresDto;
-
-    private List<AnneUniversitaireDto> anneUniversitairesDto;
-
     private List<DiplomeDto> diplomesDto;
 
 }

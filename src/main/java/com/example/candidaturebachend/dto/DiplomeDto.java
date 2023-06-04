@@ -1,6 +1,7 @@
 package com.example.candidaturebachend.dto;
 
 import com.example.candidaturebachend.entities.*;
+import com.example.candidaturebachend.enums.TypeDiplome;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -17,13 +18,13 @@ public class DiplomeDto {
 
     private int idDiplome;
 
-    private TypeDiplomeDto typeDiplomeDto;
+    private TypeDiplome typeDiplome;
     private String specialiteDiplome;
     private Date anneeObtention;
     private String etablissement;
 
-    private CandidatDto candidatDto;
-    private List<FiliereDto> filieresDto;
+ //   private CandidatDto candidatDto;
+  //  private List<FiliereDto> filieresDto;
 
     private FichierDto fichierDto;
     private List<NotesSemesterDto> notesSemesterDto;

@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 public class FichierDto {
     private String idFichier;
     private String chemin;
-    private DiplomeDto diplomeDto;
+   // private DiplomeDto diplomeDto;
 
 }

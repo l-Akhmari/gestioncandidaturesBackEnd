@@ -35,7 +35,7 @@ public class DirectionPedagogiqueController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<DirectionPedagogique> getDirectionPedagogiqueById(@PathVariable("id") String id) {
+    public ResponseEntity<DirectionPedagogique> getDirectionPedagogiqueById(@PathVariable("id") Integer id) {
         DirectionPedagogique directionPedagogique = directionPedagogiqueService.findDirectionPedagogiqueById(id);
         return new ResponseEntity<>(directionPedagogique, HttpStatus.OK);
     }
@@ -53,7 +53,7 @@ public class DirectionPedagogiqueController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteDirectionPedagogique(@PathVariable("id") String id) {
+    public ResponseEntity<?> deleteDirectionPedagogique(@PathVariable("id") Integer id) {
         directionPedagogiqueService.deleteDirectionPedagogique(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -35,7 +35,7 @@ public class AdminController {
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Admin> getAdminById(@PathVariable("id") String id) {
+    public ResponseEntity<Admin> getAdminById(@PathVariable("id") Integer id) {
         Admin admin = adminService.findAdminById(id);
         return new ResponseEntity<>(admin, HttpStatus.OK);
     }
@@ -53,7 +53,7 @@ public class AdminController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<?> deleteAdmin(@PathVariable("id") String id) {
+    public ResponseEntity<?> deleteAdmin(@PathVariable("id") Integer id) {
         adminService.deleteAdmin(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

@@ -27,7 +27,7 @@ public class DirectionPedagogiqueServiceImpl implements IDirectionPedagogique {
     }
 
     @Override
-    public DirectionPedagogique findDirectionPedagogiqueById(String id) {
+    public DirectionPedagogique findDirectionPedagogiqueById(Integer id) {
         return directionPedagogiqueRepository.findDirectionPedagogiqueById(id).orElseThrow(() -> new UserNotFoundException("DirectionPedagogique by id " + id + " was not found"));
     }
 
@@ -37,7 +37,7 @@ public class DirectionPedagogiqueServiceImpl implements IDirectionPedagogique {
     }
 
     @Override
-    public void deleteDirectionPedagogique(String id) {
+    public void deleteDirectionPedagogique(Integer id) {
         directionPedagogiqueRepository.deleteById(id);
     }
 }

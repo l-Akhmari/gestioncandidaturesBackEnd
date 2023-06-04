@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface DirectionPedagogiqueRepository extends JpaRepository<DirectionPedagogique, String> {
+public interface DirectionPedagogiqueRepository extends JpaRepository<DirectionPedagogique, Integer> {
 
-    Optional<DirectionPedagogique> findDirectionPedagogiqueById(String id);
+    Optional<DirectionPedagogique> findDirectionPedagogiqueById(Integer id);
 }

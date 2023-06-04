@@ -1,7 +1,6 @@
 package com.example.candidaturebachend.services.servicesImpl;
 
 import com.example.candidaturebachend.Exceptions.UserNotFoundException;
-import com.example.candidaturebachend.repositories.TypeDiplomeRepository;
 import com.example.candidaturebachend.services.ITypeDiplome;
 import lombok.AllArgsConstructor;
 import lombok.Data;

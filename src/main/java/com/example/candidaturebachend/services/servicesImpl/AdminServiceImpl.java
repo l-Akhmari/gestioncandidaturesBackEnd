@@ -17,6 +17,7 @@ import java.util.List;
 public class AdminServiceImpl implements IAdmin {
     AdminRepository adminRepository;
 
+
     @Override
     public Admin addAdmin(Admin admin) {
         return adminRepository.save(admin);
@@ -28,8 +29,8 @@ public class AdminServiceImpl implements IAdmin {
     }
 
     @Override
-    public Admin findAdminById(String id) {
-        return adminRepository.findAdminById(id).orElseThrow(() -> new UserNotFoundException("Admin by id " + id + " was not found"));
+    public Admin findAdminById(Integer id) {
+        return adminRepository.findById(id).orElseThrow(() -> new UserNotFoundException("admin by id " + id + " was not found"));
     }
 
     @Override
@@ -38,7 +39,7 @@ public class AdminServiceImpl implements IAdmin {
     }
 
     @Override
-    public void deleteAdmin(String id) {
+    public void deleteAdmin(Integer id) {
         adminRepository.deleteById(id);
     }
 }

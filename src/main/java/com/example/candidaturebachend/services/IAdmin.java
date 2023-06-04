@@ -7,7 +7,7 @@ import java.util.List;
 public interface IAdmin {
     Admin addAdmin(Admin admin);
     List<Admin> findAllAdmins();
-    Admin findAdminById(String id);
+    Admin findAdminById(Integer id);
     Admin updateAdmin(Admin admin);
-    void deleteAdmin(String id);
+    void deleteAdmin(Integer id);
 }

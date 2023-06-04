@@ -1,7 +1,5 @@
 package com.example.candidaturebachend.services;
 
-import com.example.candidaturebachend.entities.TypeDiplome;
-
 import java.util.List;
 
 public interface ITypeDiplome {

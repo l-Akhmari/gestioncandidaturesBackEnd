@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@DiscriminatorValue("DPed")
 
 public class DirectionPedagogique extends Utilisateur{
    /* @Id

@@ -12,6 +12,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@DiscriminatorValue("Admin")
+
 public class Admin extends Utilisateur implements Serializable {
     /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

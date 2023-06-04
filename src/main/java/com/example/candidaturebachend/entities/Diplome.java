@@ -1,5 +1,6 @@
 package com.example.candidaturebachend.entities;
 
+import com.example.candidaturebachend.enums.TypeDiplome;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +19,6 @@ public class Diplome {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDiplome;
-    @OneToOne
     private TypeDiplome typeDiplome;
     private String specialiteDiplome;
     private Date anneeObtention;

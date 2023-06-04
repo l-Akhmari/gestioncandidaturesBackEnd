@@ -1,6 +1,5 @@
 package com.example.candidaturebachend.web;
 
-import com.example.candidaturebachend.entities.TypeDiplome;
 import com.example.candidaturebachend.repositories.TypeDiplomeRepository;
 import com.example.candidaturebachend.services.servicesImpl.TypeDiplomeServiceImpl;
 import lombok.AllArgsConstructor;

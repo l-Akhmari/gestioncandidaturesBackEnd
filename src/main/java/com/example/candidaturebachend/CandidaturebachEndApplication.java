@@ -15,7 +15,7 @@ public class CandidaturebachEndApplication {
     public static void main(String[] args) {
         SpringApplication.run(CandidaturebachEndApplication.class, args);
     }
-    @Bean
+    //@Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);

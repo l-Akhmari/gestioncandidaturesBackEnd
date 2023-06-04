@@ -23,7 +23,6 @@ import java.util.stream.Collectors;
 public class DiplomeMapper {
 
     private DozerBeanMapper mapper;
-    private TypeDiplomeMapper typeDiplomeMapper;
     private FichierMapper fichierMapper;
     private NotesSemesterMapper notesSemesterMapper;
 

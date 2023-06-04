@@ -20,7 +20,7 @@ public class FiliereDto {
     private String intitule;
 
     private DepartementDto departementDto;//nrdoha dto
-    //private List<CandidatDto> candidatsDto;//hta hadi
+    private List<CandidatDto> candidatsDto;//hta hadi
     private DiplomeDto diplomeDto;
 
 }

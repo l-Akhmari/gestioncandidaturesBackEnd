@@ -1,5 +1,6 @@
 package com.example.candidaturebachend.entities;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +19,7 @@ public class Role implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idRole;
     private String status;
-    @OneToMany(mappedBy = "role")
+    @ManyToMany
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     List<Utilisateur> utilisateurs;
 }

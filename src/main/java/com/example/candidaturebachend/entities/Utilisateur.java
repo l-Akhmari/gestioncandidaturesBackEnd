@@ -7,7 +7,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.Incubating;
 
+
 import java.io.Serializable;
+
+import java.util.List;
+
 
 @Entity
 @Data
@@ -26,9 +30,10 @@ public abstract class Utilisateur implements Serializable {
     protected String dateNaissance;
     protected String telephone;
     protected String mdp;
-    @ManyToOne
+
+    @ManyToMany(mappedBy = "utilisateurs", fetch = FetchType.EAGER )
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    protected Role role;
+    protected List<Role> roles;
 
 
 }

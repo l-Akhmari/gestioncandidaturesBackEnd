@@ -1,4 +1,6 @@
 package com.example.candidaturebachend.entities;
 
-public class Etudiant {
+import java.io.Serializable;
+
+public class Etudiant implements Serializable {
 }

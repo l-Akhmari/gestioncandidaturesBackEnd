@@ -23,11 +23,8 @@ import java.util.stream.Collectors;
 public class DiplomeMapper {
 
     private DozerBeanMapper mapper;
-
-    private FiliereMapper filiereMapper;
     private TypeDiplomeMapper typeDiplomeMapper;
     private FichierMapper fichierMapper;
-    private CandidatMapper candidatMapper;
     private NotesSemesterMapper notesSemesterMapper;
 
     //Diplome entity to Dto
@@ -39,24 +36,12 @@ public class DiplomeMapper {
         DiplomeDto diplomeDto = mapper.map(diplome, DiplomeDto.class);
 
         //Filieres mapping, entity to dto
-        if (diplome.getFilieres() != null) {
-            List<FiliereDto> filieresDto = filiereMapper.AllFilieresToDto(diplome.getFilieres());
-            diplomeDto.setFilieresDto(filieresDto);
-            // diplomeDto.setFilieresDto(mapper.map(diplomeDto.g(), ZoneDto.class));
-        }
-        if(diplome.getTypeDiplome()!=null) {
-            TypeDiplomeDto typeDiplomeDto = typeDiplomeMapper.typeDiplomeToTypeDiplomeDto(diplome.getTypeDiplome());
 
-            diplomeDto.setTypeDiplomeDto(typeDiplomeDto);
-        }
         if(diplome.getFichier()!=null){
             FichierDto fichierDto = fichierMapper.fichierToFichierDto(diplome.getFichier());
             diplomeDto.setFichierDto(fichierDto);
         }
-        if(diplome.getCandidat()!=null){
-            CandidatDto candidatDto=candidatMapper.candidatToDto(diplome.getCandidat());
-            diplomeDto.setCandidatDto(candidatDto);
-        }
+
 
         /*if(diplome.getNotesSemester()!=null){
             List<NotesSemesterDto> notesSemesterDtos = notesSemesterMapper.AllNoteSemestersToDto(diplome.getNotesSemester());
@@ -93,25 +78,12 @@ public class DiplomeMapper {
 
         Diplome diplome = mapper.map(diplomeDto, Diplome.class);
 
-        //Filieres mapping dto to entity
-        if (diplomeDto.getFilieresDto() != null) {
 
-            List<Filiere> filieres = filiereMapper.DtoToAllFilieres(diplomeDto.getFilieresDto());
-            diplome.setFilieres(filieres);
-        }
-        if(diplomeDto.getTypeDiplomeDto()!=null) {
-            TypeDiplome typeDiplome = typeDiplomeMapper.typeDiplomeDtoToTypeDiplome(diplomeDto.getTypeDiplomeDto());
-
-            diplome.setTypeDiplome(typeDiplome);
-        }
         if(diplomeDto.getFichierDto()!=null){
             Fichier fichier = fichierMapper.fichierDtoTofichier(diplomeDto.getFichierDto());
             diplome.setFichier(fichier);
         }
-        if(diplomeDto.getCandidatDto()!=null){
-            Candidat candidat=candidatMapper.CandidatDtoToCandidat(diplomeDto.getCandidatDto());
-            diplome.setCandidat(candidat);
-        }
+        
 
         /*if(diplomeDto.getNotesSemesterDtos()!=null){
             List<NotesSemester> notesSemesters = notesSemesterMapper.AllNoteSemestersDtoToAllNoteSemesters(diplomeDto.getNotesSemesterDtos());

@@ -22,7 +22,6 @@ import java.util.List;
 public class ChefDepartementMapper {
     private DozerBeanMapper mapper;
     private DepartementMapper departementMapper;
-    private AdminMapper adminMapper;
 
 
     //chefdepartement to dto
@@ -41,10 +40,6 @@ public class ChefDepartementMapper {
         }
         //admin object
 
-        if(chefDepartement.getAdmin()!=null){
-            AdminDto adminDto=adminMapper.adminToDto(chefDepartement.getAdmin());
-            chefDepartementDto.setAdminDto(adminDto);
-        }
 
         return chefDepartementDto;
     }
@@ -76,11 +71,7 @@ public class ChefDepartementMapper {
             chefDepartement.setDepartement(departement);
 
         }
-        if(chefDepartementDto.getAdminDto()!=null){
-            Admin admin=adminMapper.adminDtoToAdmin(chefDepartementDto.getAdminDto());
-            chefDepartement.setAdmin(admin);
 
-        }
 
         return chefDepartement;
 

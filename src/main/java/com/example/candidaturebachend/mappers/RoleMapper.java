@@ -1,9 +1,7 @@
 package com.example.candidaturebachend.mappers;
 
 import com.example.candidaturebachend.dto.RoleDto;
-import com.example.candidaturebachend.dto.TypeDiplomeDto;
 import com.example.candidaturebachend.entities.Role;
-import com.example.candidaturebachend.entities.TypeDiplome;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;

@@ -27,7 +27,6 @@ public class CandidatMapper {
 
     private DozerBeanMapper mapper;
     private FiliereMapper filiereMapper;
-    private AnneUniversitaireMapper anneUniversitaireMapper;
     private DiplomeMapper diplomeMapper;
 
     //Candidat to Dto
@@ -40,10 +39,7 @@ public class CandidatMapper {
             List<FiliereDto> filieresDto = filiereMapper.AllFilieresToDto(candidat.getFilieres());
             candidatDto.setFilieresDto(filieresDto);
         }
-        if(candidat.getAnneUniversitaires()!=null){
-            List<AnneUniversitaireDto> anneUniversitaireDtos = anneUniversitaireMapper.AllAnneUniversitaireToDto(candidat.getAnneUniversitaires());
-            candidatDto.setAnneUniversitairesDto(anneUniversitaireDtos);
-        }
+
         if(candidat.getDiplomes()!=null){
             List<DiplomeDto> diplomeDtos = diplomeMapper.AllDiplomesToDto(candidat.getDiplomes());
             candidatDto.setDiplomesDto(diplomeDtos);
@@ -75,10 +71,7 @@ public class CandidatMapper {
             List<Filiere> filieres = filiereMapper.DtoToAllFilieres(candidatDto.getFilieresDto());
             candidat.setFilieres(filieres);
         }
-        if(candidatDto.getAnneUniversitairesDto()!=null){
-            List<AnneUniversitaire> anneUniversitaires = anneUniversitaireMapper.DtosToAnneUniversitaire(candidatDto.getAnneUniversitairesDto());
-            candidat.setAnneUniversitaires(anneUniversitaires);
-        }
+
         if(candidatDto.getDiplomesDto()!=null){
             List<Diplome> diplomes = diplomeMapper.AllDtoToDiplomes(candidatDto.getDiplomesDto());
             candidat.setDiplomes(diplomes);

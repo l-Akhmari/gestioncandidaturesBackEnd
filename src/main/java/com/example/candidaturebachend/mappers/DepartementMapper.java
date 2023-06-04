@@ -24,7 +24,6 @@ import java.util.List;
 public class DepartementMapper {
     private DozerBeanMapper mapper;
     private FiliereMapper filiereMapper;
-    private ChefDepartementMapper chefDepartementMapper;
 
     //departement to dto
     public DepartementDto DepartementToDepartementDto(Departement departement){
@@ -36,11 +35,6 @@ public class DepartementMapper {
         if(departement.getFilieres()!=null){
             List<FiliereDto> filieresDto = filiereMapper.AllFilieresToDto(departement.getFilieres());
             departementDto.setFilieresDto(filieresDto);
-        }
-        //departement
-        if(departement.getChefDepartement()!=null){
-            ChefDepartementDto chefDepartementDto=chefDepartementMapper.chefDepartemenToChefDepartementDto(departement.getChefDepartement());
-            departementDto.setChefDepartementDto(chefDepartementDto);
         }
         return departementDto;
     }
@@ -66,10 +60,6 @@ public class DepartementMapper {
         Departement departement=mapper.map(departementDto, Departement.class);
         //chefdepartement object
 
-        if(departementDto.getChefDepartementDto()!=null){
-            ChefDepartement chefDepartement=chefDepartementMapper.chefDepartemenDtoToChefDepartement(departementDto.getChefDepartementDto());
-            departement.setChefDepartement(chefDepartement);
-        }
 
         //list filiers
         if(departementDto.getFilieresDto()!=null){

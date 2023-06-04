@@ -22,7 +22,6 @@ import java.util.List;
 @AllArgsConstructor
 public class DirectionPedagMapper {
     private DozerBeanMapper mapper;
-    private AdminMapper adminMapper;
 
     //direction to dto
     public DirectionPedagogiqueDto directionPedagogiqueToDto(DirectionPedagogique directionPedagogique){
@@ -30,14 +29,6 @@ public class DirectionPedagMapper {
                 return null;
             }
         DirectionPedagogiqueDto directionPedagogiqueDto = mapper.map(directionPedagogique, DirectionPedagogiqueDto.class);
-
-
-            if(directionPedagogique.getAdmin()!=null){
-                AdminDto adminDto = adminMapper.adminToDto(directionPedagogique.getAdmin());
-                directionPedagogiqueDto.setAdminDto(adminDto);
-            }
-
-
 
         return directionPedagogiqueDto;
     }
@@ -49,14 +40,6 @@ public class DirectionPedagMapper {
             return null;
         }
         DirectionPedagogique directionPedagogique = mapper.map(directionPedagogiqueDto, DirectionPedagogique.class);
-
-
-        if (directionPedagogiqueDto.getAdminDto()!=null){
-                Admin admin = adminMapper.adminDtoToAdmin(directionPedagogiqueDto.getAdminDto());
-                directionPedagogique.setAdmin(admin);
-            }
-
-
 
         return null;
     }

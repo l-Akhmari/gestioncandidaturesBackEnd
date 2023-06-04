@@ -26,9 +26,6 @@ import java.util.List;
 @AllArgsConstructor
 public class FiliereMapper {
     private DozerBeanMapper mapper;
-    private DiplomeMapper diplomeMapper;
-    private CandidatMapper candidatMapper;
-    private DepartementMapper departementMapper;
 
     //Filiere to Dto
     public FiliereDto FiliereToFiliereDto(Filiere filiere) {
@@ -37,28 +34,6 @@ public class FiliereMapper {
         }
 
         FiliereDto filiereDto = mapper.map(filiere, FiliereDto.class);
-
-        if (filiere.getDiplome() != null) {
-            filiereDto.setDiplomeDto(mapper.map(filiere.getDiplome(), DiplomeDto.class));
-        }
-
-        //diplome object
-        if(filiere.getDiplome()!=null){
-            DiplomeDto diplomeDto = diplomeMapper.DiplomeToDiplomeDto(filiere.getDiplome());
-            filiereDto.setDiplomeDto((diplomeDto));
-        }
-        //candidat list
-        if (filiere.getCandidats() != null) {
-            List<CandidatDto> candidatDtos = candidatMapper.AllCandidatsToDto(filiere.getCandidats());
-            filiereDto.setCandidatsDto(candidatDtos);
-        }
-
-        //departement object
-
-        if(filiere.getDepartement()!=null){
-            DepartementDto departementDto = departementMapper.DepartementToDepartementDto(filiere.getDepartement());
-            filiereDto.setDepartementDto((departementDto));
-        }
 
         return  filiereDto;
     }
@@ -88,21 +63,7 @@ public class FiliereMapper {
         }
 
         Filiere filiere = mapper.map(filiereDto, Filiere.class);
-        //objet diplome
-        if(filiereDto.getDiplomeDto()!=null){
-            Diplome diplome = diplomeMapper.DiplomeDtoToDiplome(filiereDto.getDiplomeDto());
-            filiere.setDiplome((diplome));
-        }
-        if (filiereDto.getCandidatsDto() != null) {
-            List<Candidat> candidats = candidatMapper.AllDtoToCandidats(filiereDto.getCandidatsDto());
-            filiere.setCandidats(candidats);
-        }
 
-
-        if(filiereDto.getDepartementDto()!=null){
-            Departement departement=departementMapper.DepartementDtoToDepartement(filiereDto.getDepartementDto());
-            filiere.setDepartement(departement);
-        }
         return filiere;
     }
 

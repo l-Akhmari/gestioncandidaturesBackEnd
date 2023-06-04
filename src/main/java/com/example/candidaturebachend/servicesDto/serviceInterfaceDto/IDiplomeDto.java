@@ -1,4 +1,4 @@
-package com.example.candidaturebachend.servicesDto.serviceinterDto;
+package com.example.candidaturebachend.servicesDto.serviceInterfaceDto;
 
 import com.example.candidaturebachend.dto.DiplomeDto;
 

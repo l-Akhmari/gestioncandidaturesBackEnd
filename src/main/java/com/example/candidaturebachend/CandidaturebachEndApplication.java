@@ -7,6 +7,7 @@ import com.example.candidaturebachend.dto.NotesSemesterDto;
 import com.example.candidaturebachend.entities.Candidat;
 import com.example.candidaturebachend.entities.Diplome;
 import com.example.candidaturebachend.entities.Fichier;
+import com.example.candidaturebachend.entities.NotesSemester;
 import com.example.candidaturebachend.enums.TypeDiplome;
 import com.example.candidaturebachend.repositories.CandidatRepository;
 import com.example.candidaturebachend.repositories.DiplomeRepository;
@@ -66,9 +67,14 @@ public class CandidaturebachEndApplication {
                 diplomeDto.setEtablissement("ESTG");
                 diplomeDto.setAnneeObtention(new Date());
                 diplomeDto.setFichierDto(fichierDto1);
-                diplomeDtoService.saveDiplome(diplomeDto,candidatDto1,fichierDto1);
+                DiplomeDto diplomeDto1 = diplomeDtoService.saveDiplome(diplomeDto, candidatDto1, fichierDto1);
+               NotesSemesterDto notesSemesterDto=new NotesSemesterDto();
+               notesSemesterDto.setNote(17.5);
+               notesSemesterDto.setDiplomeDto(diplomeDto1);
+               diplomeDtoService.saveNoteSemester(notesSemesterDto,diplomeDto1);
 
             });
+
 
 
         };}

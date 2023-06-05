@@ -28,6 +28,8 @@ public class FichierDtoServiceImpl implements IFichier {
         Fichier fichier = fichierMapper.fichierDtoTofichier(fichierDto);
         fichier.setId(UUID.randomUUID().toString());
         Fichier savedFichier = fichierRepository.save(fichier);
+        log.info("------------------------------------------------------------------------------------------------");
+        log.info("id fichier = "+savedFichier.getId());
         return fichierMapper.fichierToFichierDto(savedFichier);
     }
 

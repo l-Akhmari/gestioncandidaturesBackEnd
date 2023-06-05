@@ -29,7 +29,8 @@ public class CandidatDtoServiceImp implements ICandidat {
         Candidat candidat=candidatMapper.CandidatDtoToCandidat(candidatDto);
         candidat.setId(UUID.randomUUID().toString());
         Candidat savedCandidat=candidatRepository.save(candidat);
-
+        log.info("------------------------------------------------------------------------------------------------");
+        log.info("id candidat = "+savedCandidat.getId());
         return candidatMapper.candidatToDto(savedCandidat);
     }
 

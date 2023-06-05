@@ -3,10 +3,12 @@ package com.example.candidaturebachend;
 import com.example.candidaturebachend.dto.CandidatDto;
 import com.example.candidaturebachend.dto.DiplomeDto;
 import com.example.candidaturebachend.dto.FichierDto;
+import com.example.candidaturebachend.dto.NotesSemesterDto;
 import com.example.candidaturebachend.enums.TypeDiplome;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.CandidatDtoServiceImp;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.DiplomeDtoServiceImpl;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.FichierDtoServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,6 +18,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -23,6 +26,7 @@ import org.springframework.boot.CommandLineRunner;
 
 
 @SpringBootApplication
+@Slf4j
 public class CandidaturebachEndApplication {
 
     public static void main(String[] args) {
@@ -32,6 +36,7 @@ public class CandidaturebachEndApplication {
     CommandLineRunner commandLineRunner(CandidatDtoServiceImp candidatDtoImp,
                                         DiplomeDtoServiceImpl diplomeDtoService,
                                         FichierDtoServiceImpl fichierDtoService
+
                                         ){
         return args -> {
             Stream.of("fatima","nezha","tawahd").forEach(name->{
@@ -48,6 +53,8 @@ public class CandidaturebachEndApplication {
                 fichierDto.setChemin("nom de fichier de "+name);
                 fichierDto.setIdFichier(UUID.randomUUID().toString());
                 fichierDtoService.saveFichier(fichierDto);
+                log.info("---------------------------------------------------------------");
+                log.info("---------------------------------------------------------------");
                /*DiplomeDto diplomeDto=new DiplomeDto();
                 diplomeDto.setCandidatDto(candidatDto1);
                 diplomeDto.setTypeDiplome(TypeDiplome.DUT);
@@ -58,14 +65,30 @@ public class CandidaturebachEndApplication {
 
             });
             candidatDtoImp.listCandidats().forEach(candidatDto -> {
+                List<FichierDto> fichierDtos=fichierDtoService.listFichier();
+                fichierDtos.forEach(fichierDto -> {
 
-               DiplomeDto diplomeDto=new DiplomeDto();
-                diplomeDto.setCandidatDto(candidatDto);
-                diplomeDto.setTypeDiplome(TypeDiplome.DUT);
-                diplomeDto.setEtablissement("ESTG");
-                diplomeDto.setAnneeObtention(new Date());
-                diplomeDto.setFichierDto(null);
-                diplomeDtoService.saveDiplome(diplomeDto);
+                    DiplomeDto diplomeDto=new DiplomeDto();
+                    diplomeDto.setCandidatDto(candidatDto);
+                    diplomeDto.setTypeDiplome(Math.random()>0.5?TypeDiplome.DUT:TypeDiplome.BTS);
+                    diplomeDto.setEtablissement("ESTG");
+                    diplomeDto.setAnneeObtention(new Date());
+                    diplomeDto.setFichierDto(fichierDto);
+                    DiplomeDto savedDip = diplomeDtoService.saveDiplome(diplomeDto);
+                    log.info("---------------------------------------------------------------");
+                    log.info("---------------------------------------------------------------");
+                    log.info("id dip : "+savedDip.getId());
+                    log.info("id dip : "+savedDip.getCandidatDto().getIdCandidat());
+                });
+
+            });
+
+            diplomeDtoService.listDiplomes().forEach(diplomeDto -> {
+                NotesSemesterDto notesSemesterDto=new NotesSemesterDto();
+                notesSemesterDto.setDiplomeDto(diplomeDto);
+                notesSemesterDto.setNote(Math.random()>0.5?15.8:18.1);
+                diplomeDtoService.saveNoteSemester(notesSemesterDto, diplomeDto);
+
             });
 
         };}

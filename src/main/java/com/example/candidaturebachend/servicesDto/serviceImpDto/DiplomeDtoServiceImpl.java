@@ -39,6 +39,8 @@ public class DiplomeDtoServiceImpl implements IDiplomeDto {
        // diplome.setCandidat(candidatMapper.CandidatDtoToCandidat(candidatDto));
         //diplome.setFichier(fichierMapper.fichierDtoTofichier(fichierDto));
         Diplome savedDiplome=diplomeRepository.save(diplome);
+        log.info("------------------------------------------------------------------------------------------------");
+        log.info("id diplome = "+savedDiplome.getIdDiplome());
         return diplomeMapper.DiplomeToDiplomeDto(savedDiplome);
     }
 

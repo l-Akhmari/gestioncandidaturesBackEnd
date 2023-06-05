@@ -32,7 +32,7 @@ public class CandidatDto{
     private String cne;
     private String ville;
     private boolean admis;
-    private List<FiliereDto> filieresDto;
+   // private List<FiliereDto> filieresDto;
     //private List<DiplomeDto> diplomesDto;
 
 }

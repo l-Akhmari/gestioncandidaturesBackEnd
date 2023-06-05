@@ -35,10 +35,10 @@ public class CandidatMapper {
             return null;
         //we have to verify it with mustapha !!!!!!!!!!!!!!!!!!!!!!!!!!!"the line +2"
         CandidatDto candidatDto=mapper.map(candidat,CandidatDto.class);
-        if(candidat.getFilieres()!=null){
+        /*if(candidat.getFilieres()!=null){
             List<FiliereDto> filieresDto = filiereMapper.AllFilieresToDto(candidat.getFilieres());
             candidatDto.setFilieresDto(filieresDto);
-        }
+        }*/
 
 
         return candidatDto;
@@ -64,10 +64,10 @@ public class CandidatMapper {
             return null;
         Candidat candidat=mapper.map(candidatDto,Candidat.class);
 
-        if(candidatDto.getFilieresDto()!=null){
+       /* if(candidatDto.getFilieresDto()!=null){
             List<Filiere> filieres = filiereMapper.DtoToAllFilieres(candidatDto.getFilieresDto());
             candidat.setFilieres(filieres);
-        }
+        }*/
 
 
 

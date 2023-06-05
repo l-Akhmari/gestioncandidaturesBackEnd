@@ -41,8 +41,12 @@ public class CandidaturebachEndApplication {
     @Bean
     CommandLineRunner commandLineRunner(CandidatDtoServiceImp candidatDtoImp,
                                         DiplomeDtoServiceImpl diplomeDtoService,
+<<<<<<< HEAD
                                         FichierDtoServiceImpl fichierDtoService,
                                         CandidatRepository candidatRepository
+=======
+                                        FichierDtoServiceImpl fichierDtoService
+>>>>>>> b63f9557f79df4a934b954a130a960df1886b354
                                         ){
         return args -> {
             Stream.of("fatima","nezha","tawahd").forEach(name->{
@@ -57,7 +61,7 @@ public class CandidaturebachEndApplication {
                 candidatDtoImp.saveCandidat(candidatDto);
                 FichierDto fichierDto=new FichierDto();
                 fichierDto.setChemin("nom de fichier de "+name);
-                fichierDto.setIdFichier(UUID.randomUUID().toString());
+                fichierDto.setId(UUID.randomUUID().toString());
                 fichierDtoService.saveFichier(fichierDto);
 
                /*DiplomeDto diplomeDto=new DiplomeDto();
@@ -69,13 +73,21 @@ public class CandidaturebachEndApplication {
                 diplomeDtoService.saveDiplome(diplomeDto,candidatDto1,fichierDto1);*/
 
             });
+<<<<<<< HEAD
             log.info("---------------------------------------------------------------");
             candidatDtoImp.listCandidats().forEach(candidat -> {
                 log.info("---------------------------------------------------------------");
                 System.out.println(candidat.getId());
                 log.info("---------------------------------------------------------------");
             });
+=======
+            log.info("*****************************************************************************");
+            CandidatDto candidat = candidatDtoImp.getCandidat("3db48dd6-0472-4a2d-be83-8ae15c603b18");
+            log.info(candidat.getId());
+>>>>>>> b63f9557f79df4a934b954a130a960df1886b354
             candidatDtoImp.listCandidats().forEach(candidatDto -> {
+                log.info("---------------------------------------------------------------");
+                log.info("candidat id hnaaa : "+candidatDto.getId());
                 List<FichierDto> fichierDtos=fichierDtoService.listFichier();
                 fichierDtos.forEach(fichierDto -> {
 

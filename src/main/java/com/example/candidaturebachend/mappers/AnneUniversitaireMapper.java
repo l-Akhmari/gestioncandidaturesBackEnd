@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Component
-@Data
-@AllArgsConstructor
-public class AnneUniversitaireMapper {
+//@Component
+//@Data
+//@AllArgsConstructor
+/*public class AnneUniversitaireMapper {
 
     private DozerBeanMapper mapper;
     private CandidatMapper candidatMapper;
@@ -72,5 +72,5 @@ public class AnneUniversitaireMapper {
         return anneUniversitaires;
     }
 
-}
+}*/
 

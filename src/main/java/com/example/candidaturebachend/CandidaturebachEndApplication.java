@@ -4,7 +4,13 @@ import com.example.candidaturebachend.dto.CandidatDto;
 import com.example.candidaturebachend.dto.DiplomeDto;
 import com.example.candidaturebachend.dto.FichierDto;
 import com.example.candidaturebachend.dto.NotesSemesterDto;
+import com.example.candidaturebachend.entities.Candidat;
+import com.example.candidaturebachend.entities.Diplome;
+import com.example.candidaturebachend.entities.Fichier;
 import com.example.candidaturebachend.enums.TypeDiplome;
+import com.example.candidaturebachend.repositories.CandidatRepository;
+import com.example.candidaturebachend.repositories.DiplomeRepository;
+import com.example.candidaturebachend.repositories.FichierRepository;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.CandidatDtoServiceImp;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.DiplomeDtoServiceImpl;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.FichierDtoServiceImpl;
@@ -32,7 +38,7 @@ public class CandidaturebachEndApplication {
     public static void main(String[] args) {
         SpringApplication.run(CandidaturebachEndApplication.class, args);
     }
-    @Bean
+    //@Bean
     CommandLineRunner commandLineRunner(CandidatDtoServiceImp candidatDtoImp,
                                         DiplomeDtoServiceImpl diplomeDtoService,
                                         FichierDtoServiceImpl fichierDtoService
@@ -92,6 +98,45 @@ public class CandidaturebachEndApplication {
             });
 
         };}
+
+    @Bean
+    CommandLineRunner commandLineRunner(CandidatRepository candidatRepository,
+                                        FichierRepository fichierRepository,
+                                        DiplomeRepository diplomeRepository){
+        return args -> {
+            Stream.of("fatima","nezha","tawahd").forEach(name->{
+                Candidat candidat=new Candidat();
+                candidat.setId(UUID.randomUUID().toString());
+                candidat.setAddresse("addresse de "+name);
+                candidat.setNom(name);
+                candidat.setEmail(name+"@gmail.com");
+                candidat.setDateNaissance(new Date());
+                candidat.setCin("cin de "+name);
+                candidat.setPrenom(name);
+                candidatRepository.save(candidat);
+                Fichier fichier=new Fichier();
+                fichier.setChemin("nom de fichier de "+name);
+                fichier.setId(UUID.randomUUID().toString());
+                fichierRepository.save(fichier);
+
+            });
+
+            candidatRepository.findAll().forEach(candidat -> {
+                List<Fichier> fichiers = fichierRepository.findAll();
+                for (Fichier f: fichiers) {
+                    Diplome diplome=new Diplome();
+                    diplome.setCandidat(candidat);
+                    diplome.setTypeDiplome(TypeDiplome.DUT);
+                    diplome.setEtablissement("ESTG");
+                    diplome.setAnneeObtention(new Date());
+                    diplome.setFichier(f);
+                    diplomeRepository.save(diplome);
+                }
+            });
+        };
+    }
+
+
     //@Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();

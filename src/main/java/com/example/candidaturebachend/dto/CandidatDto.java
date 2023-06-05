@@ -1,26 +1,17 @@
 package com.example.candidaturebachend.dto;
 
-import com.example.candidaturebachend.entities.AnneUniversitaire;
-import com.example.candidaturebachend.entities.Diplome;
-import com.example.candidaturebachend.entities.Filiere;
-import com.example.candidaturebachend.entities.Utilisateur;
-
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.List;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class CandidatDto{
-    private String idCandidat;
+    private String id;
     protected String cin;
     protected String nom;
     protected String prenom;

@@ -1,8 +1,9 @@
 package com.example.candidaturebachend.web;
 
-import com.example.candidaturebachend.entities.NotesSemester;
-import com.example.candidaturebachend.repositories.NotesSemesterRepository;
-import com.example.candidaturebachend.services.servicesImpl.NotesSemesterServiceImpl;
+import com.example.candidaturebachend.dto.DiplomeDto;
+import com.example.candidaturebachend.dto.NotesSemesterDto;
+
+import com.example.candidaturebachend.servicesDto.serviceImpDto.DiplomeDtoServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,39 +23,37 @@ import java.util.List;
 @RequestMapping("/notesSemester")
 public class NotesSemesterController {
     @Autowired
-    private NotesSemesterServiceImpl notesSemesterService;
-    @Autowired
-    NotesSemesterRepository notesSemesterRepo;
+    private DiplomeDtoServiceImpl notesSemesterService;
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<NotesSemester>> getAllNotesSemesters() {
-        List<NotesSemester> notesSemesters = notesSemesterService.findAllNotesSemesters();
+    public ResponseEntity<List<NotesSemesterDto>> getAllNotesSemesters() {
+        List<NotesSemesterDto> notesSemesters = notesSemesterService.listNotes();
         return new ResponseEntity<>(notesSemesters, HttpStatus.OK);
 
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<NotesSemester> getNotesSemesterById(@PathVariable("id") Integer id) {
-        NotesSemester notesSemester = notesSemesterService.findNotesSemesterById(id);
+    /*@GetMapping("/find/{id}")
+    public ResponseEntity<NotesSemesterDto> getNotesSemesterById(@PathVariable("id") Integer id) {
+        NotesSemesterDto notesSemester = notesSemesterService.get(id);
         return new ResponseEntity<>(notesSemester, HttpStatus.OK);
-    }
+    }*/
 
     @PostMapping("/add")
-    public ResponseEntity<NotesSemester> addNotesSemester(@RequestBody NotesSemester notesSemester) {
-        NotesSemester newNotesSemester = notesSemesterService.addNotesSemester(notesSemester);
+    public ResponseEntity<NotesSemesterDto> addNotesSemester(@RequestBody NotesSemesterDto notesSemester, DiplomeDto diplome) {
+        NotesSemesterDto newNotesSemester = notesSemesterService.saveNoteSemester(notesSemester, diplome);
         return new ResponseEntity<>(newNotesSemester, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<NotesSemester> updateNotesSemester(@RequestBody NotesSemester notesSemester) {
-        NotesSemester updateNotesSemester = notesSemesterService.updateNotesSemester(notesSemester);
+    public ResponseEntity<NotesSemesterDto> updateNotesSemester(@RequestBody NotesSemesterDto notesSemester, DiplomeDto diplome) {
+        NotesSemesterDto updateNotesSemester = notesSemesterService.updateNoteSemester(notesSemester, diplome);
         return new ResponseEntity<>(updateNotesSemester, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteNotesSemester(@PathVariable("id") Integer id) {
-        notesSemesterService.deleteNotesSemester(id);
+        notesSemesterService.deleteNotes(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

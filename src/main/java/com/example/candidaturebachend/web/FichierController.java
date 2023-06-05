@@ -1,8 +1,8 @@
 package com.example.candidaturebachend.web;
 
-import com.example.candidaturebachend.entities.Fichier;
-import com.example.candidaturebachend.repositories.FichierRepository;
-import com.example.candidaturebachend.services.servicesImpl.FichierServiceImpl;
+import com.example.candidaturebachend.Exceptions.fileNotFoundException;
+import com.example.candidaturebachend.dto.FichierDto;
+import com.example.candidaturebachend.servicesDto.serviceImpDto.FichierDtoServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,33 +22,32 @@ import java.util.List;
 @RequestMapping("/fichier")
 public class FichierController {
     @Autowired
-    private FichierServiceImpl fichierService;
-    @Autowired
-    FichierRepository fichierRepo;
+    private FichierDtoServiceImpl fichierService;
+
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<Fichier>> getAllFichiers() {
-        List<Fichier> fichiers = fichierService.findAllFichiers();
+    public ResponseEntity<List<FichierDto>> getAllFichiers() {
+        List<FichierDto> fichiers = fichierService.listFichier();
         return new ResponseEntity<>(fichiers, HttpStatus.OK);
 
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Fichier> getFichierById(@PathVariable("id") String id) {
-        Fichier fichier = fichierService.findFichierById(id);
+    public ResponseEntity<FichierDto> getFichierById(@PathVariable("id") String id) throws fileNotFoundException {
+        FichierDto fichier = fichierService.getFichier(id);
         return new ResponseEntity<>(fichier, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Fichier> addFichier(@RequestBody Fichier fichier) {
-        Fichier newFichier = fichierService.addFichier(fichier);
+    public ResponseEntity<FichierDto> addFichier(@RequestBody FichierDto fichier) {
+        FichierDto newFichier = fichierService.saveFichier(fichier);
         return new ResponseEntity<>(newFichier, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Fichier> updateFichier(@RequestBody Fichier fichier) {
-        Fichier updateFichier = fichierService.updateFichier(fichier);
+    public ResponseEntity<FichierDto> updateFichier(@RequestBody FichierDto fichier) {
+        FichierDto updateFichier = fichierService.updateFichier(fichier);
         return new ResponseEntity<>(updateFichier, HttpStatus.OK);
     }
 

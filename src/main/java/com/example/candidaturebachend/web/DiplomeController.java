@@ -1,8 +1,11 @@
 package com.example.candidaturebachend.web;
 
+import com.example.candidaturebachend.dto.CandidatDto;
+import com.example.candidaturebachend.dto.DiplomeDto;
+import com.example.candidaturebachend.dto.FichierDto;
 import com.example.candidaturebachend.entities.Diplome;
 import com.example.candidaturebachend.repositories.DiplomeRepository;
-import com.example.candidaturebachend.services.servicesImpl.DiplomeServiceImpl;
+import com.example.candidaturebachend.servicesDto.serviceImpDto.DiplomeDtoServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,33 +28,33 @@ import java.util.Optional;
 //@CrossOrigin
 public class DiplomeController {
     @Autowired
-    private DiplomeServiceImpl diplomeService;
+    private DiplomeDtoServiceImpl diplomeService;
     @Autowired
     DiplomeRepository diplomeRepo;
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<Diplome>> getAllDiplomes() {
-        List<Diplome> diplomes = diplomeService.findAllDiplomes();
+    public ResponseEntity<List<DiplomeDto>> getAllDiplomes() {
+        List<DiplomeDto> diplomes = diplomeService.listDiplomes();
         return new ResponseEntity<>(diplomes, HttpStatus.OK);
 
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Diplome> getDiplomeById(@PathVariable("id") Integer id) {
-        Diplome diplome = diplomeService.findDiplomeById(id);
+    public ResponseEntity<DiplomeDto> getDiplomeById(@PathVariable("id") Integer id) {
+        DiplomeDto diplome = diplomeService.getDiplome(id);
         return new ResponseEntity<>(diplome, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Diplome> addDiplome(@RequestBody Diplome diplome) {
-        Diplome newDiplome = diplomeService.addDiplome(diplome);
+    public ResponseEntity<DiplomeDto> addDiplome(@RequestBody DiplomeDto diplome, CandidatDto candidatDto, FichierDto fichierDto) {
+        DiplomeDto newDiplome = diplomeService.saveDiplome(diplome,candidatDto,fichierDto);
         return new ResponseEntity<>(newDiplome, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Diplome> updateDiplome(@RequestBody Diplome diplome) {
-        Diplome updateDiplome = diplomeService.updateDiplome(diplome);
+    public ResponseEntity<DiplomeDto> updateDiplome(@RequestBody DiplomeDto diplome, CandidatDto candidatDto, FichierDto fichierDto) {
+        DiplomeDto updateDiplome = diplomeService.updateDiplome(diplome,candidatDto,fichierDto);
         return new ResponseEntity<>(updateDiplome, HttpStatus.OK);
     }
 

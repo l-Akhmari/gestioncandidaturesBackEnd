@@ -1,4 +1,4 @@
-package com.example.candidaturebachend.web;
+/*package com.example.candidaturebachend.web;
 
 import com.example.candidaturebachend.entities.Fichier;
 import com.example.candidaturebachend.repositories.FichierRepository;
@@ -12,7 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.List;*//*
 
 @Data
 @Builder
@@ -58,3 +58,4 @@ public class FichierController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
+*/

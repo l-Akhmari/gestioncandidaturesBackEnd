@@ -1,4 +1,4 @@
-package com.example.candidaturebachend.web;
+/*package com.example.candidaturebachend.web;
 
 import com.example.candidaturebachend.entities.Admin;
 import com.example.candidaturebachend.repositories.AdminRepository;
@@ -12,9 +12,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.List;*/
 
-@Data
+/*@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -57,4 +57,4 @@ public class AdminController {
         adminService.deleteAdmin(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-}
+}*/

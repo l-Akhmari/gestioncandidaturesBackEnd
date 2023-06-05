@@ -1,8 +1,10 @@
 package com.example.candidaturebachend.web;
 
+import com.example.candidaturebachend.Exceptions.CandidateNotFoundException;
+import com.example.candidaturebachend.dto.CandidatDto;
 import com.example.candidaturebachend.entities.Candidat;
 import com.example.candidaturebachend.repositories.CandidatRepository;
-import com.example.candidaturebachend.services.servicesImpl.CandidatServiceImpl;
+import com.example.candidaturebachend.servicesDto.serviceImpDto.CandidatDtoServiceImp;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,39 +24,39 @@ import java.util.List;
 @RequestMapping("/candidat")
 public class CandidatController {
     @Autowired
-    private CandidatServiceImpl candidatService;
+    private CandidatDtoServiceImp candidatDtoServiceImp;
     @Autowired
     CandidatRepository candidatRepo;
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<Candidat>> getAllCandidats() {
-        List<Candidat> candidats = candidatService.findAllCandidats();
-        return new ResponseEntity<>(candidats, HttpStatus.OK);
+    public ResponseEntity<List<CandidatDto>> getAllCandidats() {
+        List<CandidatDto> candidatDtos = candidatDtoServiceImp.listCandidats();
+        return new ResponseEntity<>(candidatDtos, HttpStatus.OK);
 
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Candidat> getCandidatById(@PathVariable("id") String id) {
-        Candidat candidat = candidatService.findCandidatById(id);
+    public ResponseEntity<CandidatDto> getCandidatById(@PathVariable("id") String id) throws CandidateNotFoundException {
+        CandidatDto candidat = candidatDtoServiceImp.getCandidat(id);
         return new ResponseEntity<>(candidat, HttpStatus.OK);
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Candidat> addCandidat(@RequestBody Candidat candidat) {
-        Candidat newCandidat = candidatService.addCandidat(candidat);
+    public ResponseEntity<CandidatDto> addCandidat(@RequestBody CandidatDto candidat) {
+        CandidatDto newCandidat = candidatDtoServiceImp.saveCandidat(candidat);
         return new ResponseEntity<>(newCandidat, HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Candidat> updateCandidat(@RequestBody Candidat candidat) {
-        Candidat updateCandidat = candidatService.updateCandidat(candidat);
+    public ResponseEntity<CandidatDto> updateCandidat(@RequestBody CandidatDto candidat) {
+        CandidatDto updateCandidat = candidatDtoServiceImp.updateCandidat(candidat);
         return new ResponseEntity<>(updateCandidat, HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteCandidat(@PathVariable("id") String id) {
-        candidatService.deleteCandidat(id);
+        candidatDtoServiceImp.deleteCandidat(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -1,4 +1,4 @@
-package com.example.candidaturebachend.web;
+/*package com.example.candidaturebachend.web;
 
 import com.example.candidaturebachend.entities.ChefDepartement;
 import com.example.candidaturebachend.repositories.ChefDepartementRepository;
@@ -12,8 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+import java.util.List;*/
+/*
 @Data
 @Builder
 @NoArgsConstructor
@@ -58,3 +58,4 @@ public class ChefDepartementController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
+*/

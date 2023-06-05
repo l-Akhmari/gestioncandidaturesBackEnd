@@ -21,6 +21,7 @@ public class Diplome implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idDiplome;
+    @Enumerated(EnumType.STRING)
     private TypeDiplome typeDiplome;
     private String specialiteDiplome;
     private Date anneeObtention;

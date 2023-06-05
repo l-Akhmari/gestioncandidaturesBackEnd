@@ -38,16 +38,16 @@ public class CandidaturebachEndApplication {
     public static void main(String[] args) {
         SpringApplication.run(CandidaturebachEndApplication.class, args);
     }
-    //@Bean
+    @Bean
     CommandLineRunner commandLineRunner(CandidatDtoServiceImp candidatDtoImp,
                                         DiplomeDtoServiceImpl diplomeDtoService,
-                                        FichierDtoServiceImpl fichierDtoService
-
+                                        FichierDtoServiceImpl fichierDtoService,
+                                        CandidatRepository candidatRepository
                                         ){
         return args -> {
             Stream.of("fatima","nezha","tawahd").forEach(name->{
                 CandidatDto candidatDto=new CandidatDto();
-                candidatDto.setIdCandidat(UUID.randomUUID().toString());
+                candidatDto.setId(UUID.randomUUID().toString());
                 candidatDto.setAddresse("addresse de "+name);
                 candidatDto.setNom(name);
                 candidatDto.setEmail(name+"@gmail.com");
@@ -57,10 +57,9 @@ public class CandidaturebachEndApplication {
                 candidatDtoImp.saveCandidat(candidatDto);
                 FichierDto fichierDto=new FichierDto();
                 fichierDto.setChemin("nom de fichier de "+name);
-                fichierDto.setIdFichier(UUID.randomUUID().toString());
+                fichierDto.setId(UUID.randomUUID().toString());
                 fichierDtoService.saveFichier(fichierDto);
-                log.info("---------------------------------------------------------------");
-                log.info("---------------------------------------------------------------");
+
                /*DiplomeDto diplomeDto=new DiplomeDto();
                 diplomeDto.setCandidatDto(candidatDto1);
                 diplomeDto.setTypeDiplome(TypeDiplome.DUT);
@@ -69,6 +68,12 @@ public class CandidaturebachEndApplication {
                 diplomeDto.setFichierDto(fichierDto1);
                 diplomeDtoService.saveDiplome(diplomeDto,candidatDto1,fichierDto1);*/
 
+            });
+            log.info("---------------------------------------------------------------");
+            candidatDtoImp.listCandidats().forEach(candidat -> {
+                log.info("---------------------------------------------------------------");
+                System.out.println(candidat.getId());
+                log.info("---------------------------------------------------------------");
             });
             candidatDtoImp.listCandidats().forEach(candidatDto -> {
                 List<FichierDto> fichierDtos=fichierDtoService.listFichier();
@@ -84,7 +89,7 @@ public class CandidaturebachEndApplication {
                     log.info("---------------------------------------------------------------");
                     log.info("---------------------------------------------------------------");
                     log.info("id dip : "+savedDip.getId());
-                    log.info("id dip : "+savedDip.getCandidatDto().getIdCandidat());
+                    log.info("id dip : "+savedDip.getCandidatDto().getId());
                 });
 
             });
@@ -99,7 +104,7 @@ public class CandidaturebachEndApplication {
 
         };}
 
-    @Bean
+    //@Bean
     CommandLineRunner commandLineRunner(CandidatRepository candidatRepository,
                                         FichierRepository fichierRepository,
                                         DiplomeRepository diplomeRepository){

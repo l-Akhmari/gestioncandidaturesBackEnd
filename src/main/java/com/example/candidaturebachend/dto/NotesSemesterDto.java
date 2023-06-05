@@ -1,6 +1,5 @@
 package com.example.candidaturebachend.dto;
 
-import com.example.candidaturebachend.entities.Diplome;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class NotesSemesterDto {
-    int idNotes;
+    int id;
     Double note;
     DiplomeDto diplomeDto;
 }

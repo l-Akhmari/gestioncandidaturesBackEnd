@@ -29,11 +29,11 @@ public class AnneUniversitaireMapper {
         if(anneUniversitaire==null)
             return null;
         AnneUniversitaireDto anneUniversitaireDto=mapper.map(anneUniversitaire, AnneUniversitaireDto.class);
-        if (anneUniversitaire.getCandidats() != null) {
+        /*if (anneUniversitaire.getCandidats() != null) {
             List<CandidatDto> candidatDtos = candidatMapper.AllCandidatsToDto(anneUniversitaire.getCandidats());
             anneUniversitaireDto.setCandidatsDto(candidatDtos);
             // diplomeDto.setFilieresDto(mapper.map(diplomeDto.g(), ZoneDto.class));
-        }
+        }*/
         return anneUniversitaireDto;
     }
     public List<AnneUniversitaireDto> AllAnneUniversitaireToDto(List<AnneUniversitaire> anneUniversitaires){
@@ -54,10 +54,10 @@ public class AnneUniversitaireMapper {
         if(anneUniversitaireDto==null)
             return null;
         AnneUniversitaire anneUniversitaire=mapper.map(anneUniversitaireDto, AnneUniversitaire.class);
-        if (anneUniversitaireDto.getCandidatsDto() != null) {
+        /*if (anneUniversitaireDto.getCandidatsDto() != null) {
             List<Candidat> candidats = candidatMapper.AllDtoToCandidats(anneUniversitaireDto.getCandidatsDto());
             anneUniversitaire.setCandidats(candidats);
-        }
+        }*/
         return anneUniversitaire;
     }
 

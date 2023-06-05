@@ -23,7 +23,6 @@ import org.springframework.beans.BeanUtils;
 public class DiplomeMapper {
 
     private FichierMapper fichierMapper;
-    private NotesSemesterMapper notesSemesterMapper;
     private CandidatMapper candidatMapper;
 
     //Diplome entity to Dto

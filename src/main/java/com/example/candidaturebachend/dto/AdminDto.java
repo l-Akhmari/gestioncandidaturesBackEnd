@@ -1,10 +1,5 @@
 package com.example.candidaturebachend.dto;
 
-import com.example.candidaturebachend.entities.ChefDepartement;
-import com.example.candidaturebachend.entities.DirectionPedagogique;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class AdminDto {
 
-    private int idAdmin;
+    private int id;
     private String username;
     private String mdp;
     private List<ChefDepartementDto> chefDepartementsDto;

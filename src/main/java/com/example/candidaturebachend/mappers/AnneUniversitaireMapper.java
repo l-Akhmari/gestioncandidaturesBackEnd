@@ -34,7 +34,7 @@ import java.util.List;
             anneUniversitaireDto.setCandidatsDto(candidatDtos);
             // diplomeDto.setFilieresDto(mapper.map(diplomeDto.g(), ZoneDto.class));
         }*/
-        return anneUniversitaireDto;
+        /*return anneUniversitaireDto;
     }
     public List<AnneUniversitaireDto> AllAnneUniversitaireToDto(List<AnneUniversitaire> anneUniversitaires){
 
@@ -58,7 +58,7 @@ import java.util.List;
             List<Candidat> candidats = candidatMapper.AllDtoToCandidats(anneUniversitaireDto.getCandidatsDto());
             anneUniversitaire.setCandidats(candidats);
         }*/
-        return anneUniversitaire;
+        /*return anneUniversitaire;
     }
 
     public List<AnneUniversitaire> DtosToAnneUniversitaire(List<AnneUniversitaireDto> anneUniversitaireDtos){

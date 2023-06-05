@@ -41,13 +41,8 @@ public class CandidaturebachEndApplication {
     @Bean
     CommandLineRunner commandLineRunner(CandidatDtoServiceImp candidatDtoImp,
                                         DiplomeDtoServiceImpl diplomeDtoService,
-<<<<<<< HEAD
-                                        FichierDtoServiceImpl fichierDtoService,
-                                        CandidatRepository candidatRepository
-=======
                                         FichierDtoServiceImpl fichierDtoService
->>>>>>> b63f9557f79df4a934b954a130a960df1886b354
-                                        ){
+    ){
         return args -> {
             Stream.of("fatima","nezha","tawahd").forEach(name->{
                 CandidatDto candidatDto=new CandidatDto();
@@ -58,61 +53,23 @@ public class CandidaturebachEndApplication {
                 candidatDto.setDateNaissance(new Date());
                 candidatDto.setCin("cin de "+name);
                 candidatDto.setPrenom(name);
-                candidatDtoImp.saveCandidat(candidatDto);
+                CandidatDto candidatDto1 = candidatDtoImp.saveCandidat(candidatDto);
                 FichierDto fichierDto=new FichierDto();
                 fichierDto.setChemin("nom de fichier de "+name);
                 fichierDto.setId(UUID.randomUUID().toString());
-                fichierDtoService.saveFichier(fichierDto);
-
-               /*DiplomeDto diplomeDto=new DiplomeDto();
+                FichierDto fichierDto1 = fichierDtoService.saveFichier(fichierDto);
+                log.info("---------------------------------------------------------------");
+                log.info("---------------------------------------------------------------");
+                DiplomeDto diplomeDto=new DiplomeDto();
                 diplomeDto.setCandidatDto(candidatDto1);
                 diplomeDto.setTypeDiplome(TypeDiplome.DUT);
                 diplomeDto.setEtablissement("ESTG");
                 diplomeDto.setAnneeObtention(new Date());
                 diplomeDto.setFichierDto(fichierDto1);
-                diplomeDtoService.saveDiplome(diplomeDto,candidatDto1,fichierDto1);*/
-
-            });
-<<<<<<< HEAD
-            log.info("---------------------------------------------------------------");
-            candidatDtoImp.listCandidats().forEach(candidat -> {
-                log.info("---------------------------------------------------------------");
-                System.out.println(candidat.getId());
-                log.info("---------------------------------------------------------------");
-            });
-=======
-            log.info("*****************************************************************************");
-            CandidatDto candidat = candidatDtoImp.getCandidat("3db48dd6-0472-4a2d-be83-8ae15c603b18");
-            log.info(candidat.getId());
->>>>>>> b63f9557f79df4a934b954a130a960df1886b354
-            candidatDtoImp.listCandidats().forEach(candidatDto -> {
-                log.info("---------------------------------------------------------------");
-                log.info("candidat id hnaaa : "+candidatDto.getId());
-                List<FichierDto> fichierDtos=fichierDtoService.listFichier();
-                fichierDtos.forEach(fichierDto -> {
-
-                    DiplomeDto diplomeDto=new DiplomeDto();
-                    diplomeDto.setCandidatDto(candidatDto);
-                    diplomeDto.setTypeDiplome(Math.random()>0.5?TypeDiplome.DUT:TypeDiplome.BTS);
-                    diplomeDto.setEtablissement("ESTG");
-                    diplomeDto.setAnneeObtention(new Date());
-                    diplomeDto.setFichierDto(fichierDto);
-                    DiplomeDto savedDip = diplomeDtoService.saveDiplome(diplomeDto);
-                    log.info("---------------------------------------------------------------");
-                    log.info("---------------------------------------------------------------");
-                    log.info("id dip : "+savedDip.getId());
-                    log.info("id dip : "+savedDip.getCandidatDto().getId());
-                });
+                diplomeDtoService.saveDiplome(diplomeDto,candidatDto1,fichierDto1);
 
             });
 
-            diplomeDtoService.listDiplomes().forEach(diplomeDto -> {
-                NotesSemesterDto notesSemesterDto=new NotesSemesterDto();
-                notesSemesterDto.setDiplomeDto(diplomeDto);
-                notesSemesterDto.setNote(Math.random()>0.5?15.8:18.1);
-                diplomeDtoService.saveNoteSemester(notesSemesterDto, diplomeDto);
-
-            });
 
         };}
 

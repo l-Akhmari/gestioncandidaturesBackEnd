@@ -7,7 +7,7 @@ import com.example.candidaturebachend.dto.FichierDto;
 import java.util.List;
 
 public interface IDiplomeDto {
-    DiplomeDto saveDiplome(DiplomeDto diplomeDto);
+    DiplomeDto saveDiplome(DiplomeDto diplomeDto,CandidatDto candidatDto, FichierDto fichierDto);
     List<DiplomeDto> listDiplomes();
     DiplomeDto getDiplome(int id);
     DiplomeDto updateDiplome(DiplomeDto diplomeDto, CandidatDto candidatDto, FichierDto fichierDto);

@@ -57,7 +57,7 @@ public class CandidaturebachEndApplication {
                 candidatDtoImp.saveCandidat(candidatDto);
                 FichierDto fichierDto=new FichierDto();
                 fichierDto.setChemin("nom de fichier de "+name);
-                fichierDto.setId(UUID.randomUUID().toString());
+                fichierDto.setIdFichier(UUID.randomUUID().toString());
                 fichierDtoService.saveFichier(fichierDto);
 
                /*DiplomeDto diplomeDto=new DiplomeDto();

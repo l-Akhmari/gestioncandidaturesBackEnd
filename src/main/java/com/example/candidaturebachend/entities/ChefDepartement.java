@@ -12,7 +12,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("CDept")
+//@DiscriminatorValue("CDept")
 
 public class ChefDepartement extends Utilisateur implements Serializable {
    /* @Id

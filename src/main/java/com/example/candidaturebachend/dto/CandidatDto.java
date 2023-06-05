@@ -12,26 +12,27 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 import java.util.List;
 
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CandidatDto extends Utilisateur {
+public class CandidatDto{
     private String idCandidat;
     protected String cin;
     protected String nom;
     protected String prenom;
     protected String addresse;
     protected String email;
-    protected String dateNaissance;
+    protected Date dateNaissance;
     protected String telephone;
     protected String mdp;
     private String cne;
     private String ville;
     private boolean admis;
     private List<FiliereDto> filieresDto;
-    private List<DiplomeDto> diplomesDto;
+    //private List<DiplomeDto> diplomesDto;
 
 }

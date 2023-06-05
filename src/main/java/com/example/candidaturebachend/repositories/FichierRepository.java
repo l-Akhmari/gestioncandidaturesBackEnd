@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface FichierRepository extends JpaRepository<Fichier, String> {
 
-    Optional<Fichier> findFichierByIdFichier(String id);
+ //   Optional<Fichier> findFichierById(String id);
 }

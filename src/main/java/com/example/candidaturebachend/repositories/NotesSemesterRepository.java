@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface NotesSemesterRepository extends JpaRepository<NotesSemester, Integer> {
 
-    Optional<NotesSemester> findNotesSemesterByIdNotes(Integer id);
+ //   Optional<NotesSemester> findNotesSemesterById(Integer id);
 }

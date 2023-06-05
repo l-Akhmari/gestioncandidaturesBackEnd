@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface ChefDepartementRepository extends JpaRepository<ChefDepartement,String> {
 
-    Optional<ChefDepartement> findChefDepartementById(String id);
+   // Optional<ChefDepartement> findChefDepartementById(String id);
 }

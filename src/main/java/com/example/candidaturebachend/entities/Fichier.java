@@ -14,7 +14,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 public class Fichier implements Serializable {
     @Id
-    private String idFichier;
+    private String id;
     private String chemin;
     @OneToOne(mappedBy = "fichier")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

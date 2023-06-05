@@ -10,6 +10,7 @@ import org.hibernate.Incubating;
 
 import java.io.Serializable;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -17,8 +18,8 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TYPE",length = 6)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@DiscriminatorColumn(name = "TYPE",length = 6)
 public abstract class Utilisateur implements Serializable {
     @Id
     protected String id;
@@ -27,7 +28,7 @@ public abstract class Utilisateur implements Serializable {
     protected String prenom;
     protected String addresse;
     protected String email;
-    protected String dateNaissance;
+    protected Date dateNaissance;
     protected String telephone;
     protected String mdp;
 

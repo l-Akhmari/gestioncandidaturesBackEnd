@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface CandidatRepository extends JpaRepository<Candidat,String> {
 
-    Optional<Candidat> findCandidatById(String id);
+  //  Optional<Candidat> findCandidatById(String id);
 }

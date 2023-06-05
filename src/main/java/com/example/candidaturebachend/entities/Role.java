@@ -17,7 +17,7 @@ import java.util.List;
 public class Role implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRole;
+    private int id;
     private String status;
     @ManyToMany
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

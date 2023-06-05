@@ -40,10 +40,7 @@ public class CandidatMapper {
             candidatDto.setFilieresDto(filieresDto);
         }
 
-        if(candidat.getDiplomes()!=null){
-            List<DiplomeDto> diplomeDtos = diplomeMapper.AllDiplomesToDto(candidat.getDiplomes());
-            candidatDto.setDiplomesDto(diplomeDtos);
-        }
+
         return candidatDto;
     }
 
@@ -72,10 +69,7 @@ public class CandidatMapper {
             candidat.setFilieres(filieres);
         }
 
-        if(candidatDto.getDiplomesDto()!=null){
-            List<Diplome> diplomes = diplomeMapper.AllDtoToDiplomes(candidatDto.getDiplomesDto());
-            candidat.setDiplomes(diplomes);
-        }
+
 
 
         return candidat;

@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface FiliereRepository extends JpaRepository<Filiere, Integer> {
 
-    Optional<Filiere> findFiliereByIdFiliere(Integer id);
+  //  Optional<Filiere> findFiliereById(Integer id);
 }

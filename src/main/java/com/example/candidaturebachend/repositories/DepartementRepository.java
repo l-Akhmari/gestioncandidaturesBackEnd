@@ -8,5 +8,5 @@ import java.util.Optional;
 
 public interface DepartementRepository extends JpaRepository<Departement,Integer> {
 
-    Optional<Departement> findDepartementByIdDepartement(Integer id);
+    //Optional<Departement> findDepartementById(Integer id);
 }

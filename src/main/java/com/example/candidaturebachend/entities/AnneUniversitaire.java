@@ -17,7 +17,7 @@ import java.util.List;
 public class AnneUniversitaire implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAnne;
+    private int id;
     private String anneUniv;
     @ManyToMany
     //@JoinTable(name = "Archieve")

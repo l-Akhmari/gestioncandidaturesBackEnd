@@ -16,17 +16,17 @@ import java.util.List;
 @NoArgsConstructor
 public class DiplomeDto {
 
-    private int idDiplome;
+    private int id;
 
     private TypeDiplome typeDiplome;
     private String specialiteDiplome;
     private Date anneeObtention;
     private String etablissement;
 
- //   private CandidatDto candidatDto;
+    private CandidatDto candidatDto;
   //  private List<FiliereDto> filieresDto;
 
     private FichierDto fichierDto;
-    private List<NotesSemesterDto> notesSemesterDto;
+    //private List<NotesSemesterDto> notesSemesterDto;
 
 }

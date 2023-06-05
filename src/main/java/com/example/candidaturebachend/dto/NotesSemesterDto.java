@@ -11,5 +11,5 @@ import lombok.NoArgsConstructor;
 public class NotesSemesterDto {
     int idNotes;
     Double note;
-    //DiplomeDto diplomeDto;
+    DiplomeDto diplomeDto;
 }

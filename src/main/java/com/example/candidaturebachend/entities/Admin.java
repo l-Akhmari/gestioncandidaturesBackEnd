@@ -17,7 +17,7 @@ import java.util.List;
 public class Admin implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idAdmin;
+    private int id;
     private String username;
     private String mdp;
     @OneToMany(mappedBy = "admin", fetch = FetchType.LAZY)

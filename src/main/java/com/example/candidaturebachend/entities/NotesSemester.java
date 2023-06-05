@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor @NoArgsConstructor
 public class NotesSemester implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int idNotes;
+    int id;
     Double note;
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

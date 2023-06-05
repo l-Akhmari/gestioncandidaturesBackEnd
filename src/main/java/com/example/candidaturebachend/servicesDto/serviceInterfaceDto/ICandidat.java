@@ -10,9 +10,9 @@ import com.example.candidaturebachend.entities.Candidat;
 import java.util.List;
 
 public interface ICandidat {
-    CandidatDto saveCandidat(CandidatDto candidatDto, DiplomeDto diplomeDto, FichierDto fichierDto);
-    List<Candidat> listCandidats();
+    CandidatDto saveCandidat(CandidatDto candidatDto);
+    List<CandidatDto> listCandidats();
     CandidatDto getCandidat(String id) throws CandidateNotFoundException;
-    CandidatDto updateCandidat(CandidatDto candidatDto, DiplomeDto diplomeDto, FichierDto fichierDto);
+    CandidatDto updateCandidat(CandidatDto candidatDto);
     void deleteCandidat(String id);
 }

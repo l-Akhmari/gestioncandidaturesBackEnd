@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,7 +20,7 @@ public class ChefDepartementDto {
     protected String prenom;
     protected String addresse;
     protected String email;
-    protected String dateNaissance;
+    protected Date dateNaissance;
     protected String telephone;
     protected String mdp;
     private String matricule;

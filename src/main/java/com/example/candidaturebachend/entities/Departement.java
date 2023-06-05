@@ -17,7 +17,7 @@ import java.util.List;
 public class Departement implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idDepartement;
+    private int id;
     private String intitule;
     @OneToOne(mappedBy = "departement")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

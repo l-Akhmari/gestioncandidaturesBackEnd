@@ -16,7 +16,7 @@ import java.io.Serializable;
 public class DirectionPedagogique implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idDirectioPedagogique;
+    private int id;
     private String username;
     private String mdp;
     @OneToOne(mappedBy = "directionPedagogique")

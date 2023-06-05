@@ -16,7 +16,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@DiscriminatorValue("Cand")
+//@DiscriminatorValue("Cand")
 
 public class Candidat extends Utilisateur implements Serializable {
    /* @Id

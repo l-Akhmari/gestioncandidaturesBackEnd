@@ -12,19 +12,21 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
 @AllArgsConstructor
 @Slf4j
-public class IFichierImpl implements IFichier {
+public class FichierDtoServiceImpl implements IFichier {
     private FichierMapper fichierMapper;
     private FichierRepository fichierRepository;
     @Override
     public FichierDto saveFichier(FichierDto fichierDto) {
         log.info("Saving new File");
         Fichier fichier = fichierMapper.fichierDtoTofichier(fichierDto);
+        fichier.setId(UUID.randomUUID().toString());
         Fichier savedFichier = fichierRepository.save(fichier);
         return fichierMapper.fichierToFichierDto(savedFichier);
     }

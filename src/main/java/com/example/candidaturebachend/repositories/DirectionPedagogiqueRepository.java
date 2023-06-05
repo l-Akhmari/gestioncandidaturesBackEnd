@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface DirectionPedagogiqueRepository extends JpaRepository<DirectionPedagogique, Integer> {
 
-    Optional<DirectionPedagogique> findDirectionPedagogiqueById(Integer id);
+   // Optional<DirectionPedagogique> findDirectionPedagogiqueById(Integer id);
 }

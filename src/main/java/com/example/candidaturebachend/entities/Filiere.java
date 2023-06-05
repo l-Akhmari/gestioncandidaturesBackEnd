@@ -16,7 +16,7 @@ import java.util.List;
 public class Filiere implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idFiliere;
+    private int id;
     private String intitule;
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

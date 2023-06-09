@@ -30,6 +30,8 @@ import java.util.UUID;
 import java.util.stream.Stream;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
 @SpringBootApplication
@@ -39,7 +41,7 @@ public class CandidaturebachEndApplication {
     public static void main(String[] args) {
         SpringApplication.run(CandidaturebachEndApplication.class, args);
     }
-    @Bean
+    //@Bean
     CommandLineRunner commandLineRunner(CandidatDtoServiceImp candidatDtoImp,
                                         DiplomeDtoServiceImpl diplomeDtoService,
                                         FichierDtoServiceImpl fichierDtoService
@@ -131,6 +133,18 @@ public class CandidaturebachEndApplication {
         UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
+    }
+    @Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**")
+                        .allowedOrigins("http://localhost:4200") // Add your Angular application's origin here
+                        .allowedMethods("GET", "POST", "PUT", "DELETE")
+                        .allowedHeaders("*");
+            }
+        };
     }
 
 

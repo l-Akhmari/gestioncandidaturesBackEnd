@@ -9,9 +9,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @Data
@@ -39,11 +42,20 @@ public class FichierController {
         return new ResponseEntity<>(fichier, HttpStatus.OK);
     }
 
-    @PostMapping("/add")
+   /* @PostMapping("/add")
     public ResponseEntity<FichierDto> addFichier(@RequestBody FichierDto fichier) {
         FichierDto newFichier = fichierService.saveFichier(fichier);
         return new ResponseEntity<>(newFichier, HttpStatus.CREATED);
+    }*/
+
+    @PostMapping("/addFile")
+    public ResponseEntity<?> uploadFIle(@RequestParam("fichier") MultipartFile file) throws IOException {
+        String uploadFile = fichierService.uploadFile(file);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(uploadFile);
     }
+
+
 
     @PutMapping("/update")
     public ResponseEntity<FichierDto> updateFichier(@RequestBody FichierDto fichier) {

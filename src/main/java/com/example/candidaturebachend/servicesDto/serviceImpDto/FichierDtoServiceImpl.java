@@ -10,8 +10,13 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -22,6 +27,8 @@ import java.util.stream.Collectors;
 public class FichierDtoServiceImpl implements IFichier {
     private FichierMapper fichierMapper;
     private FichierRepository fichierRepository;
+    private final String FOLDER_PATH="E:\\Projet d'innovation\\Files\\";
+
     @Override
     public FichierDto saveFichier(FichierDto fichierDto) {
         log.info("Saving new File");
@@ -61,4 +68,21 @@ public class FichierDtoServiceImpl implements IFichier {
     public void deleteFichier(String id) {
         fichierRepository.deleteById(id);
     }
+
+    public String uploadFile(MultipartFile file) throws IOException {
+        String filePath=FOLDER_PATH+file.getOriginalFilename();
+
+        Fichier fichier=fichierRepository.save(Fichier.builder()
+                .id(UUID.randomUUID().toString())
+                .chemin(filePath).build());
+
+        file.transferTo(new File(filePath));
+
+        if (fichier != null) {
+            return "file uploaded successfully : " + filePath;
+        }
+        return null;
+    }
+
+
 }

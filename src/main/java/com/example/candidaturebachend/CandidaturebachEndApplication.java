@@ -3,10 +3,12 @@ package com.example.candidaturebachend;
 import com.example.candidaturebachend.dto.CandidatDto;
 import com.example.candidaturebachend.dto.DiplomeDto;
 import com.example.candidaturebachend.dto.FichierDto;
+import com.example.candidaturebachend.dto.FiliereDto;
 import com.example.candidaturebachend.enums.TypeDiplome;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.CandidatDtoServiceImp;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.DiplomeDtoServiceImpl;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.FichierDtoServiceImpl;
+import com.example.candidaturebachend.servicesDto.serviceImpDto.FiliereDtoServiceImpl;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -34,7 +36,7 @@ public class CandidaturebachEndApplication {
                                         FichierDtoServiceImpl fichierDtoService
                                         ){
         return args -> {
-            Stream.of("fatima","nezha","tawahd").forEach(name->{
+            Stream.of("fatima","nezha","Laila").forEach(name->{
                 CandidatDto candidatDto=new CandidatDto();
                 candidatDto.setIdCandidat(UUID.randomUUID().toString());
                 candidatDto.setAddresse("addresse de "+name);
@@ -44,10 +46,11 @@ public class CandidaturebachEndApplication {
                 candidatDto.setCin("cin de "+name);
                 candidatDto.setPrenom(name);
                 candidatDtoImp.saveCandidat(candidatDto);
-                FichierDto fichierDto=new FichierDto();
-                fichierDto.setChemin("nom de fichier de "+name);
-                fichierDto.setIdFichier(UUID.randomUUID().toString());
-                fichierDtoService.saveFichier(fichierDto);
+
+//                FichierDto fichierDto=new FichierDto();
+//                fichierDto.setChemin("nom de fichier de "+name);
+//                fichierDto.setIdFichier(UUID.randomUUID().toString());
+//                fichierDtoService.saveFichier(fichierDto);
                /*DiplomeDto diplomeDto=new DiplomeDto();
                 diplomeDto.setCandidatDto(candidatDto1);
                 diplomeDto.setTypeDiplome(TypeDiplome.DUT);
@@ -57,9 +60,14 @@ public class CandidaturebachEndApplication {
                 diplomeDtoService.saveDiplome(diplomeDto,candidatDto1,fichierDto1);*/
 
             });
+//            Stream.of("GLSID","BDCC","GIL","SEER").forEach(intitule->{
+//                FiliereDto filiereDto= new FiliereDto();
+//                filiereDto.setIntitule(intitule);
+//
+//            });
             candidatDtoImp.listCandidats().forEach(candidatDto -> {
 
-               DiplomeDto diplomeDto=new DiplomeDto();
+                DiplomeDto diplomeDto=new DiplomeDto();
                 diplomeDto.setCandidatDto(candidatDto);
                 diplomeDto.setTypeDiplome(TypeDiplome.DUT);
                 diplomeDto.setEtablissement("ESTG");

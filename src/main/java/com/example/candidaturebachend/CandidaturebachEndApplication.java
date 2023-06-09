@@ -1,20 +1,17 @@
 package com.example.candidaturebachend;
 
-import com.example.candidaturebachend.dto.CandidatDto;
-import com.example.candidaturebachend.dto.DiplomeDto;
-import com.example.candidaturebachend.dto.FichierDto;
-import com.example.candidaturebachend.dto.NotesSemesterDto;
+import com.example.candidaturebachend.dto.*;
 import com.example.candidaturebachend.entities.Candidat;
 import com.example.candidaturebachend.entities.Diplome;
 import com.example.candidaturebachend.entities.Fichier;
 import com.example.candidaturebachend.entities.NotesSemester;
 import com.example.candidaturebachend.enums.TypeDiplome;
+import com.example.candidaturebachend.enums.TypeDiplomeAObtenir;
+import com.example.candidaturebachend.enums.TypeFormation;
 import com.example.candidaturebachend.repositories.CandidatRepository;
 import com.example.candidaturebachend.repositories.DiplomeRepository;
 import com.example.candidaturebachend.repositories.FichierRepository;
-import com.example.candidaturebachend.servicesDto.serviceImpDto.CandidatDtoServiceImp;
-import com.example.candidaturebachend.servicesDto.serviceImpDto.DiplomeDtoServiceImpl;
-import com.example.candidaturebachend.servicesDto.serviceImpDto.FichierDtoServiceImpl;
+import com.example.candidaturebachend.servicesDto.serviceImpDto.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.boot.SpringApplication;
@@ -41,12 +38,35 @@ public class CandidaturebachEndApplication {
     public static void main(String[] args) {
         SpringApplication.run(CandidaturebachEndApplication.class, args);
     }
-    //@Bean
+    @Bean
     CommandLineRunner commandLineRunner(CandidatDtoServiceImp candidatDtoImp,
                                         DiplomeDtoServiceImpl diplomeDtoService,
-                                        FichierDtoServiceImpl fichierDtoService
+                                        FichierDtoServiceImpl fichierDtoService,
+                                        DepartementDtoServiceImpl departementDtoService,
+                                        FiliereDtoServiceImpl filiereDtoService
     ){
         return args -> {
+            Stream.of("Math Info","Génie mecanique","Genie electrique").forEach(name->{
+                DepartementDto departementDto = new DepartementDto();
+                departementDto.setIntitule(name);
+                DepartementDto savedepartement = departementDtoService.savedepartement(departementDto);
+                log.info(savedepartement+"*************************");
+            });
+            departementDtoService.listDepartements().forEach(departementDto -> {
+                for (int i=0; i<2;i++){
+                    FiliereDto filiereDto = new FiliereDto();
+                    filiereDto.setIntitule("filiere"+(i+1)+" de "+departementDto.getIntitule());
+                    filiereDto.setTypeFormation(Math.random()>0.5 ? TypeFormation.Formation_Initiale : TypeFormation.Formation_Continue);
+                    filiereDto.setDepartementDto(departementDto);
+                    filiereDto.setTypeDiplomeAObtenir(Math.random()> 0.5 ? TypeDiplomeAObtenir.Cycle_Ingenieur : TypeDiplomeAObtenir.Master);
+                    filiereDtoService.savefiliere(filiereDto);
+                }
+            });
+            List<FiliereDto> filiereDtos = filiereDtoService.listFilieres();
+            filiereDtoService.listFilieres().forEach(filiereDto -> {
+                log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+                log.info(""+filiereDto);
+            });
             Stream.of("fatima","nezha","tawahd").forEach(name->{
                 CandidatDto candidatDto=new CandidatDto();
                 candidatDto.setId(UUID.randomUUID().toString());
@@ -60,22 +80,32 @@ public class CandidaturebachEndApplication {
                 FichierDto fichierDto=new FichierDto();
                 fichierDto.setChemin("nom de fichier de "+name);
                 fichierDto.setId(UUID.randomUUID().toString());
+                log.info(fichierDto+"======fichierdto====");
                 FichierDto fichierDto1 = fichierDtoService.saveFichier(fichierDto);
                 log.info("---------------------------------------------------------------");
                 log.info("---------------------------------------------------------------");
-                DiplomeDto diplomeDto=new DiplomeDto();
-                diplomeDto.setCandidatDto(candidatDto1);
-                diplomeDto.setTypeDiplome(TypeDiplome.DUT);
-                diplomeDto.setEtablissement("ESTG");
-                diplomeDto.setAnneeObtention(new Date());
-                diplomeDto.setFichierDto(fichierDto1);
-                DiplomeDto diplomeDto1 = diplomeDtoService.saveDiplome(diplomeDto, candidatDto1, fichierDto1);
-                NotesSemesterDto notesSemesterDto=new NotesSemesterDto();
-                notesSemesterDto.setNote(17.5);
-                notesSemesterDto.setDiplomeDto(diplomeDto1);
-                diplomeDtoService.saveNoteSemester(notesSemesterDto,diplomeDto1);
+
+                  /*  DiplomeDto diplomeDto=new DiplomeDto();
+                    diplomeDto.setCandidatDto(candidatDto1);
+                    diplomeDto.setTypeDiplome(TypeDiplome.DUT);
+                    diplomeDto.setEtablissement("ESTG");
+                    diplomeDto.setAnneeObtention(new Date());
+                    log.info("==+++===@@@@@===="+fichierDto1);
+                    diplomeDto.setFichierDto(fichierDto1);
+                    log.info("########"+filiereDtos.get(filiereDtos.size()-1)+"###########");
+                    diplomeDto.setFiliereDto(filiereDtos.get(filiereDtos.size()-1));
+                    log.info("==+++===@@@@@===="+diplomeDto);
+                    DiplomeDto diplomeDto1 = diplomeDtoService.saveDiplome(diplomeDto);
+                    log.info("@@@@"+diplomeDto1);
+                    NotesSemesterDto notesSemesterDto=new NotesSemesterDto();
+                    notesSemesterDto.setNote(17.5);
+                    notesSemesterDto.setDiplomeDto(diplomeDto1);
+                    diplomeDtoService.saveNoteSemester(notesSemesterDto,diplomeDto1);
+*/
+
 
             });
+
 
 
 
@@ -134,7 +164,7 @@ public class CandidaturebachEndApplication {
         urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
         return new CorsFilter(urlBasedCorsConfigurationSource);
     }
-    @Bean
+    //@Bean
     public WebMvcConfigurer corsConfigurer() {
         return new WebMvcConfigurer() {
             @Override

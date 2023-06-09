@@ -24,7 +24,7 @@ public class DiplomeDto {
     private String etablissement;
 
     private CandidatDto candidatDto;
-  //  private List<FiliereDto> filieresDto;
+    private FiliereDto filiereDto;
 
     private FichierDto fichierDto;
     //private List<NotesSemesterDto> notesSemesterDto;

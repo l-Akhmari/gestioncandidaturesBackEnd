@@ -1,10 +1,7 @@
 package com.example.candidaturebachend.servicesDto.serviceImpDto;
 
 import com.example.candidaturebachend.Exceptions.DiplomeNotFoundException;
-import com.example.candidaturebachend.dto.CandidatDto;
-import com.example.candidaturebachend.dto.DiplomeDto;
-import com.example.candidaturebachend.dto.FichierDto;
-import com.example.candidaturebachend.dto.NotesSemesterDto;
+import com.example.candidaturebachend.dto.*;
 import com.example.candidaturebachend.entities.Diplome;
 import com.example.candidaturebachend.entities.NotesSemester;
 import com.example.candidaturebachend.mappers.CandidatMapper;
@@ -34,13 +31,21 @@ public class DiplomeDtoServiceImpl implements IDiplomeDto {
     private NotesSemesterMapper notesSemesterMapper;
     private NotesSemesterRepository notesSemesterRepository;
     @Override
-    public DiplomeDto saveDiplome(DiplomeDto diplomeDto,CandidatDto candidatDto, FichierDto fichierDto) {
+    public DiplomeDto saveDiplome(DiplomeDto diplomeDto, CandidatDto candidatDto, FichierDto fichierDto) {
         Diplome diplome=diplomeMapper.DiplomeDtoToDiplome(diplomeDto);
        diplome.setCandidat(candidatMapper.CandidatDtoToCandidat(candidatDto));
         diplome.setFichier(fichierMapper.fichierDtoTofichier(fichierDto));
         Diplome savedDiplome=diplomeRepository.save(diplome);
         log.info("------------------------------------------------------------------------------------------------");
-        log.info("id diplome = "+savedDiplome.getIdDiplome());
+        log.info("id diplome = "+savedDiplome.getId());
+        return diplomeMapper.DiplomeToDiplomeDto(savedDiplome);
+    }
+
+    public DiplomeDto saveDiplome(DiplomeDto diplomeDto) {
+        Diplome diplome=diplomeMapper.DiplomeDtoToDiplome(diplomeDto);
+        Diplome savedDiplome=diplomeRepository.save(diplome);
+        log.info("------------------------------------------------------------------------------------------------");
+        log.info("id diplome = "+savedDiplome);
         return diplomeMapper.DiplomeToDiplomeDto(savedDiplome);
     }
 

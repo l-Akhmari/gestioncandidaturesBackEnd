@@ -8,10 +8,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -20,7 +18,7 @@ import java.util.stream.Collectors;
 public class Diplome implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idDiplome;
+    private int id;
     @Enumerated(EnumType.STRING)
     private TypeDiplome typeDiplome;
     private String specialiteDiplome;
@@ -31,9 +29,9 @@ public class Diplome implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Candidat candidat;
 
-    @OneToMany(mappedBy = "diplome")
+    @OneToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<Filiere> filieres;
+    private Filiere filiere;
 
     @OneToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

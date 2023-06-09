@@ -23,6 +23,7 @@ import org.springframework.beans.BeanUtils;
 public class DiplomeMapper {
 
     private FichierMapper fichierMapper;
+    private FiliereMapper filiereMapper;
     private CandidatMapper candidatMapper;
 
     //Diplome entity to Dto
@@ -31,6 +32,7 @@ public class DiplomeMapper {
         BeanUtils.copyProperties(diplome,diplomeDto);
         diplomeDto.setFichierDto(fichierMapper.fichierToFichierDto(diplome.getFichier()));
         diplomeDto.setCandidatDto(candidatMapper.candidatToDto(diplome.getCandidat()));
+        diplomeDto.setFiliereDto(filiereMapper.FiliereToFiliereDto(diplome.getFiliere()));
         return diplomeDto;
     }
 

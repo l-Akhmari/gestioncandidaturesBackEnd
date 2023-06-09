@@ -1,8 +1,11 @@
-/*package com.example.candidaturebachend.web;
+package com.example.candidaturebachend.web;
 
+import com.example.candidaturebachend.Exceptions.FiliereNotFoundException;
+import com.example.candidaturebachend.dto.FiliereDto;
 import com.example.candidaturebachend.entities.Filiere;
+import com.example.candidaturebachend.enums.TypeFormation;
 import com.example.candidaturebachend.repositories.FiliereRepository;
-import com.example.candidaturebachend.services.servicesImpl.FiliereServiceImpl;
+import com.example.candidaturebachend.servicesDto.serviceImpDto.FiliereDtoServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,50 +15,53 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;*/
-/*
+import java.util.List;
+
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @RestController
 @RequestMapping("/filiere")
 public class FiliereController {
-    @Autowired
-    private FiliereServiceImpl filiereService;
-    @Autowired
+    private FiliereDtoServiceImpl filiereService;
     FiliereRepository filiereRepo;
 
 
     @GetMapping("/all")
-    public ResponseEntity<List<Filiere>> getAllFilieres() {
-        List<Filiere> filieres = filiereService.findAllFilieres();
+    public ResponseEntity<List<FiliereDto>> getAllFilieres() {
+        List<FiliereDto> filieres = filiereService.listFilieres();
         return new ResponseEntity<>(filieres, HttpStatus.OK);
 
     }
 
     @GetMapping("/find/{id}")
-    public ResponseEntity<Filiere> getFiliereById(@PathVariable("id") Integer id) {
-        Filiere filiere = filiereService.findFiliereById(id);
+    public ResponseEntity<FiliereDto> getFiliereById(@PathVariable("id") Integer id) throws FiliereNotFoundException {
+        FiliereDto filiere = filiereService.getFiliereById(id);
         return new ResponseEntity<>(filiere, HttpStatus.OK);
     }
 
+    @GetMapping("/find/{formation}")
+    public ResponseEntity<List<FiliereDto>> getFiliereByFormation(@PathVariable("formation") TypeFormation formation){
+        List<FiliereDto> filieres = filiereService.getFiliereByFormation(formation);
+        return new ResponseEntity<>(filieres, HttpStatus.OK);
+    }
     @PostMapping("/add")
-    public ResponseEntity<Filiere> addFiliere(@RequestBody Filiere filiere) {
-        Filiere newFiliere = filiereService.addFiliere(filiere);
+    public ResponseEntity<FiliereDto> addFiliere(@RequestBody FiliereDto filiere) {
+        FiliereDto newFiliere = filiereService.savefiliere(filiere);
         return new ResponseEntity<>(newFiliere, HttpStatus.CREATED);
     }
 
-    @PutMapping("/update")
+  /*  @PutMapping("/update")
     public ResponseEntity<Filiere> updateFiliere(@RequestBody Filiere filiere) {
         Filiere updateFiliere = filiereService.updateFiliere(filiere);
         return new ResponseEntity<>(updateFiliere, HttpStatus.OK);
-    }
+    }*/
+
+
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteFiliere(@PathVariable("id") Integer id) {
-        filiereService.deleteFiliere(id);
+        filiereService.deletFiliere(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
-*/

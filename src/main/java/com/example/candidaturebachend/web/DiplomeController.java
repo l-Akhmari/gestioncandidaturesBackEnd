@@ -21,15 +21,12 @@ import java.util.Optional;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @RestController
 @RequestMapping("/diplome")
 //@CrossOrigin
 public class DiplomeController {
-    @Autowired
     private DiplomeDtoServiceImpl diplomeService;
-    @Autowired
     DiplomeRepository diplomeRepo;
 
 
@@ -47,8 +44,8 @@ public class DiplomeController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<DiplomeDto> addDiplome(@RequestBody DiplomeDto diplome, CandidatDto candidatDto, FichierDto fichierDto) {
-        DiplomeDto newDiplome = diplomeService.saveDiplome(diplome,candidatDto,fichierDto);
+    public ResponseEntity<DiplomeDto> addDiplome(@RequestBody DiplomeDto diplome) {
+        DiplomeDto newDiplome = diplomeService.saveDiplome(diplome);
         return new ResponseEntity<>(newDiplome, HttpStatus.CREATED);
     }
 

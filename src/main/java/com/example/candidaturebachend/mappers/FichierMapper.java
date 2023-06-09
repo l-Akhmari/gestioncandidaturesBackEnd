@@ -7,7 +7,6 @@ import com.example.candidaturebachend.entities.Fichier;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
-import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;

@@ -11,73 +11,36 @@ import com.example.candidaturebachend.entities.Filiere;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.ToString;
+import org.springframework.beans.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.processing.Filer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Component
-@Data
-@ToString
+@Service
 @AllArgsConstructor
 public class FiliereMapper {
-    private DozerBeanMapper mapper;
+    private DepartementMapper departementMapper;
 
     //Filiere to Dto
     public FiliereDto FiliereToFiliereDto(Filiere filiere) {
-        if (filiere == null) {
-            return null;
-        }
-
-        FiliereDto filiereDto = mapper.map(filiere, FiliereDto.class);
-
-        return  filiereDto;
+        FiliereDto filiereDto=new FiliereDto();
+        BeanUtils.copyProperties(filiere,filiereDto);
+        filiereDto.setDepartementDto(departementMapper.DepartementToDepartementDto(filiere.getDepartement()));
+        return filiereDto;
     }
-    //Lists
-    public List<FiliereDto> AllFilieresToDto(List<Filiere> filieres) {
 
-        if (CollectionUtils.isEmpty(filieres)) {
-            return Collections.emptyList();
-        }
-
-        List<FiliereDto> filiereDtos = new ArrayList<FiliereDto>();
-
-        for (Filiere filiere : filieres) {
-            filiereDtos.add(FiliereToFiliereDto(filiere));
-        }
-        return filiereDtos;
-
-
-    //return contacts.stream().map(x ->ContactToContactDto(x)).collect(Collectors.toList());
-
-
-    }
     //Dto to Filiere
     public Filiere FiliereDtoToFiliere(FiliereDto filiereDto) {
-        if (filiereDto == null) {
-            return null;
-        }
-
-        Filiere filiere = mapper.map(filiereDto, Filiere.class);
-
+        Filiere filiere=new Filiere();
+        BeanUtils.copyProperties(filiereDto,filiere);
+        filiere.setDepartement(departementMapper.DepartementDtoToDepartement(filiereDto.getDepartementDto()));
         return filiere;
-    }
-
-    public List<Filiere> DtoToAllFilieres(List<FiliereDto> filiereDtos){
-        if (CollectionUtils.isEmpty(filiereDtos)) {
-            return Collections.emptyList();
-        }
-
-        List<Filiere> filieres = new ArrayList<>();
-
-        for (FiliereDto filiereDto : filiereDtos) {
-            filieres.add(FiliereDtoToFiliere(filiereDto));
-        }
-        return filieres;
     }
 
 }

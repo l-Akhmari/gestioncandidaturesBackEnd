@@ -8,6 +8,7 @@ import com.example.candidaturebachend.Exceptions.DepartementNotFoundException;
 import com.example.candidaturebachend.Exceptions.FiliereNotFoundException;
 import com.example.candidaturebachend.dto.DepartementDto;
 import com.example.candidaturebachend.dto.FiliereDto;
+import com.example.candidaturebachend.enums.TypeFormation;
 
 import java.util.List;
 
@@ -21,7 +22,7 @@ public interface IFiliere {
 
     List<FiliereDto> getFilieresForCandidat(int candidatId);
 
-
+    public List<FiliereDto> getFiliereByFormation(TypeFormation typeFormation);
     void deletFiliere(int filiereId);
 
 

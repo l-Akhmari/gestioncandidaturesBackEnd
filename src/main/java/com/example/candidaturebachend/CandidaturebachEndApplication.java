@@ -70,10 +70,10 @@ public class CandidaturebachEndApplication {
                 diplomeDto.setAnneeObtention(new Date());
                 diplomeDto.setFichierDto(fichierDto1);
                 DiplomeDto diplomeDto1 = diplomeDtoService.saveDiplome(diplomeDto, candidatDto1, fichierDto1);
-               NotesSemesterDto notesSemesterDto=new NotesSemesterDto();
-               notesSemesterDto.setNote(17.5);
-               notesSemesterDto.setDiplomeDto(diplomeDto1);
-               diplomeDtoService.saveNoteSemester(notesSemesterDto,diplomeDto1);
+                NotesSemesterDto notesSemesterDto=new NotesSemesterDto();
+                notesSemesterDto.setNote(17.5);
+                notesSemesterDto.setDiplomeDto(diplomeDto1);
+                diplomeDtoService.saveNoteSemester(notesSemesterDto,diplomeDto1);
 
             });
 

@@ -9,30 +9,24 @@ import lombok.Data;
 import lombok.ToString;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.BeanUtils;
+import org.springframework.stereotype.Service;
 
-@Data
 @AllArgsConstructor
-@ToString
-@Component
+@Service
 public class FichierMapper {
-    private DozerBeanMapper mapper;
 
     //fichier to Dto
     public FichierDto fichierToFichierDto(Fichier fichier) {
-        if (fichier == null) {
-            return null;
-        }
-        FichierDto fichierDto = mapper.map(fichier, FichierDto.class);
-
-        return  fichierDto;
+       FichierDto fichierDto=new FichierDto();
+       BeanUtils.copyProperties(fichier,fichierDto);
+       return fichierDto;
     }
 
     public Fichier fichierDtoTofichier(FichierDto fichierDto){
-        if (fichierDto == null) {
-            return null;
-        }
-        Fichier fichier = mapper.map(fichierDto, Fichier.class);
-        return  fichier;
+        Fichier fichier=new Fichier();
+        BeanUtils.copyProperties(fichierDto,fichier);
+       return fichier;
     }
 }
 

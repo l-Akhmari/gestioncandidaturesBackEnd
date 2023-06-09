@@ -9,48 +9,43 @@ import org.apache.commons.collections.CollectionUtils;
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.springframework.beans.BeanUtils;
 
-@Component
-@Data
-@ToString
+@Service
 @AllArgsConstructor
 public class DiplomeMapper {
 
-    private DozerBeanMapper mapper;
     private FichierMapper fichierMapper;
-    private NotesSemesterMapper notesSemesterMapper;
+    private CandidatMapper candidatMapper;
 
     //Diplome entity to Dto
     public DiplomeDto DiplomeToDiplomeDto(Diplome diplome) {
-        if (diplome == null) {
-            return null;
-        }
-
-        DiplomeDto diplomeDto = mapper.map(diplome, DiplomeDto.class);
-
-        //Filieres mapping, entity to dto
-
-        if(diplome.getFichier()!=null){
-            FichierDto fichierDto = fichierMapper.fichierToFichierDto(diplome.getFichier());
-            diplomeDto.setFichierDto(fichierDto);
-        }
-
-
-        /*if(diplome.getNotesSemester()!=null){
-            List<NotesSemesterDto> notesSemesterDtos = notesSemesterMapper.AllNoteSemestersToDto(diplome.getNotesSemester());
-            diplomeDto.setNotesSemesterDtos(notesSemesterDtos);
-        }*/
-
-        return  diplomeDto;
+        DiplomeDto diplomeDto=new DiplomeDto();
+        BeanUtils.copyProperties(diplome,diplomeDto);
+        diplomeDto.setFichierDto(fichierMapper.fichierToFichierDto(diplome.getFichier()));
+        diplomeDto.setCandidatDto(candidatMapper.candidatToDto(diplome.getCandidat()));
+        return diplomeDto;
     }
+
+    public Diplome DiplomeDtoToDiplome(DiplomeDto diplomeDto) {
+        Diplome diplome=new Diplome();
+        BeanUtils.copyProperties(diplomeDto,diplome);
+        diplome.setFichier(fichierMapper.fichierDtoTofichier(diplomeDto.getFichierDto()));
+        diplome.setCandidat(candidatMapper.CandidatDtoToCandidat(diplomeDto.getCandidatDto()));
+        return diplome;
+    }
+
+
+
     //Lists
-    public List<DiplomeDto> AllDiplomesToDto(List<Diplome> diplomes) {
+    /*public List<DiplomeDto> AllDiplomesToDto(List<Diplome> diplomes) {
 
         if (CollectionUtils.isEmpty(diplomes)) {
             return Collections.emptyList();
@@ -68,32 +63,12 @@ public class DiplomeMapper {
 
 
 
-    }
+    }*/
     //DTO to diplome
-    public Diplome DiplomeDtoToDiplome(DiplomeDto diplomeDto) {
-        if (diplomeDto == null) {
-            return null;
-        }
 
-        Diplome diplome = mapper.map(diplomeDto, Diplome.class);
-
-
-        if(diplomeDto.getFichierDto()!=null){
-            Fichier fichier = fichierMapper.fichierDtoTofichier(diplomeDto.getFichierDto());
-            diplome.setFichier(fichier);
-        }
-        
-
-        /*if(diplomeDto.getNotesSemesterDtos()!=null){
-            List<NotesSemester> notesSemesters = notesSemesterMapper.AllNoteSemestersDtoToAllNoteSemesters(diplomeDto.getNotesSemesterDtos());
-            diplome.setNotesSemester(notesSemesters);
-        }*/
-
-        return diplome;
-    }
 
     //Lists
-    public List<Diplome> AllDtoToDiplomes(List<DiplomeDto> diplomesDto) {
+   /* public List<Diplome> AllDtoToDiplomes(List<DiplomeDto> diplomesDto) {
 
         if (CollectionUtils.isEmpty(diplomesDto)) {
             return Collections.emptyList();
@@ -110,6 +85,6 @@ public class DiplomeMapper {
 
 
 
-    }
+    }*/
 }
 

@@ -34,11 +34,13 @@ public class DiplomeDtoServiceImpl implements IDiplomeDto {
     private NotesSemesterMapper notesSemesterMapper;
     private NotesSemesterRepository notesSemesterRepository;
     @Override
-    public DiplomeDto saveDiplome(DiplomeDto diplomeDto) {
+    public DiplomeDto saveDiplome(DiplomeDto diplomeDto,CandidatDto candidatDto, FichierDto fichierDto) {
         Diplome diplome=diplomeMapper.DiplomeDtoToDiplome(diplomeDto);
-       // diplome.setCandidat(candidatMapper.CandidatDtoToCandidat(candidatDto));
-        //diplome.setFichier(fichierMapper.fichierDtoTofichier(fichierDto));
+       diplome.setCandidat(candidatMapper.CandidatDtoToCandidat(candidatDto));
+        diplome.setFichier(fichierMapper.fichierDtoTofichier(fichierDto));
         Diplome savedDiplome=diplomeRepository.save(diplome);
+        log.info("------------------------------------------------------------------------------------------------");
+        log.info("id diplome = "+savedDiplome.getIdDiplome());
         return diplomeMapper.DiplomeToDiplomeDto(savedDiplome);
     }
 

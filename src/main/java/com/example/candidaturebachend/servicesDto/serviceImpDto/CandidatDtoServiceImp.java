@@ -5,7 +5,6 @@ import com.example.candidaturebachend.dto.CandidatDto;
 import com.example.candidaturebachend.entities.Candidat;
 import com.example.candidaturebachend.mappers.CandidatMapper;
 import com.example.candidaturebachend.repositories.CandidatRepository;
-import com.example.candidaturebachend.repositories.FichierRepository;
 import com.example.candidaturebachend.servicesDto.serviceInterfaceDto.ICandidat;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -29,7 +28,8 @@ public class CandidatDtoServiceImp implements ICandidat {
         Candidat candidat=candidatMapper.CandidatDtoToCandidat(candidatDto);
         candidat.setId(UUID.randomUUID().toString());
         Candidat savedCandidat=candidatRepository.save(candidat);
-
+        log.info("------------------------------------------------------------------------------------------------");
+        log.info("id candidat = "+savedCandidat.getId());
         return candidatMapper.candidatToDto(savedCandidat);
     }
 
@@ -40,6 +40,9 @@ public class CandidatDtoServiceImp implements ICandidat {
         List<CandidatDto> candidatDtos=candidats.stream()
                 .map(candidat -> candidatMapper.candidatToDto(candidat))
                 .collect(Collectors.toList());
+        candidatDtos.forEach(candidatDto -> {
+            log.info("hna tani id : "+candidatDto.getId());
+        });
         return candidatDtos;   
     }
 
@@ -47,7 +50,6 @@ public class CandidatDtoServiceImp implements ICandidat {
     public CandidatDto getCandidat(String id) throws CandidateNotFoundException {
         Candidat candidat=candidatRepository.findById(id).orElse(null);
         if (candidat==null)throw new CandidateNotFoundException("candidat not found");
-
         return candidatMapper.candidatToDto(candidat);
     }
 

@@ -30,7 +30,7 @@ public class Candidat extends Utilisateur implements Serializable {
     @ManyToMany(mappedBy = "candidats",fetch = FetchType.LAZY)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<AnneUniversitaire> anneUniversitaires;
-    @OneToMany(mappedBy = "candidat",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "candidat",fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Diplome> diplomes;
 

@@ -16,10 +16,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@Component
-@Data
-@AllArgsConstructor
-public class AnneUniversitaireMapper {
+//@Component
+//@Data
+//@AllArgsConstructor
+/*public class AnneUniversitaireMapper {
 
     private DozerBeanMapper mapper;
     private CandidatMapper candidatMapper;
@@ -29,12 +29,12 @@ public class AnneUniversitaireMapper {
         if(anneUniversitaire==null)
             return null;
         AnneUniversitaireDto anneUniversitaireDto=mapper.map(anneUniversitaire, AnneUniversitaireDto.class);
-        if (anneUniversitaire.getCandidats() != null) {
+        /*if (anneUniversitaire.getCandidats() != null) {
             List<CandidatDto> candidatDtos = candidatMapper.AllCandidatsToDto(anneUniversitaire.getCandidats());
             anneUniversitaireDto.setCandidatsDto(candidatDtos);
             // diplomeDto.setFilieresDto(mapper.map(diplomeDto.g(), ZoneDto.class));
-        }
-        return anneUniversitaireDto;
+        }*/
+        /*return anneUniversitaireDto;
     }
     public List<AnneUniversitaireDto> AllAnneUniversitaireToDto(List<AnneUniversitaire> anneUniversitaires){
 
@@ -54,11 +54,11 @@ public class AnneUniversitaireMapper {
         if(anneUniversitaireDto==null)
             return null;
         AnneUniversitaire anneUniversitaire=mapper.map(anneUniversitaireDto, AnneUniversitaire.class);
-        if (anneUniversitaireDto.getCandidatsDto() != null) {
+        /*if (anneUniversitaireDto.getCandidatsDto() != null) {
             List<Candidat> candidats = candidatMapper.AllDtoToCandidats(anneUniversitaireDto.getCandidatsDto());
             anneUniversitaire.setCandidats(candidats);
-        }
-        return anneUniversitaire;
+        }*/
+        /*return anneUniversitaire;
     }
 
     public List<AnneUniversitaire> DtosToAnneUniversitaire(List<AnneUniversitaireDto> anneUniversitaireDtos){
@@ -72,5 +72,5 @@ public class AnneUniversitaireMapper {
         return anneUniversitaires;
     }
 
-}
+}*/
 

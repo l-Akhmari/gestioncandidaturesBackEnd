@@ -48,11 +48,39 @@ public class FichierController {
         return new ResponseEntity<>(newFichier, HttpStatus.CREATED);
     }*/
 
-    @PostMapping("/addFile")
+    /*@PostMapping("/addFile")
     public ResponseEntity<?> uploadFIle(@RequestParam("fichier") MultipartFile file) throws IOException {
         String uploadFile = fichierService.uploadFile(file);
         return ResponseEntity.status(HttpStatus.OK)
                 .body(uploadFile);
+    }*/
+    /*@PostMapping("/addFile")
+    public ResponseEntity<String> uploadFile(@RequestPart("fichier") MultipartFile file) {
+        try {
+            ResponseEntity<String> response = fichierService.uploadFile(file);
+            return response;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }*/
+    @PostMapping("/addFile")
+    public ResponseEntity<String> uploadFile(@RequestPart("fichier") MultipartFile file) {
+        try {
+            ResponseEntity<String> response = fichierService.uploadFile(file);
+
+            // Ajoutez cette condition pour vérifier si la réponse est OK
+            if (response.getStatusCode() == HttpStatus.OK) {
+                String message = response.getBody();
+                return ResponseEntity.ok("{\"message\":\"" + message + "\"}");
+            } else {
+                // Si la réponse n'est pas OK, renvoyez la même réponse d'erreur du service
+                return response;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
 

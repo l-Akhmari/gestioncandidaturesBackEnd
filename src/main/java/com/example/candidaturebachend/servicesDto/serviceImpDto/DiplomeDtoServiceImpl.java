@@ -42,11 +42,13 @@ public class DiplomeDtoServiceImpl implements IDiplomeDto {
     }
 
     public DiplomeDto saveDiplome(DiplomeDto diplomeDto) {
+
         Diplome diplome=diplomeMapper.DiplomeDtoToDiplome(diplomeDto);
         Diplome savedDiplome=diplomeRepository.save(diplome);
         log.info("------------------------------------------------------------------------------------------------");
         log.info("id diplome = "+savedDiplome);
-        return diplomeMapper.DiplomeToDiplomeDto(savedDiplome);
+        DiplomeDto diplomeDtoSaved = diplomeMapper.DiplomeToDiplomeDto(savedDiplome);
+        return diplomeDtoSaved ;
     }
 
     @Override
@@ -78,9 +80,14 @@ public class DiplomeDtoServiceImpl implements IDiplomeDto {
     public void deleteDiplome(int id) {
         diplomeRepository.deleteById(id);
     }
-    public NotesSemesterDto saveNoteSemester(NotesSemesterDto notesSemesterDto,DiplomeDto diplomeDto){
+    public NotesSemesterDto saveNoteSemester(NotesSemesterDto notesSemesterDto, int id ){
         NotesSemester notesSemester=notesSemesterMapper.NotesSemesterDtoToNotesSemester(notesSemesterDto);
-        notesSemester.setDiplome(diplomeMapper.DiplomeDtoToDiplome(diplomeDto));
+      //  notesSemester.setDiplome(diplomeMapper.DiplomeDtoToDiplome(diplomeDto));
+
+
+        Diplome diplome = diplomeRepository.findById(id).get();
+        notesSemester.setDiplome(diplome);
+
         NotesSemester saveNotes=notesSemesterRepository.save(notesSemester);
         return notesSemesterMapper.NotesSemesterToNotesSemesterDto(saveNotes);
     }

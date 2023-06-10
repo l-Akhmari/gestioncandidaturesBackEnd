@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,7 @@ public class Diplome implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Enumerated(EnumType.STRING)
     private TypeDiplome typeDiplome;
     private String specialiteDiplome;
@@ -37,6 +39,6 @@ public class Diplome implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Fichier fichier;
     @OneToMany(mappedBy = "diplome",cascade = CascadeType.ALL)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    private List<NotesSemester> notesSemester;
+  //  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private List<NotesSemester> notesSemester=new ArrayList<>();
 }

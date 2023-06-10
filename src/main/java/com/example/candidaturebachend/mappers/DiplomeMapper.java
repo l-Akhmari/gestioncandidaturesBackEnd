@@ -41,6 +41,7 @@ public class DiplomeMapper {
         BeanUtils.copyProperties(diplomeDto,diplome);
         diplome.setFichier(fichierMapper.fichierDtoTofichier(diplomeDto.getFichierDto()));
         diplome.setCandidat(candidatMapper.CandidatDtoToCandidat(diplomeDto.getCandidatDto()));
+        diplome.setFiliere(filiereMapper.FiliereDtoToFiliere(diplomeDto.getFiliereDto()));
         return diplome;
     }
 

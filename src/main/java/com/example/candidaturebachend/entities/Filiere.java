@@ -31,7 +31,7 @@ public class Filiere implements Serializable {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Candidat> candidats;
     @OneToOne(mappedBy = "filiere")
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+//    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Diplome diplome;
 
 }

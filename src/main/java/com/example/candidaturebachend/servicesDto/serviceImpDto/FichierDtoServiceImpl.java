@@ -8,6 +8,8 @@ import com.example.candidaturebachend.repositories.FichierRepository;
 import com.example.candidaturebachend.servicesDto.serviceInterfaceDto.IFichier;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,9 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -69,7 +69,7 @@ public class FichierDtoServiceImpl implements IFichier {
         fichierRepository.deleteById(id);
     }
 
-    public String uploadFile(MultipartFile file) throws IOException {
+    /*public String uploadFile(MultipartFile file) throws IOException {
         String filePath=FOLDER_PATH+file.getOriginalFilename();
 
         Fichier fichier=fichierRepository.save(Fichier.builder()
@@ -82,7 +82,27 @@ public class FichierDtoServiceImpl implements IFichier {
             return "file uploaded successfully : " + filePath;
         }
         return null;
+    }*/
+    public ResponseEntity<String> uploadFile(MultipartFile file) {
+        try {
+            String filePath = FOLDER_PATH + file.getOriginalFilename();
+
+            Fichier fichier = fichierRepository.save(Fichier.builder()
+                    .id(UUID.randomUUID().toString())
+                    .chemin(filePath).build());
+
+            file.transferTo(new File(filePath));
+
+            if (fichier != null) {
+                String message = "File uploaded successfully : " + filePath;
+                return ResponseEntity.ok(message);
+            }
+
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
-
-
 }

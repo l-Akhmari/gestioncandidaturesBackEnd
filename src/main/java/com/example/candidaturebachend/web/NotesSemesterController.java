@@ -41,7 +41,7 @@ public class NotesSemesterController {
 
     @PostMapping("/add")
     public ResponseEntity<NotesSemesterDto> addNotesSemester(@RequestBody NotesSemesterDto notesSemester, DiplomeDto diplome) {
-        NotesSemesterDto newNotesSemester = notesSemesterService.saveNoteSemester(notesSemester, diplome);
+        NotesSemesterDto newNotesSemester = notesSemesterService.saveNoteSemester(notesSemester,1);
         return new ResponseEntity<>(newNotesSemester, HttpStatus.CREATED);
     }
 

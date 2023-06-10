@@ -24,7 +24,7 @@ import java.util.List;
 @RequestMapping("/filiere")
 public class FiliereController {
     private FiliereDtoServiceImpl filiereService;
-    FiliereRepository filiereRepo;
+   // FiliereRepository filiereRepo;
 
 
     @GetMapping("/all")
@@ -34,13 +34,13 @@ public class FiliereController {
 
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<FiliereDto> getFiliereById(@PathVariable("id") Integer id) throws FiliereNotFoundException {
+    @GetMapping("/findId/{id}")
+    public ResponseEntity<FiliereDto> getFiliereById(@PathVariable("id") int id) throws FiliereNotFoundException {
         FiliereDto filiere = filiereService.getFiliereById(id);
         return new ResponseEntity<>(filiere, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{formation}")
+    @GetMapping("/findFormation/{formation}")
     public ResponseEntity<List<FiliereDto>> getFiliereByFormation(@PathVariable("formation") TypeFormation formation){
         List<FiliereDto> filieres = filiereService.getFiliereByFormation(formation);
         return new ResponseEntity<>(filieres, HttpStatus.OK);

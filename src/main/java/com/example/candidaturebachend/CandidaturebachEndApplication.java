@@ -61,10 +61,17 @@ public class CandidaturebachEndApplication {
                 }
             });
             List<FiliereDto> filiereDtos = filiereDtoService.listFilieres();
+
+            log.info(filiereDtos+"'''''''''''''''''''''''''''''''''''''");
             filiereDtoService.listFilieres().forEach(filiereDto -> {
                 log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                 log.info(""+filiereDto);
             });
+
+           List<FiliereDto>  filiereDto=filiereDtoService.getFiliereByFormation(TypeFormation.Formation_Continue);
+            log.info(filiereDto+"####");
+
+
             Stream.of("fatima","nezha","tawahd", "nana").forEach(name->{
                 CandidatDto candidatDto=new CandidatDto();
                 candidatDto.setId(UUID.randomUUID().toString());
@@ -74,6 +81,11 @@ public class CandidaturebachEndApplication {
                 candidatDto.setDateNaissance(new Date());
                 candidatDto.setCin("cin de "+name);
                 candidatDto.setPrenom(name);
+                candidatDto.setBac("science math A");
+                candidatDto.setBacAnneObtention(new Date());
+                candidatDto.setDateNaissance(new Date());
+                candidatDto.setPays("Maroc");
+                candidatDto.setVille("Guelmim");
                 CandidatDto candidatDto1 = candidatDtoImp.saveCandidat(candidatDto);
                 FichierDto fichierDto=new FichierDto();
                 fichierDto.setChemin("nom de fichier de "+name);
@@ -101,14 +113,11 @@ public class CandidaturebachEndApplication {
                     NotesSemesterDto notesSemesterDto=new NotesSemesterDto();
                     notesSemesterDto.setNote(17.5);
                     notesSemesterDto.setDiplomeDto(diplomeDto1);
-                  NotesSemesterDto notesSemesterDtoSaved =   diplomeDtoService.saveNoteSemester(notesSemesterDto,diplomeDto1.getId());
+
+                  NotesSemesterDto notesSemesterDtoSaved = diplomeDtoService.saveNoteSemester(notesSemesterDto,diplomeDto1.getId());
                 System.out.println(notesSemesterDtoSaved);
 
-
-
             });
-
-
 
 
         };}

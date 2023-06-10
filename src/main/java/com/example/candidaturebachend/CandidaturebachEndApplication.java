@@ -8,6 +8,7 @@ import com.example.candidaturebachend.entities.NotesSemester;
 import com.example.candidaturebachend.enums.TypeDiplome;
 import com.example.candidaturebachend.enums.TypeDiplomeAObtenir;
 import com.example.candidaturebachend.enums.TypeFormation;
+import com.example.candidaturebachend.mappers.DiplomeMapper;
 import com.example.candidaturebachend.repositories.CandidatRepository;
 import com.example.candidaturebachend.repositories.DiplomeRepository;
 import com.example.candidaturebachend.repositories.FichierRepository;
@@ -20,10 +21,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 import java.util.stream.Stream;
 
 import org.springframework.boot.CommandLineRunner;
@@ -63,11 +61,16 @@ public class CandidaturebachEndApplication {
                 }
             });
             List<FiliereDto> filiereDtos = filiereDtoService.listFilieres();
+
+            log.info(filiereDtos+"'''''''''''''''''''''''''''''''''''''");
             filiereDtoService.listFilieres().forEach(filiereDto -> {
                 log.info("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
                 log.info(""+filiereDto);
             });
-            Stream.of("fatima","nezha","tawahd").forEach(name->{
+           List<FiliereDto>  filiereDto=filiereDtoService.getFiliereByFormation(TypeFormation.Formation_Continue);
+            log.info(filiereDto+"####");
+
+            Stream.of("fatima","nezha","tawahd", "nana").forEach(name->{
                 CandidatDto candidatDto=new CandidatDto();
                 candidatDto.setId(UUID.randomUUID().toString());
                 candidatDto.setAddresse("addresse de "+name);
@@ -85,28 +88,28 @@ public class CandidaturebachEndApplication {
                 log.info("---------------------------------------------------------------");
                 log.info("---------------------------------------------------------------");
 
-                  /*  DiplomeDto diplomeDto=new DiplomeDto();
+                   DiplomeDto diplomeDto=new DiplomeDto();
                     diplomeDto.setCandidatDto(candidatDto1);
                     diplomeDto.setTypeDiplome(TypeDiplome.DUT);
                     diplomeDto.setEtablissement("ESTG");
                     diplomeDto.setAnneeObtention(new Date());
                     log.info("==+++===@@@@@===="+fichierDto1);
                     diplomeDto.setFichierDto(fichierDto1);
-                    log.info("########"+filiereDtos.get(filiereDtos.size()-1)+"###########");
-                    diplomeDto.setFiliereDto(filiereDtos.get(filiereDtos.size()-1));
+
+                        Random rn = new Random();
+                        int answer = rn.nextInt(5) + 1;
+                    log.info("########"+filiereDtos.get(answer)+"###########");
+                    diplomeDto.setFiliereDto(filiereDtos.get(answer));
                     log.info("==+++===@@@@@===="+diplomeDto);
                     DiplomeDto diplomeDto1 = diplomeDtoService.saveDiplome(diplomeDto);
                     log.info("@@@@"+diplomeDto1);
                     NotesSemesterDto notesSemesterDto=new NotesSemesterDto();
                     notesSemesterDto.setNote(17.5);
                     notesSemesterDto.setDiplomeDto(diplomeDto1);
-                    diplomeDtoService.saveNoteSemester(notesSemesterDto,diplomeDto1);
-*/
-
+                  NotesSemesterDto notesSemesterDtoSaved = diplomeDtoService.saveNoteSemester(notesSemesterDto,diplomeDto1.getId());
+                System.out.println(notesSemesterDtoSaved);
 
             });
-
-
 
 
         };}
@@ -149,7 +152,7 @@ public class CandidaturebachEndApplication {
     }
 
 
-    //@Bean
+    @Bean
     public CorsFilter corsFilter() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);

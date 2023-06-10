@@ -31,7 +31,7 @@ public class NotesSemesterMapper {
     public NotesSemester NotesSemesterDtoToNotesSemester(NotesSemesterDto notesSemesterDto){
         NotesSemester notesSemester = new NotesSemester();
         BeanUtils.copyProperties(notesSemesterDto, notesSemester);
-        notesSemester.setDiplome(diplomeMapper.DiplomeDtoToDiplome(notesSemesterDto.getDiplomeDto()));
+     //   notesSemester.setDiplome(diplomeMapper.DiplomeDtoToDiplome(notesSemesterDto.getDiplomeDto()));
         return notesSemester;
     }
 }

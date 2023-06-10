@@ -26,6 +26,7 @@ public class Diplome implements Serializable {
     private String specialiteDiplome;
     private Date anneeObtention;
     private String etablissement;
+    private String universite;
 
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

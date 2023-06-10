@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,13 @@ public class Candidat extends Utilisateur implements Serializable {
     private String cne;
     private String ville;
     private boolean admis;
+    private String pays;
+    private String bac;
+    private String paysObtentionBac;
+    private Date bacAnneObtention;
+
+
+
     @ManyToMany
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Filiere> filieres;

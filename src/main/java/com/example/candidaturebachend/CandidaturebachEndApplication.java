@@ -79,6 +79,11 @@ public class CandidaturebachEndApplication {
                 candidatDto.setDateNaissance(new Date());
                 candidatDto.setCin("cin de "+name);
                 candidatDto.setPrenom(name);
+                candidatDto.setBac("science math A");
+                candidatDto.setBacAnneObtention(new Date());
+                candidatDto.setDateNaissance(new Date());
+                candidatDto.setPays("Maroc");
+                candidatDto.setVille("Guelmim");
                 CandidatDto candidatDto1 = candidatDtoImp.saveCandidat(candidatDto);
                 FichierDto fichierDto=new FichierDto();
                 fichierDto.setChemin("nom de fichier de "+name);

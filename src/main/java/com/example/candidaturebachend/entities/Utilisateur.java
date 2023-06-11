@@ -1,5 +1,6 @@
 package com.example.candidaturebachend.entities;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,7 @@ public abstract class Utilisateur implements Serializable {
     protected String prenom;
     protected String addresse;
     protected String email;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     protected Date dateNaissance;
     protected String telephone;
     protected String mdp;

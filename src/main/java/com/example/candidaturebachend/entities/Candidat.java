@@ -1,6 +1,7 @@
 package com.example.candidaturebachend.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -28,6 +29,7 @@ public class Candidat extends Utilisateur implements Serializable {
     private String pays;
     private String bac;
     private String paysObtentionBac;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date bacAnneObtention;
 
 

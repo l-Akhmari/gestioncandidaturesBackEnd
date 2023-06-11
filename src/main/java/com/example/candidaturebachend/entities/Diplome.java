@@ -1,6 +1,7 @@
 package com.example.candidaturebachend.entities;
 
 import com.example.candidaturebachend.enums.TypeDiplome;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class Diplome implements Serializable {
     @Enumerated(EnumType.STRING)
     private TypeDiplome typeDiplome;
     private String specialiteDiplome;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date anneeObtention;
     private String etablissement;
     private String universite;

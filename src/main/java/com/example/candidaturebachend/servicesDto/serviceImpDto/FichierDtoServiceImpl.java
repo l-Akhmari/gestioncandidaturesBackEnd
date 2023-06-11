@@ -83,19 +83,20 @@ public class FichierDtoServiceImpl implements IFichier {
         }
         return null;
     }*/
-    public ResponseEntity<String> uploadFile(MultipartFile file) {
+    public ResponseEntity<FichierDto> uploadFile(MultipartFile file) {
         try {
             String filePath = FOLDER_PATH + file.getOriginalFilename();
 
             Fichier fichier = fichierRepository.save(Fichier.builder()
                     .id(UUID.randomUUID().toString())
                     .chemin(filePath).build());
+            FichierDto fichierDto=fichierMapper.fichierToFichierDto(fichier);
 
             file.transferTo(new File(filePath));
 
             if (fichier != null) {
-                String message = "File uploaded successfully : " + filePath;
-                return ResponseEntity.ok(message);
+                //String message = fichier.getId();
+                return ResponseEntity.ok(fichierDto);
             }
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);

@@ -65,14 +65,14 @@ public class FichierController {
         }
     }*/
     @PostMapping("/addFile")
-    public ResponseEntity<String> uploadFile(@RequestPart("fichier") MultipartFile file) {
+    public ResponseEntity<FichierDto> uploadFile(@RequestPart("fichier") MultipartFile file) {
         try {
-            ResponseEntity<String> response = fichierService.uploadFile(file);
+            ResponseEntity<FichierDto> response = fichierService.uploadFile(file);
 
             // Ajoutez cette condition pour vérifier si la réponse est OK
             if (response.getStatusCode() == HttpStatus.OK) {
-                String message = response.getBody();
-                return ResponseEntity.ok("{\"message\":\"" + message + "\"}");
+                FichierDto message = response.getBody();
+                return ResponseEntity.ok(message);
             } else {
                 // Si la réponse n'est pas OK, renvoyez la même réponse d'erreur du service
                 return response;

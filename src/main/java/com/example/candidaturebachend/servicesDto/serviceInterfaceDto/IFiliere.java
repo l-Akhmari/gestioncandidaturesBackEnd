@@ -22,7 +22,8 @@ public interface IFiliere {
 
     List<FiliereDto> getFilieresForCandidat(int candidatId);
 
-    public List<FiliereDto> getFiliereByFormation(TypeFormation typeFormation);
+    List<FiliereDto> getFiliereByFormation(TypeFormation typeFormation);
+    List<FiliereDto> getFiliereByDepartement(DepartementDto departementDto);
     void deletFiliere(int filiereId);
 
 

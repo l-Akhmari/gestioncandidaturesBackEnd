@@ -1,6 +1,7 @@
 package com.example.candidaturebachend.web;
 
 import com.example.candidaturebachend.Exceptions.FiliereNotFoundException;
+import com.example.candidaturebachend.dto.DepartementDto;
 import com.example.candidaturebachend.dto.FiliereDto;
 import com.example.candidaturebachend.entities.Filiere;
 import com.example.candidaturebachend.enums.TypeFormation;
@@ -45,6 +46,21 @@ public class FiliereController {
         List<FiliereDto> filieres = filiereService.getFiliereByFormation(formation);
         return new ResponseEntity<>(filieres, HttpStatus.OK);
     }
+
+    /*@GetMapping("/findByDepartement/{departement}")
+    public ResponseEntity<List<FiliereDto>> getFiliereByDepartement(@PathVariable("departement")DepartementDto departementDto){
+        List<FiliereDto> filieres = filiereService.getFiliereByDepartement(departementDto);
+        return new ResponseEntity<>(filieres, HttpStatus.OK);
+    }*/
+    @GetMapping("/departement")
+    public ResponseEntity<List<FiliereDto>> getFiliereByDepartement(@RequestParam("departementId") int departementId) {
+        DepartementDto departementDto = new DepartementDto();
+        departementDto.setId(departementId);
+        List<FiliereDto> filieres = filiereService.getFiliereByDepartement(departementDto);
+        return new ResponseEntity<>(filieres, HttpStatus.OK);
+    }
+
+
     @PostMapping("/add")
     public ResponseEntity<FiliereDto> addFiliere(@RequestBody FiliereDto filiere) {
         FiliereDto newFiliere = filiereService.savefiliere(filiere);

@@ -1,9 +1,10 @@
 package com.example.candidaturebachend.enums;
 
 public enum TypeDiplome {
-    DUT,
+    DUT ,
     DEUG,
     DEUST,
     BTS,
-    autre
+    Autre,
+    DTS
 }

@@ -1,10 +1,14 @@
 package com.example.candidaturebachend.web;
 
 import com.example.candidaturebachend.Exceptions.CandidateNotFoundException;
+import com.example.candidaturebachend.Exceptions.FiliereNotFoundException;
 import com.example.candidaturebachend.dto.CandidatDto;
+import com.example.candidaturebachend.dto.FiliereDto;
 import com.example.candidaturebachend.entities.Candidat;
+import com.example.candidaturebachend.entities.Filiere;
 import com.example.candidaturebachend.repositories.CandidatRepository;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.CandidatDtoServiceImp;
+import com.example.candidaturebachend.servicesDto.serviceImpDto.FiliereDtoServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +31,8 @@ public class CandidatController {
     private CandidatDtoServiceImp candidatDtoServiceImp;
     @Autowired
     CandidatRepository candidatRepo;
+    @Autowired
+    FiliereDtoServiceImpl filiereService;
 
 
     @GetMapping("/all")
@@ -40,6 +46,13 @@ public class CandidatController {
     public ResponseEntity<CandidatDto> getCandidatById(@PathVariable("id") String id) throws CandidateNotFoundException {
         CandidatDto candidat = candidatDtoServiceImp.getCandidat(id);
         return new ResponseEntity<>(candidat, HttpStatus.OK);
+    }
+
+    @GetMapping("/filiere/{filiereId}")
+    public ResponseEntity<List<CandidatDto>> getCandidatsByFiliere(@PathVariable("filiereId") int filiereId) throws FiliereNotFoundException {
+        FiliereDto filiere = filiereService.getFiliereById(filiereId);
+        List<CandidatDto> candidatDtos = candidatDtoServiceImp.getCandidatsByFiliere(filiere);
+        return new ResponseEntity<>(candidatDtos, HttpStatus.OK);
     }
 
     @PostMapping("/add")

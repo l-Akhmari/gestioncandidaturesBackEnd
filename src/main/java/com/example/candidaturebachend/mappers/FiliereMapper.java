@@ -21,6 +21,7 @@ import javax.annotation.processing.Filer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -42,6 +43,16 @@ public class FiliereMapper {
         filiere.setDepartement(departementMapper.DepartementDtoToDepartement(filiereDto.getDepartementDto()));
         return filiere;
     }
+
+    public List<Filiere> mapFilieresDtoToFilieres(List<FiliereDto> filiereDtos) {
+        if (filiereDtos == null) {
+            return new ArrayList<>();
+        }
+        return filiereDtos.stream()
+                .map(this::FiliereDtoToFiliere)
+                .collect(Collectors.toList());
+    }
+
 
 }
 

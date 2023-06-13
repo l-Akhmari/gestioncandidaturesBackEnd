@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 
 @Data
@@ -27,7 +28,7 @@ public class CandidatDto{
     private String bac;
     private String paysObtentionBac;
     private Date bacAnneObtention;
-   // private List<FiliereDto> filieresDto;
+    private List<FiliereDto> filieresDto;
     //private List<DiplomeDto> diplomesDto;
 
 }

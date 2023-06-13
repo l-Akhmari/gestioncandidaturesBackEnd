@@ -27,7 +27,7 @@ import java.util.stream.Collectors;
 public class FichierDtoServiceImpl implements IFichier {
     private FichierMapper fichierMapper;
     private FichierRepository fichierRepository;
-    private final String FOLDER_PATH="E:\\Projet d'innovation\\Files\\";
+    private final String FOLDER_PATH="C:\\mydata\\";
 
     @Override
     public FichierDto saveFichier(FichierDto fichierDto) {
@@ -84,9 +84,10 @@ public class FichierDtoServiceImpl implements IFichier {
         return null;
     }*/
     public ResponseEntity<FichierDto> uploadFile(MultipartFile file) {
+        System.out.println(file);
         try {
             String filePath = FOLDER_PATH + file.getOriginalFilename();
-
+            System.out.println(filePath);
             Fichier fichier = fichierRepository.save(Fichier.builder()
                     .id(UUID.randomUUID().toString())
                     .chemin(filePath).build());
@@ -96,14 +97,16 @@ public class FichierDtoServiceImpl implements IFichier {
 
             if (fichier != null) {
                 //String message = fichier.getId();
+                System.out.println(fichier);
                 return ResponseEntity.ok(fichierDto);
             }
 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         } catch (IOException e) {
             e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
 
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+
     }
 }

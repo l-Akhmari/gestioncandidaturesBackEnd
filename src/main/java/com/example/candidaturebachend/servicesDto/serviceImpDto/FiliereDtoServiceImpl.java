@@ -80,6 +80,15 @@ public class FiliereDtoServiceImpl implements IFiliere {
         return filiereDtos;
     }
 
+    @Override
+    public List<FiliereDto> getFiliereByDepartement(DepartementDto departementDto) {
+        List<Filiere> filieres = filiereRepository.findFiliereByDepartement(departementMapper.DepartementDtoToDepartement(departementDto));
+        List<FiliereDto> filiereDtos = filieres.stream()
+                .map(filiere -> filiereMapper.FiliereToFiliereDto(filiere))
+                .collect(Collectors.toList());
+        return filiereDtos;
+    }
+
 
     @Override
     public void deletFiliere(int filiereId) {

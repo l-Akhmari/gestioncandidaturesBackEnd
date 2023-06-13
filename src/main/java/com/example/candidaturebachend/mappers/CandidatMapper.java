@@ -20,15 +20,20 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
 public class CandidatMapper {
+    FiliereMapper filiereMapper;
 
     public CandidatDto candidatToDto(Candidat candidat){
 
         CandidatDto candidatDto = new CandidatDto();
         BeanUtils.copyProperties(candidat, candidatDto);
+        candidatDto.setFilieresDto(candidat.getFilieres().stream()
+                .map(filiere -> filiereMapper.FiliereToFiliereDto(filiere))
+                .collect(Collectors.toList()));
         return candidatDto;
     }
 
@@ -36,6 +41,9 @@ public class CandidatMapper {
 
         Candidat candidat = new Candidat();
         BeanUtils.copyProperties(candidatDto, candidat);
+        candidat.setFilieres(candidatDto.getFilieresDto().stream()
+                .map(filiere -> filiereMapper.FiliereDtoToFiliere(filiere))
+                .collect(Collectors.toList()));
         return candidat;
     }
 

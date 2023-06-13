@@ -2,8 +2,11 @@ package com.example.candidaturebachend.servicesDto.serviceImpDto;
 
 import com.example.candidaturebachend.Exceptions.CandidateNotFoundException;
 import com.example.candidaturebachend.dto.CandidatDto;
+import com.example.candidaturebachend.dto.FiliereDto;
 import com.example.candidaturebachend.entities.Candidat;
+import com.example.candidaturebachend.entities.Filiere;
 import com.example.candidaturebachend.mappers.CandidatMapper;
+import com.example.candidaturebachend.mappers.FiliereMapper;
 import com.example.candidaturebachend.repositories.CandidatRepository;
 import com.example.candidaturebachend.servicesDto.serviceInterfaceDto.ICandidat;
 import lombok.AllArgsConstructor;
@@ -22,11 +25,14 @@ import java.util.stream.Collectors;
 public class CandidatDtoServiceImp implements ICandidat {
         private CandidatRepository candidatRepository;
         private CandidatMapper candidatMapper;
+        FiliereMapper filiereMapper;
 
     @Override
     public CandidatDto saveCandidat(CandidatDto candidatDto) {
+        System.out.println(candidatDto);
         Candidat candidat=candidatMapper.CandidatDtoToCandidat(candidatDto);
         candidat.setId(UUID.randomUUID().toString());
+        candidat.setFilieres(filiereMapper.mapFilieresDtoToFilieres(candidatDto.getFilieresDto()));
         Candidat savedCandidat=candidatRepository.save(candidat);
         log.info("------------------------------------------------------------------------------------------------");
         log.info("id candidat = "+savedCandidat.getId());
@@ -63,5 +69,13 @@ public class CandidatDtoServiceImp implements ICandidat {
     @Override
     public void deleteCandidat(String id) {
         candidatRepository.deleteById(id);
+    }
+
+    @Override
+    public List<CandidatDto> getCandidatsByFiliere(FiliereDto filiere) {
+        List<Candidat> candidats = candidatRepository.findByFiliere(filiereMapper.FiliereDtoToFiliere(filiere));
+        return candidats.stream()
+                .map(candidatMapper::candidatToDto)
+                .collect(Collectors.toList());
     }
 }

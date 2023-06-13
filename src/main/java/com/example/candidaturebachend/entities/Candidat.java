@@ -34,7 +34,7 @@ public class Candidat extends Utilisateur implements Serializable {
 
 
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<Filiere> filieres;
     @ManyToMany(mappedBy = "candidats",fetch = FetchType.LAZY)

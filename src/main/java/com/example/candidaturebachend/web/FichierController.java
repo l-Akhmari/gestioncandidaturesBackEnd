@@ -68,7 +68,6 @@ public class FichierController {
     public ResponseEntity<FichierDto> uploadFile(@RequestPart("fichier") MultipartFile file) {
         try {
             ResponseEntity<FichierDto> response = fichierService.uploadFile(file);
-
             // Ajoutez cette condition pour vérifier si la réponse est OK
             if (response.getStatusCode() == HttpStatus.OK) {
                 FichierDto message = response.getBody();

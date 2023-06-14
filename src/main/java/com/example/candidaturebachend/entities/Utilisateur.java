@@ -29,7 +29,6 @@ public abstract class Utilisateur implements Serializable {
     protected String prenom;
     protected String addresse;
     protected String email;
-    @JsonFormat(pattern = "yyyy-MM-dd")
     protected Date dateNaissance;
     protected String telephone;
     protected String mdp;

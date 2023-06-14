@@ -60,6 +60,7 @@ public class DiplomeDtoServiceImpl implements IDiplomeDto {
         return diplomeDtos;
     }
 
+
     @Override
     public DiplomeDto getDiplome(int id) {
         Diplome diplome=diplomeRepository.findById(id).orElse(null);
@@ -80,6 +81,15 @@ public class DiplomeDtoServiceImpl implements IDiplomeDto {
     public void deleteDiplome(int id) {
         diplomeRepository.deleteById(id);
     }
+
+    @Override
+    public List<DiplomeDto> listCandidatureByCin(String cin){
+        List<Diplome> diplomes=diplomeRepository.findAllByCandidat_Cin(cin);
+        List<DiplomeDto> diplomeDtos=diplomes.stream()
+                .map(diplome -> diplomeMapper.DiplomeToDiplomeDto(diplome))
+                .collect(Collectors.toList());
+        return diplomeDtos;    }
+
     public NotesSemesterDto saveNoteSemester(NotesSemesterDto notesSemesterDto, int id ){
         NotesSemester notesSemester=notesSemesterMapper.NotesSemesterDtoToNotesSemester(notesSemesterDto);
       //  notesSemester.setDiplome(diplomeMapper.DiplomeDtoToDiplome(diplomeDto));

@@ -20,10 +20,8 @@ public class DiplomeDto {
     private Date anneeObtention;
     private String etablissement;
     private String universite;
-
     private CandidatDto candidatDto;
     private FiliereDto filiereDto;
-
     private FichierDto fichierDto;
     //private List<NotesSemesterDto> notesSemesterDto;
 

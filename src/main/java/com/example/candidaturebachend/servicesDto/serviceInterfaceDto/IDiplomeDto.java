@@ -12,4 +12,6 @@ public interface IDiplomeDto {
     DiplomeDto getDiplome(int id);
     DiplomeDto updateDiplome(DiplomeDto diplomeDto, CandidatDto candidatDto, FichierDto fichierDto);
     void deleteDiplome(int id);
+
+    List<DiplomeDto> listCandidatureByCin(String cin);
 }

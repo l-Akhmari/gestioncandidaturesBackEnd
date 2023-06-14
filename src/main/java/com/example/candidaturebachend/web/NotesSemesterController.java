@@ -39,9 +39,9 @@ public class NotesSemesterController {
         return new ResponseEntity<>(notesSemester, HttpStatus.OK);
     }*/
 
-    @PostMapping("/add")
-    public ResponseEntity<NotesSemesterDto> addNotesSemester(@RequestBody NotesSemesterDto notesSemester, DiplomeDto diplome) {
-        NotesSemesterDto newNotesSemester = notesSemesterService.saveNoteSemester(notesSemester,1);
+    @PostMapping("/add/{IDdiplome}")
+    public ResponseEntity<NotesSemesterDto> addNotesSemester(@RequestBody NotesSemesterDto notesSemester,@PathVariable int IDdiplome) {
+        NotesSemesterDto newNotesSemester = notesSemesterService.saveNoteSemester(notesSemester,IDdiplome);
         return new ResponseEntity<>(newNotesSemester, HttpStatus.CREATED);
     }
 

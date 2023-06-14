@@ -25,6 +25,7 @@ public class CandidatDtoServiceImp implements ICandidat {
 
     @Override
     public CandidatDto saveCandidat(CandidatDto candidatDto) {
+        System.out.println(candidatDto);
         Candidat candidat=candidatMapper.CandidatDtoToCandidat(candidatDto);
         candidat.setId(UUID.randomUUID().toString());
         Candidat savedCandidat=candidatRepository.save(candidat);

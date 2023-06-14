@@ -9,4 +9,5 @@ import java.util.Optional;
 public interface DiplomeRepository extends JpaRepository<Diplome, Integer> {
    // public List<Diplome> findAll();
     //Optional<Diplome> findDiplomeById(Integer id);
+    List<Diplome> findAllByCandidat_Cin(String cin);
 }

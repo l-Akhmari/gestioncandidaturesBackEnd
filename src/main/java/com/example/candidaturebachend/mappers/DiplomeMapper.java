@@ -27,18 +27,32 @@ public class DiplomeMapper {
     private CandidatMapper candidatMapper;
 
     //Diplome entity to Dto
-    public DiplomeDto DiplomeToDiplomeDto(Diplome diplome) {
-        DiplomeDto diplomeDto=new DiplomeDto();
-        BeanUtils.copyProperties(diplome,diplomeDto);
-        diplomeDto.setFichierDto(fichierMapper.fichierToFichierDto(diplome.getFichier()));
-        diplomeDto.setCandidatDto(candidatMapper.candidatToDto(diplome.getCandidat()));
-        diplomeDto.setFiliereDto(filiereMapper.FiliereToFiliereDto(diplome.getFiliere()));
-        return diplomeDto;
+    public DiplomeDto DiplomeToDiplomeDto(Diplome diplomeDto) {
+        DiplomeDto diplome=new DiplomeDto();
+        //BeanUtils.copyProperties(diplome,diplomeDto);
+        diplome.setSpecialiteDiplome(diplomeDto.getSpecialiteDiplome());
+        diplome.setUniversite(diplomeDto.getUniversite());
+        diplome.setAnneeObtention(diplomeDto.getAnneeObtention());
+        diplome.setEtablissement(diplomeDto.getEtablissement());
+        diplome.setId(diplomeDto.getId());
+        diplome.setTypeDiplome(diplomeDto.getTypeDiplome());
+
+        diplome.setFichierDto(fichierMapper.fichierToFichierDto(diplomeDto.getFichier()));
+        diplome.setCandidatDto(candidatMapper.candidatToDto(diplomeDto.getCandidat()));
+        diplome.setFiliereDto(filiereMapper.FiliereToFiliereDto(diplomeDto.getFiliere()));
+        return diplome;
     }
 
     public Diplome DiplomeDtoToDiplome(DiplomeDto diplomeDto) {
         Diplome diplome=new Diplome();
-        BeanUtils.copyProperties(diplomeDto,diplome);
+     //   BeanUtils.copyProperties(diplomeDto,diplome);
+
+        diplome.setSpecialiteDiplome(diplomeDto.getSpecialiteDiplome());
+        diplome.setUniversite(diplomeDto.getUniversite());
+        diplome.setAnneeObtention(diplomeDto.getAnneeObtention());
+        diplome.setEtablissement(diplomeDto.getEtablissement());
+        diplome.setId(diplomeDto.getId());
+        diplome.setTypeDiplome(diplomeDto.getTypeDiplome());
         diplome.setFichier(fichierMapper.fichierDtoTofichier(diplomeDto.getFichierDto()));
         diplome.setCandidat(candidatMapper.CandidatDtoToCandidat(diplomeDto.getCandidatDto()));
         diplome.setFiliere(filiereMapper.FiliereDtoToFiliere(diplomeDto.getFiliereDto()));

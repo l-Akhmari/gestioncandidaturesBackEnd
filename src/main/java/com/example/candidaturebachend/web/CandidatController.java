@@ -41,6 +41,11 @@ public class CandidatController {
         return new ResponseEntity<>(candidatDtos, HttpStatus.OK);
 
     }
+    @GetMapping("/search")
+    public ResponseEntity<List<CandidatDto>> searchCandidats(@RequestParam(name = "keyword",defaultValue = "") String keyword){
+        List<CandidatDto> candidatDtos = candidatDtoServiceImp.searchCandidats("%"+keyword+"%");
+        return new ResponseEntity<>(candidatDtos, HttpStatus.OK);
+    }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<CandidatDto> getCandidatById(@PathVariable("id") String id) throws CandidateNotFoundException {

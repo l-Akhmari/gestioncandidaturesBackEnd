@@ -24,6 +24,7 @@ public class Candidat extends Utilisateur implements Serializable {
    /* @Id
     private String idCandidat;*/
     private String cne;
+
     private String ville;
     private boolean admis;
     private String pays;

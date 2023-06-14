@@ -57,6 +57,14 @@ public class FiliereDtoServiceImpl implements IFiliere {
     }
 
     @Override
+    public List<FiliereDto> searchFiliere(String keyword) {
+        List<Filiere> filieres= filiereRepository.searchFiliere(keyword);
+                return filieres.stream()
+                        .map(filiereMapper::FiliereToFiliereDto)
+                        .collect(Collectors.toList());
+    }
+
+    @Override
     public FiliereDto getFiliereById(int filiereId) throws FiliereNotFoundException {
         Filiere filiere = filiereRepository.findById(filiereId)
                 .orElseThrow(() -> new FiliereNotFoundException("Filiere not found"));

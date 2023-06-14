@@ -14,6 +14,7 @@ import java.util.List;
 public interface ICandidat {
     CandidatDto saveCandidat(CandidatDto candidatDto);
     List<CandidatDto> listCandidats();
+    List<CandidatDto> searchCandidats(String cle);
     CandidatDto getCandidat(String id) throws CandidateNotFoundException;
     CandidatDto updateCandidat(CandidatDto candidatDto);
     void deleteCandidat(String id);

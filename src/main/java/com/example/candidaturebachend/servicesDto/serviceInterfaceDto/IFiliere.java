@@ -17,6 +17,7 @@ public interface IFiliere {
     FiliereDto savefiliere(FiliereDto filiereDto, DepartementDto departementId);
 
     List<FiliereDto> listFilieres();
+    List<FiliereDto> searchFiliere(String keyword);
 
     FiliereDto getFiliereById(int filiereId) throws FiliereNotFoundException;
 

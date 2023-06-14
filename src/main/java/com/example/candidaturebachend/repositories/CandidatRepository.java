@@ -14,4 +14,6 @@ public interface CandidatRepository extends JpaRepository<Candidat,String> {
   //  Optional<Candidat> findCandidatById(String id);
   @Query("SELECT c FROM Candidat c JOIN c.diplomes d WHERE d.filiere = :filiere")
   List<Candidat> findByFiliere(@Param("filiere") Filiere filiere);
+  @Query("select c from Candidat c where c.nom like :kw")
+  List<Candidat> searchCandidats(@Param("kw") String keyword);
 }

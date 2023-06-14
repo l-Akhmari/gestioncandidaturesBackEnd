@@ -53,6 +53,14 @@ public class CandidatDtoServiceImp implements ICandidat {
     }
 
     @Override
+    public List<CandidatDto> searchCandidats(String motCle) {
+        List<Candidat> candidats = candidatRepository.searchCandidats(motCle);
+        return candidats.stream()
+                .map(candidatMapper::candidatToDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public CandidatDto getCandidat(String id) throws CandidateNotFoundException {
         Candidat candidat=candidatRepository.findById(id).orElse(null);
         if (candidat==null)throw new CandidateNotFoundException("candidat not found");

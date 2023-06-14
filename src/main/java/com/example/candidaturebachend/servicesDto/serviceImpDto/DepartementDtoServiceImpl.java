@@ -25,6 +25,13 @@ public class DepartementDtoServiceImpl implements IDepartement {
     private DepartementRepository departementRepository;
     private DepartementMapper departementMapper;
 
+    public  List<DepartementDto> searchDepartements(String cle) {
+        List<Departement>departements = departementRepository.searchDepartements(cle);
+        return departements.stream()
+                .map(departementMapper::DepartementToDepartementDto)
+                .collect(Collectors.toList());
+    }
+
 
     @Override
     public DepartementDto savedepartement(DepartementDto departementDto) {

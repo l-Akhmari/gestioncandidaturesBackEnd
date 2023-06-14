@@ -1,6 +1,7 @@
 package com.example.candidaturebachend.web;
 
 import com.example.candidaturebachend.Exceptions.DepartementNotFoundException;
+import com.example.candidaturebachend.dto.CandidatDto;
 import com.example.candidaturebachend.dto.DepartementDto;
 import com.example.candidaturebachend.entities.Departement;
 import com.example.candidaturebachend.repositories.DepartementRepository;
@@ -24,12 +25,19 @@ public class DepartementController {
 
 
 
+
     @GetMapping("/all")
     public ResponseEntity<List<DepartementDto>> getAllDepartements() {
         List<DepartementDto> departements = departementService.listDepartements();
         return new ResponseEntity<>(departements, HttpStatus.OK);
-
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<DepartementDto>> searchDepartement(@RequestParam(name = "keyword",defaultValue = "") String keyword){
+        List<DepartementDto> departementDtos = departementService.searchDepartements("%"+keyword+"%");
+        return new ResponseEntity<>(departementDtos, HttpStatus.OK);
+    }
+
 
     @GetMapping("/find/{id}")
     public ResponseEntity<DepartementDto> getDepartementById(@PathVariable("id") Integer id) throws DepartementNotFoundException {

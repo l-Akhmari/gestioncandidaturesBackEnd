@@ -27,7 +27,11 @@ public class FiliereController {
     private FiliereDtoServiceImpl filiereService;
    // FiliereRepository filiereRepo;
 
-
+    @GetMapping("/search/{keyword}")
+    public ResponseEntity<List<FiliereDto>> searchFiliere(@RequestParam(name = "keyword",defaultValue = "") String keyword){
+        List<FiliereDto> filiereDtos = filiereService.searchFiliere("%"+keyword+"%");
+        return new ResponseEntity<>(filiereDtos, HttpStatus.OK);
+    }
     @GetMapping("/all")
     public ResponseEntity<List<FiliereDto>> getAllFilieres() {
         List<FiliereDto> filieres = filiereService.listFilieres();

@@ -32,7 +32,7 @@ public class CandidatDtoServiceImp implements ICandidat {
         System.out.println(candidatDto);
         Candidat candidat=candidatMapper.CandidatDtoToCandidat(candidatDto);
         candidat.setId(UUID.randomUUID().toString());
-        candidat.setFilieres(filiereMapper.mapFilieresDtoToFilieres(candidatDto.getFilieresDto()));
+        //candidat.setFilieres(filiereMapper.mapFilieresDtoToFilieres(candidatDto.getFilieresDto()));
         Candidat savedCandidat=candidatRepository.save(candidat);
         log.info("------------------------------------------------------------------------------------------------");
         log.info("id candidat = "+savedCandidat.getId());

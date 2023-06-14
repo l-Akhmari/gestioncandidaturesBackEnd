@@ -28,7 +28,7 @@ public class CandidatDto{
     private String bac;
     private String paysObtentionBac;
     private Date bacAnneObtention;
-    private List<FiliereDto> filieresDto;
+    //private List<FiliereDto> filieresDto;
     //private List<DiplomeDto> diplomesDto;
 
 }

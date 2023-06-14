@@ -31,9 +31,9 @@ public class CandidatMapper {
 
         CandidatDto candidatDto = new CandidatDto();
         BeanUtils.copyProperties(candidat, candidatDto);
-        candidatDto.setFilieresDto(candidat.getFilieres().stream()
+        /*candidatDto.setFilieresDto(candidat.getFilieres().stream()
                 .map(filiere -> filiereMapper.FiliereToFiliereDto(filiere))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()));*/
         return candidatDto;
     }
 
@@ -41,9 +41,9 @@ public class CandidatMapper {
 
         Candidat candidat = new Candidat();
         BeanUtils.copyProperties(candidatDto, candidat);
-        candidat.setFilieres(candidatDto.getFilieresDto().stream()
+        /*candidat.setFilieres(candidatDto.getFilieresDto().stream()
                 .map(filiere -> filiereMapper.FiliereDtoToFiliere(filiere))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()));*/
         return candidat;
     }
 

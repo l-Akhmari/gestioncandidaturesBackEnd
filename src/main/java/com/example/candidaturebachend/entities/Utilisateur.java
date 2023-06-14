@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.Incubating;
+import org.springframework.format.annotation.DateTimeFormat;
 
 
 import java.io.Serializable;
@@ -29,7 +30,7 @@ public abstract class Utilisateur implements Serializable {
     protected String prenom;
     protected String addresse;
     protected String email;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     protected Date dateNaissance;
     protected String telephone;
     protected String mdp;

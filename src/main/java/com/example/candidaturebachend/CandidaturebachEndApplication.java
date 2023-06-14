@@ -59,24 +59,10 @@ public class CandidaturebachEndApplication {
                     filiereDto.setIntitule("filiere"+(i+1)+" de "+departementDto.getIntitule());
                     filiereDto.setTypeFormation(Math.random()>0.5 ? TypeFormation.Formation_Initiale : TypeFormation.Formation_Continue);
                     filiereDto.setDepartementDto(departementDto);
-                    filiereDto.setTypeDiplomeAObtenir(Math.random()> 0.5 ? TypeDiplomeAObtenir.Cycle_Ingenieur : TypeDiplomeAObtenir.Master);
+                    filiereDto.setTypeDiplomeAObtenir(Math.random()> 0.5 ? TypeDiplomeAObtenir.Ingenieur_Etat : TypeDiplomeAObtenir.Master);
                     filiereDtoService.savefiliere(filiereDto);
                 }
             });
-            /*List<FiliereDto> filiereDtos = filiereDtoService.listFilieres();
-            Stream.of("fatima","nezha","tawahd").forEach(name->{
-                CandidatDto candidat=new CandidatDto();
-                candidat.setId(UUID.randomUUID().toString());
-                candidat.setAddresse("addresse de "+name);
-                candidat.setNom(name);
-                candidat.setEmail(name+"@gmail.com");
-                candidat.setDateNaissance(new Date());
-                candidat.setCin("cin de "+name);
-                candidat.setPrenom(name);
-                candidat.setFilieresDto(filiereDtos);
-                candidatDtoImp.saveCandidat(candidat);
-
-            });*/
 
 
         }

@@ -29,7 +29,6 @@ public class Candidat extends Utilisateur implements Serializable {
     private String pays;
     private String bac;
     private String paysObtentionBac;
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date bacAnneObtention;
 
 

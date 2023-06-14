@@ -36,6 +36,12 @@ public class DiplomeController {
         return new ResponseEntity<>(diplomes, HttpStatus.OK);
 
     }
+    @GetMapping("/allCandidatures/{cin}")
+    public ResponseEntity<List<DiplomeDto>> getAllCandidatures(@PathVariable("cin") String cin) {
+        List<DiplomeDto> diplomes = diplomeService.listCandidatureByCin(cin);
+        return new ResponseEntity<>(diplomes, HttpStatus.OK);
+
+    }
 
     @GetMapping("/find/{id}")
     public ResponseEntity<DiplomeDto> getDiplomeById(@PathVariable("id") Integer id) {

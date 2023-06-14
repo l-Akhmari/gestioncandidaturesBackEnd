@@ -5,6 +5,6 @@ public enum TypeDiplome {
     DEUG,
     DEUST,
     BTS,
-    Autre,
-    DTS
+    DTS,
+    Autre
 }

@@ -25,7 +25,6 @@ public class Diplome implements Serializable {
     @Enumerated(EnumType.STRING)
     private TypeDiplome typeDiplome;
     private String specialiteDiplome;
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date anneeObtention;
     private String etablissement;
     private String universite;

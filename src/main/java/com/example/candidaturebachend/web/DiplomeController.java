@@ -49,6 +49,14 @@ public class DiplomeController {
         return new ResponseEntity<>(diplome, HttpStatus.OK);
     }
 
+    @GetMapping("/diplomes/{idCandidat}")
+    public ResponseEntity<DiplomeDto> getDiplomeByCandidat(@PathVariable String idCandidat) {
+        CandidatDto candidatDto = new CandidatDto();
+        candidatDto.setId(idCandidat);
+        DiplomeDto diplome = diplomeService.getDiplomeByCandidat(candidatDto);
+        return new ResponseEntity<>(diplome, HttpStatus.OK);
+    }
+
     @PostMapping("/add")
     public ResponseEntity<DiplomeDto> addDiplome(@RequestBody DiplomeDto diplome) {
         DiplomeDto newDiplome = diplomeService.saveDiplome(diplome);

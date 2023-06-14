@@ -40,7 +40,7 @@ public class Diplome implements Serializable {
     @OneToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Fichier fichier;
-    @OneToMany(mappedBy = "diplome",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "diplome",fetch = FetchType.LAZY, cascade = CascadeType.ALL)
   //  @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private List<NotesSemester> notesSemester=new ArrayList<>();
 }

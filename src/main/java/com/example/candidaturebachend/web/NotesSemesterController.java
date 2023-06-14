@@ -1,8 +1,13 @@
 package com.example.candidaturebachend.web;
 
+import com.example.candidaturebachend.Exceptions.DiplomeNotFoundException;
 import com.example.candidaturebachend.dto.DiplomeDto;
 import com.example.candidaturebachend.dto.NotesSemesterDto;
 
+import com.example.candidaturebachend.entities.Diplome;
+import com.example.candidaturebachend.entities.NotesSemester;
+import com.example.candidaturebachend.mappers.NotesSemesterMapper;
+import com.example.candidaturebachend.repositories.DiplomeRepository;
 import com.example.candidaturebachend.servicesDto.serviceImpDto.DiplomeDtoServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,6 +29,10 @@ import java.util.List;
 public class NotesSemesterController {
     @Autowired
     private DiplomeDtoServiceImpl notesSemesterService;
+    @Autowired
+    private NotesSemesterMapper notesSemesterMapper;
+    @Autowired
+    private DiplomeRepository diplomeRepository;
 
 
     @GetMapping("/all")
@@ -40,9 +49,16 @@ public class NotesSemesterController {
     }*/
 
 
-    @PostMapping("/add/{IDdiplome}")
+    /*@PostMapping("/add/{IDdiplome}")
     public ResponseEntity<NotesSemesterDto> addNotesSemester(@RequestBody NotesSemesterDto notesSemester,@PathVariable int IDdiplome) {
         NotesSemesterDto newNotesSemester = notesSemesterService.saveNoteSemester(notesSemester,IDdiplome);
+        return new ResponseEntity<>(newNotesSemester, HttpStatus.CREATED);
+    }*/
+    @PostMapping("/add/{id}")
+    public ResponseEntity<NotesSemesterDto> saveNoteSemester(@RequestBody NotesSemesterDto notesSemesterDto, @PathVariable("id") int id) throws DiplomeNotFoundException{
+        DiplomeDto diplome = notesSemesterService.getDiplome(id);
+        notesSemesterDto.setDiplomeDto(diplome);
+        NotesSemesterDto newNotesSemester = notesSemesterService.saveNoteSemester(notesSemesterDto,diplome);
         return new ResponseEntity<>(newNotesSemester, HttpStatus.CREATED);
     }
 

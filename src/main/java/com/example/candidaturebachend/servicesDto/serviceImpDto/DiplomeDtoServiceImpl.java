@@ -68,6 +68,11 @@ public class DiplomeDtoServiceImpl implements IDiplomeDto {
         return diplomeMapper.DiplomeToDiplomeDto(diplome);
     }
 
+    public DiplomeDto getDiplomeByCandidat(CandidatDto candidatDto) {
+        Diplome diplome=diplomeRepository.findDiplomeByCandidat(candidatMapper.CandidatDtoToCandidat(candidatDto));
+        return diplomeMapper.DiplomeToDiplomeDto(diplome);
+    }
+
     @Override
     public DiplomeDto updateDiplome(DiplomeDto diplomeDto, CandidatDto candidatDto, FichierDto fichierDto) {
         Diplome diplome=diplomeMapper.DiplomeDtoToDiplome(diplomeDto);
@@ -90,13 +95,13 @@ public class DiplomeDtoServiceImpl implements IDiplomeDto {
                 .collect(Collectors.toList());
         return diplomeDtos;    }
 
-    public NotesSemesterDto saveNoteSemester(NotesSemesterDto notesSemesterDto, int id ){
+    public NotesSemesterDto saveNoteSemester(NotesSemesterDto notesSemesterDto, DiplomeDto diplomeDto ){
         NotesSemester notesSemester=notesSemesterMapper.NotesSemesterDtoToNotesSemester(notesSemesterDto);
-      //  notesSemester.setDiplome(diplomeMapper.DiplomeDtoToDiplome(diplomeDto));
+        notesSemester.setDiplome(diplomeMapper.DiplomeDtoToDiplome(diplomeDto));
 
 
-        Diplome diplome = diplomeRepository.findById(id).get();
-        notesSemester.setDiplome(diplome);
+        //Diplome diplome = diplomeRepository.findById(id).get();
+        //notesSemester.setDiplome(diplome);
 
         NotesSemester saveNotes=notesSemesterRepository.save(notesSemester);
         return notesSemesterMapper.NotesSemesterToNotesSemesterDto(saveNotes);

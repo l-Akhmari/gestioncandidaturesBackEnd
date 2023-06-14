@@ -15,7 +15,7 @@ public class NotesSemester implements Serializable {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     Double note;
-    @ManyToOne(cascade = CascadeType.ALL)
-    //@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     Diplome diplome;
 }

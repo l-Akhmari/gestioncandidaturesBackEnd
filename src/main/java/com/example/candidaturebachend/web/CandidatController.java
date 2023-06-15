@@ -41,7 +41,7 @@ public class CandidatController {
         return new ResponseEntity<>(candidatDtos, HttpStatus.OK);
 
     }
-    @GetMapping("/search")
+    @GetMapping("/searchcandid/{keyword}")
     public ResponseEntity<List<CandidatDto>> searchCandidats(@RequestParam(name = "keyword",defaultValue = "") String keyword){
         List<CandidatDto> candidatDtos = candidatDtoServiceImp.searchCandidats("%"+keyword+"%");
         return new ResponseEntity<>(candidatDtos, HttpStatus.OK);
